@@ -25,7 +25,7 @@ Route::get('template', function () {
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('pengukuran-lila');
 });
 Route::get('/pengukuran-lila', PengukuranLila::class)->name('pengukuranlila');
 
