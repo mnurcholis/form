@@ -89,7 +89,7 @@
                                 <div class="col-lg-2">
                                     {{ Form::select(null, get_code_group('KATEGORI_TP'), null, [
                                         'class' => 'form-control' . ($errors->has('form.kategori_tp') ? ' border-danger' : null),
-                                        'placeholder' => 'Pilih usia',
+                                        'placeholder' => 'Pilih Kategori',
                                         'wire:model.lazy' => 'form.kategori_tp',
                                     ]) }}
                                     @error('form.kategori_tp')
