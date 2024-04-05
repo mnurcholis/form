@@ -108,7 +108,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label class="col-form-label col-lg-2">Kek</label>
                                 <div class="col-lg-10">
                                     <select class="form-control" wire:model="form.kek">
@@ -120,7 +120,7 @@
                                 @error('form.kek')
                                     <span class="form-text text-danger">{{ $message }}</span>
                                 @enderror
-                            </div>
+                            </div> --}}
                         </fieldset>
 
                         <div class="text-right">

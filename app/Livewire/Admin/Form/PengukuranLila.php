@@ -19,7 +19,7 @@ class PengukuranLila extends Component
         'alamat' => '',
         'kategori_tp' => '',
         'lila' => '',
-        'kek' => ''
+        'kek' => '1'
     ];
 
     public function updateFormKecamatan()
@@ -44,7 +44,7 @@ class PengukuranLila extends Component
             'alamat' => '',
             'kategori_tp' => '',
             'lila' => '',
-            'kek' => ''
+            'kek' => '1'
         ];
         $this->region_kel = [];
         Session::flash('success', 'Data Berhasil disimpan');
