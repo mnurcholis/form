@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Admin\Form\PengukuranLila;
+use App\Livewire\Admin\Pages\DataLila\Lila;
 use App\Livewire\Admin\Pages\Permission;
 use App\Livewire\Admin\Pages\Role;
 use App\Livewire\Admin\Pages\User;
@@ -35,6 +36,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', Home::class)->name('home');
+    Route::get('/datalila', Lila::class)->name('data-lila');
     Route::get('/user', User::class)->name('user');
     Route::get('/role', Role::class)->name('role');
     Route::get('/permission', Permission::class)->name('permission');

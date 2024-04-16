@@ -6,13 +6,6 @@
             <div class="card">
                 <div class="card-header header-elements-inline">
                     <h5 class="card-title">Pengukuran Lingkar Lengan Atas (LILA)</h5>
-                    <div class="header-elements">
-                        <div class="list-icons">
-                            <a class="list-icons-item" data-action="collapse"></a>
-                            <a class="list-icons-item" data-action="reload"></a>
-                            <a class="list-icons-item" data-action="remove"></a>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="card-body">
@@ -30,7 +23,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Kecamatan</label>
+                                        <label>Kecamatan *</label>
                                         <select wire:model="form.kecamatan" class="form-control"
                                             wire:change='updateFormKecamatan'>
                                             <option value="">Pilih Kecamatan</option>
@@ -38,9 +31,12 @@
                                                 <option value="{{ $list->region_cd }}">{{ $list->region_nm }}</option>
                                             @endforeach
                                         </select>
+                                        @error('form.kecamatan')
+                                            <span class="form-text text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Kelurahan / Desa</label> <br>
+                                        <label>Kelurahan / Desa *</label> <br>
                                         <select wire:model="form.desa" class="form-control">
                                             <option value="">Pilih Kelurahan / Desa</option>
                                             @foreach ($region_kel ?? [] as $list)
@@ -48,6 +44,9 @@
                                                 </option>
                                             @endforeach
                                         </select>
+                                        @error('form.desa')
+                                            <span class="form-text text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -60,12 +59,36 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12" wire:ignore>
+                                        <label>Sekolah</label>
+                                        <select wire:model="form.sekolah_id" class="form-control select-select">
+                                            <option value="">Pilih Sekolah</option>
+                                            @foreach ($sekolah ?? [] as $list)
+                                                <option value="{{ $list->id }}">{{ $list->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Nama</label>
+                                <label class="col-form-label col-lg-2">Nama *</label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" wire:model="form.nama">
                                 </div>
                                 @error('form.nama')
+                                    <span class="form-text text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-2">NIK</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" wire:model="form.nik">
+                                </div>
+                                @error('form.nik')
                                     <span class="form-text text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -85,7 +108,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Kategori</label>
+                                <label class="col-lg-2 col-form-label">Kategori *</label>
                                 <div class="col-lg-2">
                                     {{ Form::select(null, get_code_group('KATEGORI_TP'), null, [
                                         'class' => 'form-control' . ($errors->has('form.kategori_tp') ? ' border-danger' : null),
@@ -99,7 +122,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-form-label col-lg-2">Ukuran Lingkar Lengan Atas</label>
+                                <label class="col-form-label col-lg-2">Ukuran Lingkar Lengan Atas *</label>
                                 <div class="col-lg-10">
                                     <input type="number" step="0.1" class="form-control" wire:model="form.lila">
                                 </div>
@@ -133,3 +156,17 @@
         </div>
     </div>
 </div>
+@push('js')
+    <script>
+        $('.select-select').select2({});
+        $('.select-select').on('change', function(e) {
+            var data = $('.select-select').select2("val");
+            @this.set('form.sekolah_id', data);
+        });
+        $(document).ready(function() {
+            window.addEventListener('kosong_sekolah', event => {
+                $('.select-select').select2('destroy').val('').select2();
+            });
+        });
+    </script>
+@endpush

@@ -38,6 +38,7 @@
     <script src="{{ asset('limitless/layout_1/LTR/default/full/assets/js/app.js') }}"></script>
     <script src="{{ asset('limitless/global_assets/js/demo_pages/login.js') }}"></script>
     <script src="{{ asset('limitless/global_assets/js/demo_pages/components_buttons.js') }}"></script>
+    <script src="{{ asset('limitless/global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
 
     <!-- /theme JS files -->
     <!-- Styles -->
@@ -56,7 +57,10 @@
         <!-- /main content -->
 
     </div>
+
+    @vite(['resources/js/app.js'])
     @livewireScripts
+    @stack('js')
 </body>
 
 </html>
