@@ -13,4 +13,19 @@ class Lila extends Model implements Auditable
     use AuditableTrait;
 
     protected $guarded = [];
+
+    public function Desa()
+    {
+        return $this->hasOne(ComRegion::class,  'region_cd', 'desa');
+    }
+
+    public function Kecamatan()
+    {
+        return $this->hasOne(ComRegion::class,  'region_cd', 'kecamatan');
+    }
+
+    public function Sekolah()
+    {
+        return $this->belongsTo(Sekolah::class,  'sekolah_id');
+    }
 }
