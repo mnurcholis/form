@@ -40,7 +40,7 @@ class Lila extends Component
     public function render()
     {
         return view('livewire.admin.pages.data-lila.lila', [
-            'data' => ModelsLila::where('desa', 'like', '%' . $this->desa . '%')->orderBy('id', 'DESC')->paginate(2),
+            'data' => ModelsLila::where('desa', 'like', '%' . $this->desa . '%')->orderBy('id', 'DESC')->paginate(20),
         ]);
     }
 }
