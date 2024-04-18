@@ -46,27 +46,41 @@
                             <th>#</th>
                             <th>Nama</th>
                             <th>NIK</th>
+                            <th>Usia TP</th>
+                            <th>Kategori</th>
                             <th>Kecamatan</th>
                             <th>Desa</th>
                             <th>Alamat</th>
+                            <th>Sekolah</th>
+                            <th>LiLA</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $val)
+                        @if ($data->count() > 0)
+                            @foreach ($data as $val)
+                                <tr>
+                                    <td>{{ $val->id }}</td>
+                                    <td>{{ $val->nama }}</td>
+                                    <td>{{ $val->nik }}</td>
+                                    <td>{{ $val->Usia_tp->code_nm }}</td>
+                                    <td>{{ $val->Kategori->code_nm }}</td>
+                                    <td>{{ $val->Kecamatan->region_nm }}</td>
+                                    <td>{{ $val->Desa->region_nm }}</td>
+                                    <td>{{ $val->alamat }}</td>
+                                    <td>{{ $val->Sekolah->nama }}</td>
+                                    <td>{{ $val->lila }}</td>
+                                </tr>
+                            @endforeach
+                        @else
                             <tr>
-                                <td>{{ $val->id }}</td>
-                                <td>{{ $val->nama }}</td>
-                                <td>{{ $val->nik }}</td>
-                                <td>{{ $val->Kecamatan->region_nm }}</td>
-                                <td>{{ $val->Desa->region_nm }}</td>
-                                <td>{{ $val->alamat }}</td>
+                                <td colspan="11" class="text-center">Data Tidak Ada</td>
                             </tr>
-                        @endforeach
+                        @endif
                     </tbody>
                 </table>
                 <br>
-                {{ $data->links() }}
             </div>
+            {{ $data->links() }}
         </div>
     </div>
 </div>

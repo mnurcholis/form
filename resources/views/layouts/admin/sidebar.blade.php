@@ -28,7 +28,7 @@
                         title="Main"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link">
+                    <a href="{{ route('home') }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
                         <i class="icon-home4"></i>
                         <span>
                             Dashboard
@@ -36,14 +36,22 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('data-lila') }}" class="nav-link">
+                    <a href="{{ route('data-lila') }}" class="nav-link {{ request()->is('datalila') ? 'active' : '' }}">
                         <i class="icon-home4"></i>
                         <span>
                             Data Lila
                         </span>
                     </a>
                 </li>
-                <li class="nav-item nav-item-submenu">
+                <li class="nav-item">
+                    <a href="{{ route('sekolah') }}" class="nav-link {{ request()->is('sekolah') ? 'active' : '' }}">
+                        <i class="icon-home4"></i>
+                        <span>
+                            Data Sekolah
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item nav-item-submenu {{ request()->is('user') || request()->is('role') || request()->is('permission') ? 'nav-item-expanded nav-item-open' : '' }}">
                     <a href="#" class="nav-link"><i class="icon-people"></i> <span>User
                             management</span></a>
                     <ul class="nav nav-group-sub" data-submenu-title="User pages">

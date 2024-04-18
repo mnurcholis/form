@@ -19,6 +19,7 @@ class Lila extends Component
     public function updateFormKecamatan()
     {
         $this->region_kel = ComRegion::where('region_root', $this->kecamatan)->get()->toArray();
+        $this->desa = null;
     }
 
     public function updateFormDesa()
@@ -39,7 +40,7 @@ class Lila extends Component
     public function render()
     {
         return view('livewire.admin.pages.data-lila.lila', [
-            'data' => ModelsLila::where('desa', 'lika', '%' . $this->desa . '%')->paginate(2),
+            'data' => ModelsLila::where('desa', 'like', '%' . $this->desa . '%')->orderBy('id', 'DESC')->paginate(2),
         ]);
     }
 }

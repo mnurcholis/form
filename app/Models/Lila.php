@@ -28,4 +28,14 @@ class Lila extends Model implements Auditable
     {
         return $this->belongsTo(Sekolah::class,  'sekolah_id');
     }
+
+    public function Usia_tp()
+    {
+        return $this->belongsTo(ComCode::class,  'usia_tp', 'code_cd');
+    }
+
+    public function Kategori()
+    {
+        return $this->belongsTo(ComCode::class,  'kategori_tp', 'code_cd');
+    }
 }

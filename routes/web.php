@@ -2,6 +2,7 @@
 
 use App\Livewire\Admin\Form\PengukuranLila;
 use App\Livewire\Admin\Pages\DataLila\Lila;
+use App\Livewire\Admin\Pages\DataSekolah\DataSekolah;
 use App\Livewire\Admin\Pages\Permission;
 use App\Livewire\Admin\Pages\Role;
 use App\Livewire\Admin\Pages\User;
@@ -25,9 +26,7 @@ Route::get('template', function () {
 });
 
 
-Route::get('/', function () {
-    return redirect('pengukuran-lila');
-});
+Route::get('/', PengukuranLila::class)->name('pengukuranlila');
 Route::get('/pengukuran-lila', PengukuranLila::class)->name('pengukuranlila');
 
 Route::middleware([
@@ -37,6 +36,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', Home::class)->name('home');
     Route::get('/datalila', Lila::class)->name('data-lila');
+    Route::get('/sekolah', DataSekolah::class)->name('sekolah');
     Route::get('/user', User::class)->name('user');
     Route::get('/role', Role::class)->name('role');
     Route::get('/permission', Permission::class)->name('permission');
