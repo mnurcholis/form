@@ -62,12 +62,12 @@
                                     <td>{{ $val->id }}</td>
                                     <td>{{ $val->nama }}</td>
                                     <td>{{ $val->nik }}</td>
-                                    <td>{{ $val->Usia_tp->code_nm }}</td>
-                                    <td>{{ $val->Kategori->code_nm }}</td>
+                                    <td>{{ $val->Usia_tp->code_nm ?? ''  }}</td>
+                                    <td>{{ $val->Kategori->code_nm ?? '' }}</td>
                                     <td>{{ $val->Kecamatan->region_nm }}</td>
                                     <td>{{ $val->Desa->region_nm }}</td>
                                     <td>{{ $val->alamat }}</td>
-                                    <td>{{ $val->Sekolah->nama }}</td>
+                                    <td>{{ $val->Sekolah->nama ?? '' }}</td>
                                     <td>{{ $val->lila }}</td>
                                 </tr>
                             @endforeach
