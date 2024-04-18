@@ -12,7 +12,21 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class TableLila extends DataTableComponent
 {
+    public $desa, $kecamatan;
+    protected $listeners = ['Cari'];
+
     protected $model = Lila::class;
+
+    public function Cari($data)
+    {
+        $this->desa = $data['desa'];
+        $this->kecamatan = $data['kecamatan'];
+    }
+
+    public function builder(): Builder
+    {
+        return Lila::where('desa', $this->desa);
+    }
 
     public function configure(): void
     {
