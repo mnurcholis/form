@@ -39,10 +39,6 @@ class TableLila extends DataTableComponent
                 ->sortable(),
             Column::make("NIK", "nik")
                 ->sortable(),
-            Column::make("Desa", "desa")
-                ->sortable()->format(function ($value, $column, $row) {
-                    return ComRegion::where('region_cd', $value)->first()->region_nm;
-                }),
             Column::make("Usia TP", "usia_tp")
                 ->sortable()->format(function ($value, $column, $row) {
                     if ($value) {
@@ -54,6 +50,10 @@ class TableLila extends DataTableComponent
                     if ($value) {
                         return ComCode::where('code_cd', $value)->first()->code_nm;
                     }
+                }),
+            Column::make("Desa", "desa")
+                ->sortable()->format(function ($value, $column, $row) {
+                    return ComRegion::where('region_cd', $value)->first()->region_nm;
                 }),
             Column::make("Kecamatan", "Kecamatan.region_nm")
                 ->sortable(),
