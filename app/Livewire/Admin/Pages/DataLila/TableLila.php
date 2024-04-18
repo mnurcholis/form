@@ -45,13 +45,13 @@ class TableLila extends DataTableComponent
                 }),
             Column::make("Usia TP", "usia_tp")
                 ->sortable()->format(function ($value, $column, $row) {
-                    return ComCode::where('code_cd', $value)->first()->code_nm;
-                }),
-            Column::make("Kategori", "kategori_tp")
-                ->sortable()->format(function ($value, $column, $row) {
                     if ($value) {
                         return ComCode::where('code_cd', $value)->first()->code_nm;
                     }
+                }),
+            Column::make("Kategori", "kategori_tp")
+                ->sortable()->format(function ($value, $column, $row) {
+                    return ComCode::where('code_cd', $value)->first()->code_nm;
                 }),
             Column::make("Kecamatan", "Kecamatan.region_nm")
                 ->sortable(),
