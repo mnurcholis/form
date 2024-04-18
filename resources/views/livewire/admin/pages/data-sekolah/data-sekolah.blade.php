@@ -5,7 +5,9 @@
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <button type="button" class="btn btn-warning" wire:click="create">Tambah</button>
+            @if (!$isOpen)
+                <button type="button" class="btn btn-warning" wire:click="create">Tambah</button>
+            @endif
         </div>
 
         <div class="card-body">
