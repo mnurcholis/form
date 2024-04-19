@@ -19,14 +19,14 @@ class Permission extends Component
     {
         $this->isEdit = !$this->isEdit;
     }
-      public function cancel()
+    public function cancel()
     {
         $this->isEdit = !$this->isEdit;
         $this->idNya = '';
         $this->name = '';
         $this->datane = '';
     }
-     public function edit($id)
+    public function edit($id)
     {
         $this->isEdit = true;
         $this->datane = ModelsPermission::find($id);
@@ -34,7 +34,7 @@ class Permission extends Component
         $this->name = $this->datane->name;
     }
 
-     public function save()
+    public function save()
     {
         $this->validate();
         if ($this->idNya) {
@@ -42,6 +42,7 @@ class Permission extends Component
         } else {
             ModelsPermission::create([
                 'name' => $this->name,
+                'guard_name' => 'web',
             ]);
             $this->dispatchBrowserEvent('Success');
             $this->emit('refreshDatatable');
