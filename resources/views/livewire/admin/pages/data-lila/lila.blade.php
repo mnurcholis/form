@@ -6,6 +6,9 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h5 class="card-title">Data Pengukuran Lingkar Lengan Atas (LILA)</h5>
+            <div class="header-elements">
+                <button class="btn btn-sm btn-warning" wire:click="exportData" wire:loading.attr="disabled">Export</button>
+            </div>
         </div>
 
         <div class="card-body">
@@ -62,7 +65,7 @@
                                     <td>{{ $val->id }}</td>
                                     <td>{{ $val->nama }}</td>
                                     <td>{{ $val->nik }}</td>
-                                    <td>{{ $val->Usia_tp->code_nm ?? ''  }}</td>
+                                    <td>{{ $val->Usia_tp->code_nm ?? '' }}</td>
                                     <td>{{ $val->Kategori->code_nm ?? '' }}</td>
                                     <td>{{ $val->Kecamatan->region_nm }}</td>
                                     <td>{{ $val->Desa->region_nm }}</td>
