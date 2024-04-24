@@ -24,7 +24,7 @@ if (!function_exists('get_code_group')) {
 if (!function_exists('hitung_lila')) {
     function hitung_lila($lila, $standar)
     {
-        $hasil = round(($lila / $standar) * 100);
+        $hasil = round(($lila / $standar) * 100, 1);
         $kategori = "";
         if ($hasil > 120) {
             $kategori = "Obesitas";

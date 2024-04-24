@@ -120,7 +120,7 @@
                                     <td>{{ $val->Desa->region_nm }}</td>
                                     <td>{{ $val->alamat }}</td>
                                     <td>{{ $val->Sekolah->nama ?? '' }}</td>
-                                    <td>{{ round(($val->lila / $val->Usia_tp->code_value) * 100) }} %</td>
+                                    <td>{{ round(($val->lila / $val->Usia_tp->code_value) * 100, 1) }} %</td>
                                     <td>{{ hitung_lila($val->lila, $val->Usia_tp->code_value) }}</td>
                                 </tr>
                             @endforeach
