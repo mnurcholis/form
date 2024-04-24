@@ -58,8 +58,30 @@ class Lila extends Component
 
     public function render()
     {
+        $query = ModelsLila::select('*');
+        if ($this->nama) {
+            $query->where('nama', 'like', '%' . $this->nama . '%');
+        }
+        if ($this->nik) {
+            $query->where('nik', 'like', '%' . $this->nik . '%');
+        }
+        if ($this->desa) {
+            $query->where('desa', 'like', '%' . $this->desa . '%');
+        }
+        if ($this->usia_tp) {
+            $query->where('usia_tp', 'like', '%' .  $this->usia_tp . '%');
+        }
+        if ($this->kategori_tp) {
+            $query->where('kategori_tp', 'like', '%' .  $this->kategori_tp . '%');
+        }
+        if ($this->sekolah_id) {
+            $query->where('sekolah_id', 'like', '%' .  $this->sekolah_id . '%');;
+        }
+
+        $query = $query->orderBy('id', 'DESC')->paginate(20);
+
         return view('livewire.admin.pages.data-lila.lila', [
-            'data' => ModelsLila::where('nama', 'like', '%' . $this->nama . '%')->where('nik', 'like', '%' . $this->nik . '%')->where('desa', 'like', '%' . $this->desa . '%')->where('usia_tp', 'like', '%' .  $this->usia_tp . '%')->where('kategori_tp', 'like', '%' .  $this->kategori_tp . '%')->where('sekolah_id', 'like', '%' .  $this->sekolah_id . '%')->orderBy('id', 'DESC')->paginate(20),
+            'data' => $query,
         ]);
     }
 }
