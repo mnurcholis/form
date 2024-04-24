@@ -47,7 +47,7 @@ class Lila extends Component
             ->select('lilas.nama', 'lilas.lila', 'Usia.code_nm as Usia', 'Kategori.code_nm As Kategori', 'lilas.nik', 'Desa.region_nm AS Desa', 'Kecamatan.region_nm AS Kecamatan', 'lilas.alamat', 'sekolahs.nama as Sekolah')->get();
 
         // dd($data);
-        return Excel::download(new LilaExport($data), 'coba.csv');
+        return Excel::download(new LilaExport($data), 'data.csv');
     }
 
     public function mount()
