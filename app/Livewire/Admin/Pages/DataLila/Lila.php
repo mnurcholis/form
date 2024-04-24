@@ -16,7 +16,7 @@ class Lila extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $region_kec, $region_kel, $sekolah, $kecamatan, $desa, $usia_tp, $kategori_tp, $nama, $nik;
+    public $region_kec, $region_kel, $sekolah, $sekolah_id, $kecamatan, $desa, $usia_tp, $kategori_tp, $nama, $nik;
 
     public function updateFormKecamatan()
     {
@@ -59,7 +59,7 @@ class Lila extends Component
     public function render()
     {
         return view('livewire.admin.pages.data-lila.lila', [
-            'data' => ModelsLila::where('nama', 'like', '%' . $this->nama . '%')->where('nik', 'like', '%' . $this->nik . '%')->where('desa', 'like', '%' . $this->desa . '%')->where('usia_tp', 'like', '%' .  $this->usia_tp . '%')->where('kategori_tp', 'like', '%' .  $this->kategori_tp . '%')->orderBy('id', 'DESC')->paginate(20),
+            'data' => ModelsLila::where('nama', 'like', '%' . $this->nama . '%')->where('nik', 'like', '%' . $this->nik . '%')->where('desa', 'like', '%' . $this->desa . '%')->where('usia_tp', 'like', '%' .  $this->usia_tp . '%')->where('kategori_tp', 'like', '%' .  $this->kategori_tp . '%')->where('sekolah_id', 'like', '%' .  $this->sekolah_id . '%')->orderBy('id', 'DESC')->paginate(20),
         ]);
     }
 }

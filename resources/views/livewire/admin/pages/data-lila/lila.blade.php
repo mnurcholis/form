@@ -76,6 +76,18 @@
                             <span class="form-text text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="col-md-4" wire:ignore>
+                        <label>Sekolah</label> <br>
+                        <select wire:model="sekolah_id" class="form-control select-select">
+                            <option value="">Pilih Sekolah</option>
+                            @foreach ($sekolah ?? [] as $list)
+                                <option value="{{ $list->id }}">{{ $list->nama }}</option>
+                            @endforeach
+                        </select>
+                        @error('kategori_tp')
+                            <span class="form-text text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
             </div>
             <hr>
@@ -124,3 +136,12 @@
         </div>
     </div>
 </div>
+@push('js')
+    <script>
+        $('.select-select').select2({});
+        $('.select-select').on('change', function(e) {
+            var data = $('.select-select').select2("val");
+            @this.set('sekolah_id', data);
+        });
+    </script>
+@endpush
