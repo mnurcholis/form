@@ -39,7 +39,7 @@ class Lila extends Component
 
     public function exportData()
     {
-        $data = ModelsLila::join('sekolahs', 'sekolahs.id', '=', 'lilas.sekolah_id')
+        $data = ModelsLila::join('sekolahs', 'sekolahs.id', '=', 'lilas.sekolah_id', 'left')
             ->join('com_codes as Usia', 'Usia.code_cd', '=', 'lilas.usia_tp', 'left')
             ->join('com_codes as Kategori', 'Kategori.code_cd', '=', 'lilas.kategori_tp', 'left')
             ->join('com_regions as Desa', 'Desa.region_cd', '=', 'lilas.desa', 'left')
