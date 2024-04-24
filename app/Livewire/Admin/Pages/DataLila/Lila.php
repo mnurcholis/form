@@ -65,6 +65,9 @@ class Lila extends Component
         if ($this->nik) {
             $query->where('nik', 'like', '%' . $this->nik . '%');
         }
+        if ($this->kecamatan) {
+            $query->where('kecamatan', 'like', '%' . $this->kecamatan . '%');
+        }
         if ($this->desa) {
             $query->where('desa', 'like', '%' . $this->desa . '%');
         }

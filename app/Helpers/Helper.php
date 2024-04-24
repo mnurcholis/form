@@ -20,3 +20,23 @@ if (!function_exists('get_code_group')) {
         return \App\Models\ComCode::where('code_group', $code)->pluck('code_nm', 'code_cd');
     }
 }
+
+if (!function_exists('hitung_lila')) {
+    function hitung_lila($lila, $standar)
+    {
+        $hasil = round(($lila / $standar) * 100);
+        $kategori = "";
+        if ($hasil > 120) {
+            $kategori = "Obesitas";
+        } else if ($hasil > 110) {
+            $kategori = "Overweight";
+        } else if ($hasil > 85) {
+            $kategori = "Gizi Baik";
+        } else if ($hasil > 70) {
+            $kategori = "Gizi Kurang";
+        } else {
+            $kategori = "Gizi Buruk";
+        }
+        return $kategori;
+    }
+}
