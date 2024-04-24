@@ -16,7 +16,7 @@ class Lila extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $region_kec, $region_kel, $sekolah, $kecamatan, $desa;
+    public $region_kec, $region_kel, $sekolah, $kecamatan, $desa, $usia_tp, $kategori_tp, $nama, $nik;
 
     public function updateFormKecamatan()
     {
@@ -31,6 +31,10 @@ class Lila extends Component
             'kecamatan' => $this->kecamatan,
         ];
         // $this->emit('Cari', $data);
+    }
+
+    public function updateFormUsia()
+    {
     }
 
     public function exportData()
@@ -55,7 +59,7 @@ class Lila extends Component
     public function render()
     {
         return view('livewire.admin.pages.data-lila.lila', [
-            'data' => ModelsLila::where('desa', 'like', '%' . $this->desa . '%')->orderBy('id', 'DESC')->paginate(20),
+            'data' => ModelsLila::where('nama', 'like', '%' . $this->nama . '%')->where('nik', 'like', '%' . $this->nik . '%')->where('desa', 'like', '%' . $this->desa . '%')->where('usia_tp', 'like', '%' .  $this->usia_tp . '%')->where('kategori_tp', 'like', '%' .  $this->kategori_tp . '%')->orderBy('id', 'DESC')->paginate(20),
         ]);
     }
 }

@@ -14,7 +14,21 @@
         <div class="card-body">
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-2">
+                        <label>Nama</label>
+                        <input type="text" class="form-control" wire:model="nama">
+                        @error('nama')
+                            <span class="form-text text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-md-2">
+                        <label>Nik</label>
+                        <input type="text" class="form-control" wire:model="nik">
+                        @error('nik')
+                            <span class="form-text text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-md-2">
                         <label>Kecamatan *</label>
                         <select wire:model="kecamatan" class="form-control" wire:change='updateFormKecamatan'>
                             <option value="">Pilih Kecamatan</option>
@@ -26,7 +40,7 @@
                             <span class="form-text text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                         <label>Kelurahan / Desa *</label> <br>
                         <select wire:model="desa" class="form-control" wire:change='updateFormDesa'>
                             <option value="">Pilih Kelurahan / Desa</option>
@@ -36,6 +50,29 @@
                             @endforeach
                         </select>
                         @error('desa')
+                            <span class="form-text text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-md-2">
+                        <label>Usia</label> <br>
+                        {{ Form::select(null, get_code_group('USIA_TP'), null, [
+                            'class' => 'form-control' . ($errors->has('usia_tp') ? ' border-danger' : null),
+                            'placeholder' => 'Pilih Usia',
+                            'wire:model' => 'usia_tp',
+                            'wire:change' => 'updateFormUsia',
+                        ]) }}
+                        @error('usia_tp')
+                            <span class="form-text text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-md-2">
+                        <label>Kategori</label> <br>
+                        {{ Form::select(null, get_code_group('KATEGORI_TP'), null, [
+                            'class' => 'form-control' . ($errors->has('kategori_tp') ? ' border-danger' : null),
+                            'placeholder' => 'Pilih Kategori',
+                            'wire:model' => 'kategori_tp',
+                        ]) }}
+                        @error('kategori_tp')
                             <span class="form-text text-danger">{{ $message }}</span>
                         @enderror
                     </div>
