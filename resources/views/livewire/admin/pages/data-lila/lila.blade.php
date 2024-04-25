@@ -98,12 +98,12 @@
                             <th>#</th>
                             <th>Nama</th>
                             <th>NIK</th>
-                            <th>Usia TP</th>
-                            <th>Kategori</th>
                             <th>Kecamatan</th>
-                            <th>Desa</th>
                             <th>Alamat</th>
+                            <th>Desa</th>
                             <th>Sekolah</th>
+                            <th>Kategori</th>
+                            <th>Usia TP</th>
                             <th colspan="2" class="text-center">LiLA</th>
                         </tr>
                     </thead>
@@ -114,13 +114,13 @@
                                     <td>{{ $val->id }}</td>
                                     <td>{{ $val->nama }}</td>
                                     <td>{{ $val->nik }}</td>
-                                    <td>{{ $val->Usia_tp->code_nm ?? '' }}</td>
-                                    <td>{{ $val->Kategori->code_nm ?? '' }}</td>
                                     <td>{{ $val->Kecamatan->region_nm }}</td>
                                     <td>{{ $val->Desa->region_nm }}</td>
                                     <td>{{ $val->alamat }}</td>
                                     <td>{{ $val->Sekolah->nama ?? '' }}</td>
-                                    <td>{{ '('.$val->lila .' / ' .$val->Usia_tp->code_value .') x 100% = '.round(($val->lila / $val->Usia_tp->code_value) * 100, 1) }} %</td>
+                                    <td>{{ $val->Kategori->code_nm ?? '' }}</td>
+                                    <td>{{ $val->Usia_tp->code_nm ?? '' }}</td>
+                                    <td>{{ $val->lila }}</td>
                                     <td>{{ hitung_lila($val->lila, $val->Usia_tp->code_value) }}</td>
                                 </tr>
                             @endforeach

@@ -6,6 +6,8 @@ use App\Exports\LilaExport;
 use App\Models\ComRegion;
 use App\Models\Lila as ModelsLila;
 use App\Models\Sekolah;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
@@ -39,15 +41,57 @@ class Lila extends Component
 
     public function exportData()
     {
-        $data = ModelsLila::join('sekolahs', 'sekolahs.id', '=', 'lilas.sekolah_id', 'left')
-            ->join('com_codes as Usia', 'Usia.code_cd', '=', 'lilas.usia_tp', 'left')
-            ->join('com_codes as Kategori', 'Kategori.code_cd', '=', 'lilas.kategori_tp', 'left')
-            ->join('com_regions as Desa', 'Desa.region_cd', '=', 'lilas.desa', 'left')
-            ->join('com_regions as Kecamatan', 'Kecamatan.region_cd', '=', 'lilas.kecamatan', 'left')
-            ->select('lilas.nama', 'lilas.lila', 'Usia.code_nm as Usia', 'Kategori.code_nm As Kategori', 'lilas.nik', 'Desa.region_nm AS Desa', 'Kecamatan.region_nm AS Kecamatan', 'lilas.alamat', 'sekolahs.nama as Sekolah')->get();
+        $data = DB::table('lilas')
+            ->leftJoin('sekolahs', 'sekolahs.id', '=', 'lilas.sekolah_id')
+            ->leftJoin('com_codes as Usia', 'Usia.code_cd', '=', 'lilas.usia_tp')
+            ->leftJoin('com_codes as Kategori', 'Kategori.code_cd', '=', 'lilas.kategori_tp')
+            ->leftJoin('com_regions as Desa', 'Desa.region_cd', '=', 'lilas.desa')
+            ->leftJoin('com_regions as Kecamatan', 'Kecamatan.region_cd', '=', 'lilas.kecamatan')
+            ->select(
+                'lilas.nama',
+                'lilas.nik',
+                'Kecamatan.region_nm AS Kecamatan',
+                'Desa.region_nm AS Desa',
+                'lilas.alamat',
+                'sekolahs.nama as Sekolah',
+                'Kategori.code_nm As Kategori',
+                'Usia.code_nm as Usia',
+                'lilas.lila',
+                DB::raw("CASE WHEN lilas.lila < Usia.code_value THEN 'kek' ELSE 'tidak kek' END AS ConditionResult")
+            );
+
+        if ($this->nama) {
+            $data->where('nama', 'like', '%' . $this->nama . '%');
+        }
+        if ($this->nik) {
+            $data->where('nik', 'like', '%' . $this->nik . '%');
+        }
+        if ($this->kecamatan) {
+            $data->where('kecamatan', 'like', '%' . $this->kecamatan . '%');
+        }
+        if ($this->desa) {
+            $data->where('desa', 'like', '%' . $this->desa . '%');
+        }
+        if ($this->usia_tp) {
+            $data->where('usia_tp', 'like', '%' .  $this->usia_tp . '%');
+        }
+        if ($this->kategori_tp) {
+            $data->where('kategori_tp', 'like', '%' .  $this->kategori_tp . '%');
+        }
+        if ($this->sekolah_id) {
+            $data->where('sekolah_id', 'like', '%' .  $this->sekolah_id . '%');
+        }
+
+        $results = $data->get();
+
+
+        if ($data->count() == 0) {
+            Session::flash('success', 'Data Berhasil disimpan');
+            return 0;
+        }
 
         // dd($data);
-        return Excel::download(new LilaExport($data), 'data.csv');
+        return Excel::download(new LilaExport($results), 'data.csv');
     }
 
     public function mount()

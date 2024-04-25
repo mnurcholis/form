@@ -26,14 +26,14 @@ class LilaExport implements FromCollection, WithHeadings
     {
         return [
             'NAMA',
-            'LiLA',
-            'USIA',
-            'KATEGORI',
             'NIK',
-            'DESA',
             'KECAMATAN',
+            'DESA',
             'ALAMAT',
             'SEKOLAH',
+            'KATEGORI',
+            'USIA',
+            'LiLA',
         ];
     }
 }
