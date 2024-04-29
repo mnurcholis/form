@@ -121,7 +121,7 @@
                                     <td>{{ $val->Kategori->code_nm ?? '' }}</td>
                                     <td>{{ $val->Usia_tp->code_nm ?? '' }}</td>
                                     <td>{{ $val->lila }}</td>
-                                    <td>{{ hitung_lila($val->lila, $val->Usia_tp->code_value) }}</td>
+                                    <td>{{ hitung_lila($val->lila, $val->Usia_tp->code_value ?? 'USIA_TP_01') }}</td>
                                 </tr>
                             @endforeach
                         @else

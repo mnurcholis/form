@@ -34,6 +34,7 @@ class LilaExport implements FromCollection, WithHeadings
             'KATEGORI',
             'USIA',
             'LiLA',
+            'Kek',
         ];
     }
 }

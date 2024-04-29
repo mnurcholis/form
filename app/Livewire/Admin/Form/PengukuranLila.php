@@ -37,6 +37,7 @@ class PengukuranLila extends Component
             'form.lila' => 'required|numeric|min:1',
             'form.kecamatan' => 'required',
             'form.desa' => 'required',
+            'form.usia_tp' => 'required',
             'form.kategori_tp' => 'required',
         ]);
         Lila::create($this->form);
