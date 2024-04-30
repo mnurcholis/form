@@ -114,14 +114,14 @@
                                     <td>{{ $val->id }}</td>
                                     <td>{{ $val->nama }}</td>
                                     <td>{{ $val->nik }}</td>
-                                    <td>{{ $val->Kecamatan->region_nm }}</td>
-                                    <td>{{ $val->Desa->region_nm }}</td>
+                                    <td>{{ $val->Kecamatan }}</td>
+                                    <td>{{ $val->Desa }}</td>
                                     <td>{{ $val->alamat }}</td>
-                                    <td>{{ $val->Sekolah->nama ?? '' }}</td>
-                                    <td>{{ $val->Kategori->code_nm ?? '' }}</td>
-                                    <td>{{ $val->Usia_tp->code_nm ?? '' }}</td>
+                                    <td>{{ $val->Sekolah ?? '' }}</td>
+                                    <td>{{ $val->Kategori ?? '' }}</td>
+                                    <td>{{ $val->Usia ?? '' }}</td>
                                     <td>{{ $val->lila }}</td>
-                                    <td>{{ hitung_lila($val->lila, $val->Usia_tp->code_value ?? 'USIA_TP_01') }}</td>
+                                    <td>{{ $val->ConditionResult }}</td>
                                 </tr>
                             @endforeach
                         @else
@@ -130,6 +130,16 @@
                             </tr>
                         @endif
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="2">Jumlah Data : {{ $coba->count() }}</th>
+                            <th colspan="7"></th>
+                            <th colspan="2">
+                                Jumlah Tidak Kek : <b>{{ $coba->where('ConditionResult', 'tidak kek')->count() }}</b><br>
+                                Jumlah Kek : <b>{{ $coba->where('ConditionResult', 'kek')->count() }}</b>
+                            </th>
+                        </tr>
+                    </tfoot>
                 </table>
                 <br>
             </div>
