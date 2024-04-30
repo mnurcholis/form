@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class PengukuranLila extends Component
 {
-    public $region_kec, $region_kel, $sekolah;
+    public $region_kec, $region_kel, $sekolah, $tampil = false;
 
     public $form = [
         'kecamatan' => '',
@@ -28,6 +28,7 @@ class PengukuranLila extends Component
     public function updateFormKecamatan()
     {
         $this->region_kel = ComRegion::where('region_root', $this->form['kecamatan'])->get()->toArray();
+        $this->form['desa'] = null;
     }
 
     public function simpan()
