@@ -99,8 +99,8 @@
                             <th>Nama</th>
                             <th>NIK</th>
                             <th>Kecamatan</th>
-                            <th>Alamat</th>
                             <th>Desa</th>
+                            <th>Alamat</th>
                             <th>Sekolah</th>
                             <th>Kategori</th>
                             <th>Usia TP</th>

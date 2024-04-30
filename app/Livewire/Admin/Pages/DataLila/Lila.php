@@ -57,7 +57,7 @@ class Lila extends Component
                 'Kategori.code_nm As Kategori',
                 'Usia.code_nm as Usia',
                 'lilas.lila',
-                DB::raw("CASE WHEN lilas.lila < Usia.code_value THEN 'kek' ELSE 'tidak kek' END AS ConditionResult")
+                DB::raw("CASE WHEN lilas.lila <= Usia.code_value THEN 'kek' ELSE 'tidak kek' END AS ConditionResult")
             );
 
         $namefile = '';
