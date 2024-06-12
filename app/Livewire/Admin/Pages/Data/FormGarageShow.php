@@ -22,12 +22,6 @@ class FormGarageShow extends Component
 
     public $nama, $no_handphone, $email, $type, $listType, $sekolahorg_id;
 
-    public function updateFormKecamatan()
-    {
-        $this->region_kel = ComRegion::where('region_root', $this->kecamatan)->get()->toArray();
-        $this->desa = null;
-    }
-
     public function updateFormDesa()
     {
         $data = [

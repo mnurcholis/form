@@ -68,6 +68,11 @@ class DataSekolahOrganisasi extends Component
 
     public function simpan()
     {
+        $this->validate([
+            'sekolah.type' => 'required',
+            'sekolah.nama' => 'required',
+        ]);
+
         if ($this->idNya) {
             $this->update();
         } else {
