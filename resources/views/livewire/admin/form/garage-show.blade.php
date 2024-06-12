@@ -34,7 +34,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-6">
-                                            <label>Nama Sekolah/Organisai *</label> <br>
+                                            <label>Nama Sekolah/Organisasi *</label> <br>
                                             <select wire:model="form.sekolahorg_id" class="form-control">
                                                 <option value="">Pilih</option>
                                                 @foreach ($listType ?? [] as $list)
