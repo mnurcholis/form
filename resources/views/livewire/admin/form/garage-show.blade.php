@@ -5,7 +5,7 @@
         <div class="content">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h5 class="card-title">Daftar Hadir GARAGE SHOW DISKOMINFO WONOSOBO -  SESI ICT FORM DUMMIES</h5>
+                    <h5 class="card-title">Daftar Hadir GARAGE SHOW DISKOMINFO WONOSOBO - SESI ICT FORM DUMMIES</h5>
                 </div>
                 @if ($tampil)
                     <div class="card-body">
@@ -61,7 +61,7 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-lg-2">No Handphone *</label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" wire:model="form.no_handphone">
+                                        <input type="number" class="form-control" wire:model="form.no_handphone">
                                     </div>
                                     @error('form.no_handphone')
                                         <span class="form-text text-danger">{{ $message }}</span>
@@ -70,7 +70,7 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-lg-2">Email *</label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" wire:model="form.email">
+                                        <input type="email" class="form-control" wire:model="form.email">
                                     </div>
                                     @error('form.email')
                                         <span class="form-text text-danger">{{ $message }}</span>
