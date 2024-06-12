@@ -46,7 +46,7 @@ class GarageShow extends Component
             'email' => '',
         ];
         $this->listType = [];
-        Session::flash('success', 'Data Berhasil disimpan');
+        Session::flash('success', 'Terimakasih telah melakukan registrasi, tim kami akan mengirimkan bukti registrasi melalui WhatsApp Wonosobo Hebat');
     }
 
     public function mount()

@@ -5,7 +5,7 @@
         <div class="content">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h5 class="card-title">Daftar Hadir GARAGE SHOW DISKOMINFO WONSOBO</h5>
+                    <h5 class="card-title">Daftar Hadir GARAGE SHOW DISKOMINFO WONOSOBO -  SESI ICT FORM DUMMIES</h5>
                 </div>
                 @if ($tampil)
                     <div class="card-body">
