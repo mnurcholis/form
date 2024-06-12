@@ -5,7 +5,7 @@
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h5 class="card-title">Data Pengukuran Lingkar Lengan Atas (LILA)</h5>
+            <h5 class="card-title">Data Daftar Hadir Garage Show</h5>
             <div class="header-elements">
                 <button class="btn btn-sm btn-warning" wire:click="exportData" wire:loading.attr="disabled">Export</button>
             </div>
