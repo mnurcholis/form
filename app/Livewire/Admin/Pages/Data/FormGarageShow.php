@@ -73,7 +73,7 @@ class FormGarageShow extends Component
 
         // dd($data);
         // return Excel::download(new LilaExport($results), 'data.csv');
-        return Excel::download(new GarageShowExport($results), 'Data_lila_' . $namefile . time() . '.xlsx');
+        return Excel::download(new GarageShowExport($results), 'Data_' . $namefile . time() . '.xlsx');
     }
 
     public function UpdateType()
