@@ -45,12 +45,32 @@
                         </a>
                     </li>
                 @endcan
+                @can('datagarageshow')
+                    <li class="nav-item">
+                        <a href="{{ route('data-garageshow') }}" class="nav-link {{ request()->is('datagarageshow') ? 'active' : '' }}">
+                            <i class="icon-home4"></i>
+                            <span>
+                                Data Garage Show
+                            </span>
+                        </a>
+                    </li>
+                @endcan
                 @can('sekolah')
                     <li class="nav-item">
                         <a href="{{ route('sekolah') }}" class="nav-link {{ request()->is('sekolah') ? 'active' : '' }}">
                             <i class="icon-home4"></i>
                             <span>
                                 Data Sekolah
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('sekolahorganisasi')
+                    <li class="nav-item">
+                        <a href="{{ route('sekolahorganisasi') }}" class="nav-link {{ request()->is('sekolahorganisasi') ? 'active' : '' }}">
+                            <i class="icon-home4"></i>
+                            <span>
+                                Data Sekolah & Organisasi
                             </span>
                         </a>
                     </li>
