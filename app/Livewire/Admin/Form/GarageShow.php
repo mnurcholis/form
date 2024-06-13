@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Form;
 
+use App\Models\ComCode;
 use App\Models\ComRegion;
 use App\Models\FormGarageShow;
 use App\Models\Lila;
@@ -12,7 +13,7 @@ use Livewire\Component;
 
 class GarageShow extends Component
 {
-    public $listType, $tampil = true;
+    public $listType, $tampil = true, $type;
 
     public $form = [
         'type' => '',
@@ -51,6 +52,7 @@ class GarageShow extends Component
 
     public function mount()
     {
+        $this->type = ComCode::where('code_group', 'JENIS_SO')->get();
     }
 
     public function render()

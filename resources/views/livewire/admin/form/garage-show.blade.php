@@ -23,12 +23,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>PIlih Jenis Perwakilan *</label>
-                                            {{ Form::select(null, get_code_group('JENIS_SO'), null, [
-                                                'class' => 'form-control' . ($errors->has('form.type') ? ' border-danger' : null),
-                                                'placeholder' => 'Pilih Jenis',
-                                                'wire:model.lazy' => 'form.type',
-                                                'wire:change' => 'UpdateType',
-                                            ]) }}
+                                            <select wire:model="form.type" wire:change='UpdateType'
+                                                class="form-control">
+                                                <option value="">Pilih</option>
+                                                @foreach ($type ?? [] as $list)
+                                                    <option value="{{ $list->code_cd }}">{{ $list->code_nm }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                             @error('form.type')
                                                 <span class="form-text text-danger">{{ $message }}</span>
                                             @enderror
