@@ -33,3 +33,18 @@ if (!function_exists('hitung_lila')) {
         return $kategori;
     }
 }
+
+if (!function_exists('gen_no_tiket')) {
+    function gen_no_tiket()
+    {
+        $no = str_pad(1, 3, '0', STR_PAD_LEFT);
+
+        $terakhir = \App\Models\FormGarageShow::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->orderBy('created_at', 'desc')->first();
+
+        if ($terakhir) {
+            $no = str_pad((int) substr($terakhir->no_tiket, -3) + 1, 3, 0, STR_PAD_LEFT);
+        }
+
+        return 'GRGSHW-' . $no;
+    }
+}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QrcodeController;
 use App\Livewire\Admin\Form\GarageShow;
 use App\Livewire\Admin\Form\PengukuranLila;
 use App\Livewire\Admin\Pages\Data\FormGarageShow;
@@ -10,6 +11,7 @@ use App\Livewire\Admin\Pages\Permission;
 use App\Livewire\Admin\Pages\Role;
 use App\Livewire\Admin\Pages\User;
 use App\Livewire\Admin\Pages\Home;
+use App\Livewire\Pendaftaran;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 
@@ -31,6 +33,8 @@ Route::get('template', function () {
 
 Route::get('/', GarageShow::class);
 Route::get('/pengukuran-lila', PengukuranLila::class)->name('pengukuranlila');
+Route::get('/qrcode/{id}', [QrcodeController::class, 'index'])->name('qrcode');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -45,4 +49,5 @@ Route::middleware([
     Route::get('/user', User::class)->name('user');
     Route::get('/role', Role::class)->name('role');
     Route::get('/permission', Permission::class)->name('permission');
+    Route::get('/pendaftaran', Pendaftaran::class)->name('pendaftaran');
 });

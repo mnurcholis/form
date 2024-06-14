@@ -35,6 +35,17 @@
                         </a>
                     </li>
                 @endcan
+
+                <li class="nav-item">
+                    <a href="{{ route('pendaftaran') }}"
+                    class="nav-link {{ request()->is('pendaftaran') ? 'active' : '' }}">
+                        <i class="icon-home4"></i>
+                        <span>
+                            Pendaftaran
+                        </span>
+                    </a>
+                </li>
+
                 @can('datalila')
                     <li class="nav-item">
                         <a href="{{ route('data-lila') }}" class="nav-link {{ request()->is('datalila') ? 'active' : '' }}">
@@ -47,7 +58,8 @@
                 @endcan
                 @can('datagarageshow')
                     <li class="nav-item">
-                        <a href="{{ route('data-garageshow') }}" class="nav-link {{ request()->is('datagarageshow') ? 'active' : '' }}">
+                        <a href="{{ route('data-garageshow') }}"
+                            class="nav-link {{ request()->is('datagarageshow') ? 'active' : '' }}">
                             <i class="icon-home4"></i>
                             <span>
                                 Data Garage Show
@@ -67,7 +79,8 @@
                 @endcan
                 @can('sekolahorganisasi')
                     <li class="nav-item">
-                        <a href="{{ route('sekolahorganisasi') }}" class="nav-link {{ request()->is('sekolahorganisasi') ? 'active' : '' }}">
+                        <a href="{{ route('sekolahorganisasi') }}"
+                            class="nav-link {{ request()->is('sekolahorganisasi') ? 'active' : '' }}">
                             <i class="icon-home4"></i>
                             <span>
                                 Data Sekolah & Organisasi

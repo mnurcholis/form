@@ -2,14 +2,15 @@
 
 namespace App\Livewire\Admin\Form;
 
-use App\Models\ComCode;
-use App\Models\ComRegion;
-use App\Models\FormGarageShow;
 use App\Models\Lila;
+use App\Models\ComCode;
 use App\Models\Sekolah;
-use App\Models\SekolahOrg;
-use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use App\Models\ComRegion;
+use App\Models\SekolahOrg;
+use App\Models\FormGarageShow;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Session;
 
 class GarageShow extends Component
 {
@@ -21,6 +22,8 @@ class GarageShow extends Component
         'nama' => '',
         'no_handphone' => '',
         'email' => '',
+        'no_tiket' => '',
+        'path_no_tiket' => '',
     ];
 
     public function UpdateType()
@@ -32,20 +35,23 @@ class GarageShow extends Component
     public function simpan()
     {
         $this->validate([
-            'form.type' => 'required',
-            'form.sekolahorg_id' => 'required',
+            // 'form.type' => 'required',
+            // 'form.sekolahorg_id' => 'required',
             'form.nama' => 'required',
             'form.no_handphone' => 'required',
             'form.email' => 'required',
         ]);
         FormGarageShow::create($this->form);
-        $this->form =  [
+        $this->form = [
             'type' => '',
             'sekolahorg_id' => '',
             'nama' => '',
             'no_handphone' => '',
             'email' => '',
+            'no_tiket' => gen_no_tiket(),
+            'path_no_tiket' => Crypt::encryptString(gen_no_tiket()),
         ];
+
         $this->listType = [];
         Session::flash('success', 'Terimakasih telah melakukan registrasi, tim kami akan mengirimkan bukti registrasi melalui WhatsApp Wonosobo Hebat');
     }
@@ -53,6 +59,8 @@ class GarageShow extends Component
     public function mount()
     {
         $this->type = ComCode::where('code_group', 'JENIS_SO')->get();
+        $this->form['no_tiket'] = gen_no_tiket();
+        $this->form['path_no_tiket'] = Crypt::encryptString(gen_no_tiket());
     }
 
     public function render()
