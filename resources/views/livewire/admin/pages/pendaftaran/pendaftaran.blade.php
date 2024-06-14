@@ -74,5 +74,13 @@
 
         // Set an interval to focus the input every 5 seconds
         setInterval(focusInput, 1000);
+
+        document.addEventListener('SudahHadir', function() {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Sudah Hadir",
+            });
+        });
     </script>
 @endpush

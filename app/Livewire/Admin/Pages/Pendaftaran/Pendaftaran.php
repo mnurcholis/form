@@ -22,6 +22,12 @@ class Pendaftaran extends Component
         $this->validate([
             'no_tiket' => 'required',
         ]);
+        $cek = FormGarageShow::where('no_tiket', $this->no_tiket)->where('status_hadir', 1)->count();
+        if ($cek > 0) {
+            $this->dispatchBrowserEvent('SudahHadir');
+            $this->no_tiket = null;
+            return;
+        }
         $data = FormGarageShow::where('no_tiket', $this->no_tiket)->first();
         $data->status_hadir = 1;
         $data->save();
