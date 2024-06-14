@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Pages\Data;
 use App\Exports\GarageShowExport;
 use App\Exports\LilaExport;
 use App\Models\ComRegion;
+use App\Models\FormGarageShow as ModelsFormGarageShow;
 use App\Models\Lila as ModelsLila;
 use App\Models\Sekolah;
 use App\Models\SekolahOrg;
@@ -20,16 +21,7 @@ class FormGarageShow extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $nama, $no_handphone, $email, $type, $listType, $sekolahorg_id;
-
-    public function updateFormDesa()
-    {
-        $data = [
-            'desa' => $this->desa,
-            'kecamatan' => $this->kecamatan,
-        ];
-        // $this->emit('Cari', $data);
-    }
+    public $nama, $no_handphone, $email, $type, $listType, $sekolahorg_id, $idNya;
 
     public function exportData()
     {
@@ -74,6 +66,18 @@ class FormGarageShow extends Component
     {
         $this->listType = SekolahOrg::where('type', $this->type)->get()->toArray();
         $this->sekolahorg_id = null;
+    }
+
+    public function confirmDelete($id)
+    {
+        $this->idNya = $id;
+        $this->dispatchBrowserEvent('confirmDelete');
+    }
+
+    public function Delete()
+    {
+        ModelsFormGarageShow::destroy($this->idNya);
+        $this->idNya = NULL;
     }
 
     public function mount()
