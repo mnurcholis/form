@@ -11,7 +11,7 @@ use App\Livewire\Admin\Pages\Permission;
 use App\Livewire\Admin\Pages\Role;
 use App\Livewire\Admin\Pages\User;
 use App\Livewire\Admin\Pages\Home;
-use App\Livewire\Pendaftaran;
+use App\Livewire\Admin\Pages\Pendaftaran\Pendaftaran;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 
