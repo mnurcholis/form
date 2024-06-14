@@ -19,6 +19,9 @@ class Pendaftaran extends Component
 
     public function simpan()
     {
+        $this->validate([
+            'no_tiket' => 'required',
+        ]);
         $data = FormGarageShow::where('no_tiket', $this->no_tiket)->first();
         $data->status_hadir = 1;
         $data->save();

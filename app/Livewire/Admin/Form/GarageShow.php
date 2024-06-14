@@ -35,8 +35,8 @@ class GarageShow extends Component
     public function simpan()
     {
         $this->validate([
-            // 'form.type' => 'required',
-            // 'form.sekolahorg_id' => 'required',
+            'form.type' => 'required',
+            'form.sekolahorg_id' => 'required',
             'form.nama' => 'required',
             'form.no_handphone' => 'required|unique:form_garage_shows,no_handphone',
             'form.email' => 'required|email|unique:form_garage_shows,email',

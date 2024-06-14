@@ -16,6 +16,9 @@
                     <div class="col-lg-12">
                         <input type="text" class="form-control" wire:model="no_tiket" id="no_tiket"
                             placeholder="Scan Disini">
+                        @error('no_tiket')
+                            <span class="form-text text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </form>
             </div>
