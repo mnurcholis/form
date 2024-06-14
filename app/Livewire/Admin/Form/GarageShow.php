@@ -38,8 +38,8 @@ class GarageShow extends Component
             // 'form.type' => 'required',
             // 'form.sekolahorg_id' => 'required',
             'form.nama' => 'required',
-            'form.no_handphone' => 'required',
-            'form.email' => 'required',
+            'form.no_handphone' => 'required|unique:form_garage_shows,no_handphone',
+            'form.email' => 'required|email|unique:form_garage_shows,email',
         ]);
         FormGarageShow::create($this->form);
         $this->form = [

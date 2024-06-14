@@ -59,6 +59,7 @@
                             <th>nama</th>
                             <th>no_handphone</th>
                             <th>email</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,6 +72,11 @@
                                     <td>{{ $val->nama }}</td>
                                     <td>{{ $val->no_handphone }}</td>
                                     <td>{{ $val->email }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-sm"
+                                            wire:click='confirmDelete({{ $val->id }})'><i
+                                                class="icon-trash"></i></button>
+                                    </td>
                                 </tr>
                             @endforeach
                         @else
@@ -94,10 +100,29 @@
 </div>
 @push('js')
     <script>
-        $('.select-select').select2({});
-        $('.select-select').on('change', function(e) {
-            var data = $('.select-select').select2("val");
-            @this.set('sekolah_id', data);
+        document.addEventListener('confirmDelete', function() {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    @this.Delete()
+                }
+            });
+        });
+        document.addEventListener('Delete', function() {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Data Berhasil dihapus",
+                showConfirmButton: false,
+                timer: 1000
+            });
         });
     </script>
 @endpush
