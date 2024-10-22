@@ -35,17 +35,38 @@
                         </a>
                     </li>
                 @endcan
-
-                <li class="nav-item">
-                    <a href="{{ route('pendaftaran') }}"
-                    class="nav-link {{ request()->is('pendaftaran') ? 'active' : '' }}">
-                        <i class="icon-home4"></i>
-                        <span>
-                            Pendaftaran
-                        </span>
-                    </a>
-                </li>
-
+                @can('pendaftaran')
+                    <li class="nav-item">
+                        <a href="{{ route('pendaftaran') }}"
+                            class="nav-link {{ request()->is('pendaftaran') ? 'active' : '' }}">
+                            <i class="icon-home4"></i>
+                            <span>
+                                Pendaftaran
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('pendaftaran-tps')
+                    <li class="nav-item">
+                        <a href="{{ route('pendaftaran-tps') }}"
+                            class="nav-link {{ request()->is('pendaftaran-tps') ? 'active' : '' }}">
+                            <i class="icon-home4"></i>
+                            <span>
+                                Pendaftaran TPS
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('tps')
+                    <li class="nav-item">
+                        <a href="{{ route('tps') }}" class="nav-link {{ request()->is('tps') ? 'active' : '' }}">
+                            <i class="icon-home4"></i>
+                            <span>
+                                TPS
+                            </span>
+                        </a>
+                    </li>
+                @endcan
                 @can('datalila')
                     <li class="nav-item">
                         <a href="{{ route('data-lila') }}" class="nav-link {{ request()->is('datalila') ? 'active' : '' }}">

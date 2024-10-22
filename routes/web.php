@@ -12,6 +12,8 @@ use App\Livewire\Admin\Pages\Role;
 use App\Livewire\Admin\Pages\User;
 use App\Livewire\Admin\Pages\Home;
 use App\Livewire\Admin\Pages\Pendaftaran\Pendaftaran;
+use App\Livewire\Admin\Pages\TPS\InputTPS;
+use App\Livewire\Admin\Pages\TPS\PendaftaranTPS;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 
@@ -41,6 +43,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    Route::get('/pendaftaran-tps', PendaftaranTPS::class)->name('pendaftaran-tps');
+    Route::get('/tps', InputTPS::class)->name('tps');
     Route::get('/dashboard', Home::class)->name('home');
     Route::get('/datalila', Lila::class)->name('data-lila');
     Route::get('/datagarageshow', FormGarageShow::class)->name('data-garageshow');

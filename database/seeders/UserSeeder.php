@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Spatie\Permission\Models\Permission;
 
 class UserSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-         User::create([
+        User::create([
             'name'      => 'admin',
             'email'     => 'admin@app.com',
             'password'  => Hash::make('password'),
@@ -22,15 +23,24 @@ class UserSeeder extends Seeder
             'wa'     => '0851',
             'wa_verified_at' => now(),
             'email_verified_at'     => now(),
-        ])->assignRole('admin')->givePermissionTo(['home','dashboard','master']);
+        ])->assignRole('admin')->givePermissionTo(['home', 'dashboard', 'master']);
         User::create([
             'name'      => 'user',
             'email'     => 'user@app.com',
             'password'  => Hash::make('password'),
-             'status'     => true,
+            'status'     => true,
             'wa'     => '08512',
             'wa_verified_at' => now(),
             'email_verified_at' => now(),
-        ])->assignRole('user')->givePermissionTo(['home','dashboard']);
+        ])->assignRole('user')->givePermissionTo(['home', 'dashboard']);
+        User::create([
+            'name'      => 'SuperAdmin',
+            'email'     => 'superadmin@app.com',
+            'password'  => Hash::make('password'),
+            'status'     => true,
+            'wa'     => '0851',
+            'wa_verified_at' => now(),
+            'email_verified_at'     => now(),
+        ])->assignRole('super-admin')->givePermissionTo(Permission::all());
     }
 }
