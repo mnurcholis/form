@@ -46,6 +46,11 @@ class InputTPS extends Component
     public function render()
     {
         $data = Hasil::query();
+        if (auth()->user()->region_cd) {
+            $data->whereHas('kecamatanTPS', function ($query) {
+                $query->where('region_cd', auth()->user()->region_cd);
+            });
+        }
         $data = $data->with(['kecamatanTPS', 'desaTPS'])->orderBy('kecamatan', 'ASC')->paginate(10);
         $this->g_1 = [];
         $this->g_2 = [];
