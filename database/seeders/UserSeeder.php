@@ -42,5 +42,23 @@ class UserSeeder extends Seeder
             'wa_verified_at' => now(),
             'email_verified_at'     => now(),
         ])->assignRole('super-admin')->givePermissionTo(Permission::all());
+        User::create([
+            'name'      => 'Admin TPS',
+            'email'     => 'admintps@app.com',
+            'password'  => Hash::make('password'),
+            'status'     => true,
+            'wa'     => '0851',
+            'wa_verified_at' => now(),
+            'email_verified_at'     => now(),
+        ])->assignRole('admin-tps')->givePermissionTo(['dashboard-tps', 'tps', 'pendaftaran-tps']);
+        User::create([
+            'name'      => 'Admin TPS',
+            'email'     => 'wadalistang@app.com',
+            'password'  => Hash::make('password'),
+            'status'     => true,
+            'wa'     => '0851',
+            'wa_verified_at' => now(),
+            'email_verified_at'     => now(),
+        ])->assignRole('admin-tps')->givePermissionTo(['dashboard-tps', 'tps']);
     }
 }

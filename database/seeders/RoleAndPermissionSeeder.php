@@ -24,6 +24,7 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'role']);
         Permission::create(['name' => 'permission']);
         Permission::create(['name' => 'dashboard-tps']);
+        Permission::create(['name' => 'pendaftaran-tps']);
         Permission::create(['name' => 'tps']);
         Permission::create(['name' => 'pendaftaran']);
 

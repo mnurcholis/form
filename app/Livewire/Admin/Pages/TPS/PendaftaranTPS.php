@@ -14,10 +14,17 @@ class PendaftaranTPS extends Component
     protected $paginationTheme = 'bootstrap';
     public $form, $idNya;
     public $region_kec, $region_kel, $desa, $kecamatan, $tps;
+    public $progress = 0;
     public function updateFormKecamatan()
     {
         $this->region_kel = ComRegion::where('region_root', $this->kecamatan)->get()->toArray();
         $this->desa = null;
+    }
+    public function toModalImport()
+    {
+        $this->js(<<<'JS'
+        $('#modal-form').modal('show');
+    JS);
     }
     public function tambah($id = '')
     {

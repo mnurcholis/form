@@ -64,6 +64,8 @@
         @else
             <div class="card-body">
                 <div class="text-right">
+                    <a href="#" class="btn btn-info"
+                        wire:click.prevent="toModalImport">{{ __('Import User') }}</a>
                     <button type="button" class="btn btn-primary" wire:click="tambah">Tambah TPS<i
                             class="icon-paperplane ml-2"></i></button>
                 </div>
@@ -142,6 +144,104 @@
                 <br>
             </div>
             {{ $data->links() }}
+        </div>
+    </div>
+    <div class="modal modal-xl fade" id="modal-form" data-bs-backdrop="static" wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered custom-modal-two">
+            <div class="modal-content">
+                <div class="page-wrapper-new p-0">
+                    <div class="content">
+                        <div class="modal-header border-0 custom-modal-header">
+                            <div class="page-title">
+                                <h4>{{ __('Import User') }}</h4>
+                            </div>
+                            <button type="button" class="close" wire:click='cancelFormModal' aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body custom-modal-body">
+                            <form action="#" wire:submit='importUser'>
+                                <div class="mb-2 row">
+                                    <button type="button" wire:click='downloadExample'
+                                        class="form-control btn btn-primary-light">{{ __('Download Example') }}</button>
+                                </div>
+                                <div class="mb-2 row">
+                                    <div wire:loading wire:target="importUser">
+                                        <div wire:stream.replace="progress">
+                                            <progress max="100" value="{{ $progress }}"></progress>
+                                            <p>{{ $progress }}%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 row">
+                                    @if ($errors->any())
+                                        <div>
+
+                                            @foreach ($errors->all() as $error)
+                                                <div class="alert alert-danger alert-dismissible fade show"
+                                                    role="alert">
+                                                    {{ $error }}
+
+                                                </div>
+                                            @endforeach
+
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="col-form-label col-md-2">{{ __('File') }}</label>
+                                    <div class="col-md-10">
+                                        <input type="file"
+                                            class="form-control @error('file') is-invalid  @enderror"
+                                            wire:model="file" accept=".xlsx,.csv,.xls">
+                                        @error('file')
+                                            <div class="invalid-feedback">
+                                                {{ $errors->first('file') }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                @if (auth()->user()->hasRole(['SuperAdmin', 'SuperModerator']))
+                                    <div class="mb-2 row">
+                                        <label class="col-form-label col-md-2">{{ __('CLIENT') }}</label>
+                                        <div class="col-md-10">
+                                            <div wire:ignore>
+                                                <select id="client_idselect2modal" class="client_idselect2 select2"
+                                                    wire:model='client_id'>
+                                                    <option value="">{{ __('Pilih') }}</option>
+                                                    @foreach ($clients as $c)
+                                                        <option value="{{ $c->id }}">{{ $c->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('client_id')
+                                                <div class="invalid-feedback">
+                                                    {{ $errors->first('client_id') }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                @endif
+                                <div class="modal-footer-btn">
+                                    <button type="button" class="btn btn-cancel me-2"
+                                        wire:click='cancelFormModal'>{{ __('Cancel') }}</button>
+                                    <button type="submit" class="btn btn-submit"
+                                        wire:loading.remove>{{ __('Import') }}</button>
+                                    <div wire:loading wire:target="importUser">
+                                        <button class="btn btn-secondary-light" type="button" disabled>
+                                            <span class="spinner-grow spinner-grow-sm align-middle" role="status"
+                                                aria-hidden="true"></span>
+                                            Import...
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     @push('js')
