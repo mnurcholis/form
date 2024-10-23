@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ComRegion;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -51,14 +52,19 @@ class UserSeeder extends Seeder
             'wa_verified_at' => now(),
             'email_verified_at'     => now(),
         ])->assignRole('admin-tps')->givePermissionTo(['dashboard-tps', 'tps', 'pendaftaran-tps']);
-        User::create([
-            'name'      => 'Admin TPS',
-            'email'     => 'wadalistang@app.com',
-            'password'  => Hash::make('password'),
-            'status'     => true,
-            'wa'     => '0851',
-            'wa_verified_at' => now(),
-            'email_verified_at'     => now(),
-        ])->assignRole('admin-tps')->givePermissionTo(['dashboard-tps', 'tps']);
+        $data = ComRegion::where('region_level', '3')->get();
+        $no = 1;
+        foreach ($data as $row) {
+            User::create([
+                'name'      => $row->region_nm,
+                'email'     => strtolower($row->region_nm) . '@app.com',
+                'password'  => Hash::make('@password' . $no++),
+                'status'     => true,
+                'wa'     => '0851',
+                'wa_verified_at' => now(),
+                'email_verified_at'     => now(),
+                'region_cd' => $row->region_cd
+            ])->assignRole('tps')->givePermissionTo(['dashboard-tps', 'tps']);
+        }
     }
 }

@@ -64,8 +64,7 @@
         @else
             <div class="card-body">
                 <div class="text-right">
-                    <a href="#" class="btn btn-info"
-                        wire:click.prevent="toModalImport">{{ __('Import User') }}</a>
+                    <a href="#" class="btn btn-info" wire:click.prevent="toModalImport">{{ __('Import TPS') }}</a>
                     <button type="button" class="btn btn-primary" wire:click="tambah">Tambah TPS<i
                             class="icon-paperplane ml-2"></i></button>
                 </div>
@@ -78,16 +77,47 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <div class="form-group row">
-                <form action="#" wire:submit.prevent="simpan">
-                    <div class="col-lg-12">
-                        <input type="text" class="form-control" wire:model="no_tiket" id="no_tiket"
-                            placeholder="Cari">
-                        @error('no_tiket')
-                            <span class="form-text text-danger">{{ $message }}</span>
-                        @enderror
+            <div class="col-12 mb-3 row">
+                {{-- <div class="search-set col-md-2">
+                    <div class="search-input">
+                        <div class="dataTables_filter"><label>
+                                <input type="search" class="form-control form-control-sm" placeholder="Search"
+                                    wire:model.live='search'></label></div>
                     </div>
-                </form>
+                </div> --}}
+                <label class="col-form-label col-md-1">Kecamatan</label>
+                <div class="col-md-3">
+                    <div class="col-lg-10">
+                        <select wire:model.live="searchKecamatan" class="form-control">
+                            <option value="">Pilih Kecamatan</option>
+                            @foreach ($listKec ?? [] as $list)
+                                <option value="{{ $list->region_cd }}">{{ $list->region_nm }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <label class="col-form-label col-md-1">Kelurahan / Desa</label>
+                <div class="col-md-3">
+                    <div class="col-lg-10">
+                        <select wire:model.live="searchDesa" class="form-control">
+                            <option value="">Pilih Kelurahan / Desa</option>
+                            @foreach ($listDesa ?? [] as $list)
+                                <option value="{{ $list['region_cd'] }}">{{ $list['region_nm'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary" wire:click="clear" wire:loading.remove>Reset</button>
+                    <div wire:loading wire:target="clear">
+                        <button class="btn btn-secondary-light" type="button" disabled>
+                            <span class="spinner-grow spinner-grow-sm align-middle" role="status"
+                                aria-hidden="true"></span>
+                            Clearing...
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -106,7 +136,7 @@
                                 <tr role="row" class="odd {{ $idNya == $val->id ? 'table-active' : '' }}">
                                     <td>{{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}</td>
                                     <td>{{ $val->kecamatanTPS->region_nm }}</td>
-                                    <td>{{ $val->desaTPS->region_nm }}</td>
+                                    <td>{{ $val->desaTPS->region_nm ?? $val->desa }}</td>
                                     <td>{{ $val->tps }}</td>
                                     <td class="text-center">
                                         <div class="list-icons">
@@ -146,106 +176,84 @@
             {{ $data->links() }}
         </div>
     </div>
-    <div class="modal modal-xl fade" id="modal-form" data-bs-backdrop="static" wire:ignore.self>
-        <div class="modal-dialog modal-dialog-centered custom-modal-two">
+    <div class="modal modal-xl fade" id="modal-form" data-backdrop="static" data-keyboard="false" wire:ignore.self>
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="page-wrapper-new p-0">
-                    <div class="content">
-                        <div class="modal-header border-0 custom-modal-header">
-                            <div class="page-title">
-                                <h4>{{ __('Import User') }}</h4>
+                <div class="modal-header">
+                    <h5 class="modal-title">Import TPS</h5>
+                    <button type="button" class="close" aria-label="Close" wire:click="closeModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-2 row">
+                        <div wire:loading wire:target="importUser">
+                            <div wire:stream.replace="progress">
+                                <progress max="100" value="{{ $progress }}"></progress>
+                                <p>{{ $progress }}%</p>
                             </div>
-                            <button type="button" class="close" wire:click='cancelFormModal' aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
-                        <div class="modal-body custom-modal-body">
-                            <form action="#" wire:submit='importUser'>
-                                <div class="mb-2 row">
-                                    <button type="button" wire:click='downloadExample'
-                                        class="form-control btn btn-primary-light">{{ __('Download Example') }}</button>
-                                </div>
-                                <div class="mb-2 row">
-                                    <div wire:loading wire:target="importUser">
-                                        <div wire:stream.replace="progress">
-                                            <progress max="100" value="{{ $progress }}"></progress>
-                                            <p>{{ $progress }}%</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-2 row">
-                                    @if ($errors->any())
-                                        <div>
+                    </div>
+                    <div class="mb-2 row">
+                        @if ($errors->any())
+                            <div>
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $error }}
 
-                                            @foreach ($errors->all() as $error)
-                                                <div class="alert alert-danger alert-dismissible fade show"
-                                                    role="alert">
-                                                    {{ $error }}
-
-                                                </div>
-                                            @endforeach
-
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="mb-2 row">
-                                    <label class="col-form-label col-md-2">{{ __('File') }}</label>
-                                    <div class="col-md-10">
-                                        <input type="file"
-                                            class="form-control @error('file') is-invalid  @enderror"
-                                            wire:model="file" accept=".xlsx,.csv,.xls">
-                                        @error('file')
-                                            <div class="invalid-feedback">
-                                                {{ $errors->first('file') }}
-                                            </div>
-                                        @enderror
                                     </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <label class="col-form-label col-md-2">{{ __('File') }}</label>
+                        <div class="col-md-10">
+                            <input type="file" class="form-control @error('file') is-invalid  @enderror"
+                                wire:model="file" accept=".xlsx,.csv,.xls">
+                            <div wire:loading wire:target="file">
+                                Uploading...</div>
+                            @if (isset($file))
+                                <i class="icon-checkmark2"></i>
+                            @else
+                            @endif
+                            @error('file')
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('file') }}
                                 </div>
-                                @if (auth()->user()->hasRole(['SuperAdmin', 'SuperModerator']))
-                                    <div class="mb-2 row">
-                                        <label class="col-form-label col-md-2">{{ __('CLIENT') }}</label>
-                                        <div class="col-md-10">
-                                            <div wire:ignore>
-                                                <select id="client_idselect2modal" class="client_idselect2 select2"
-                                                    wire:model='client_id'>
-                                                    <option value="">{{ __('Pilih') }}</option>
-                                                    @foreach ($clients as $c)
-                                                        <option value="{{ $c->id }}">{{ $c->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            @error('client_id')
-                                                <div class="invalid-feedback">
-                                                    {{ $errors->first('client_id') }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                @endif
-                                <div class="modal-footer-btn">
-                                    <button type="button" class="btn btn-cancel me-2"
-                                        wire:click='cancelFormModal'>{{ __('Cancel') }}</button>
-                                    <button type="submit" class="btn btn-submit"
-                                        wire:loading.remove>{{ __('Import') }}</button>
-                                    <div wire:loading wire:target="importUser">
-                                        <button class="btn btn-secondary-light" type="button" disabled>
-                                            <span class="spinner-grow spinner-grow-sm align-middle" role="status"
-                                                aria-hidden="true"></span>
-                                            Import...
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                            @enderror
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" wire:click="importTps" class="btn btn-primary" wire:loading.remove>Save
+                        changes</button>
+                    <div wire:loading wire:target="importTps">
+                        <button class="btn btn-secondary-light" type="button" disabled>
+                            <span class="spinner-grow spinner-grow-sm align-middle" role="status"
+                                aria-hidden="true"></span>
+                            Import...
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-secondary" wire:click="closeModal">Close</button>
+                </div>
+
             </div>
         </div>
     </div>
     @push('js')
         <script>
+            $(document).ready(function() {
+                window.addEventListener('import-tps', event => {
+                    $('#modal-form').modal('show');
+                });
+            });
+            $(document).ready(function() {
+                window.addEventListener('close-import-tps', event => {
+                    $('#modal-form').modal('hide');
+                });
+            });
             $('.select-select').select2({});
             $('.select-select').on('change', function(e) {
                 var data = $('.select-select').select2("val");

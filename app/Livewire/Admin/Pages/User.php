@@ -2,13 +2,14 @@
 
 namespace App\Livewire\Admin\Pages;
 
+use App\Models\ComRegion;
 use Livewire\Component;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Hash;
 
 class User extends Component
 {
-    public $idNya, $name, $email, $password, $confirmpassword, $role_user, $wa;
+    public $idNya, $name, $email, $password, $confirmpassword, $role_user, $wa, $listKec, $kecamatan;
     public $isEdit = false;
 
     protected $listeners = ['edit', 'delete'];
@@ -45,6 +46,7 @@ class User extends Component
         $this->name = $data->name;
         $this->email = $data->email;
         $this->wa = $data->wa;
+        $this->kecamatan = $data->region_cd;
         $this->role_user = $data->getRoleNames();
     }
     public function save()
@@ -60,6 +62,7 @@ class User extends Component
                 'email_verified_at' => now(),
                 'wa' => $this->wa,
                 'password' => Hash::make($this->password),
+                'region_cd' => $this->kecamatan,
             ])->assignRole($this->role_user);
             $this->dispatchBrowserEvent('Success');
             $this->emit('refreshDatatable');
@@ -75,6 +78,7 @@ class User extends Component
         if ($this->password) {
             $dataUser->password = Hash::make($this->password);
         }
+        $dataUser->region_cd = $this->kecamatan;
         $dataUser->save();
         $this->dispatchBrowserEvent('Update');
         $this->emit('refreshDatatable');
@@ -87,6 +91,10 @@ class User extends Component
         $user->delete();
         $this->dispatchBrowserEvent('Delete');
         $this->emit('refreshDatatable');
+    }
+    public function mount()
+    {
+        $this->listKec = ComRegion::where('region_level', '3')->get();
     }
     public function render()
     {

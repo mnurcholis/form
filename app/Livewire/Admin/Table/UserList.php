@@ -29,6 +29,7 @@ class UserList extends DataTableComponent
                 })
                 ->html()
                 ->searchable(),
+            Column::make('Handle TPS', 'handleTps.region_nm'),
             Column::make('Action', 'id')->view('components.table-action'),
         ];
     }

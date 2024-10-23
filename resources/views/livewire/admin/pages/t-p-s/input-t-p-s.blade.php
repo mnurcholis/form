@@ -3,9 +3,6 @@
         <livewire:admin.global.page-header judul="TPS" subjudul="TPS" :breadcrumb="['Data TPS']" />
     </x-slot>
     <div class="card">
-        <div class="card-header">
-            <h3>Ini jancuk</h3>
-        </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3 mb-3">

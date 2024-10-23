@@ -61,4 +61,9 @@ class User extends Authenticatable implements Auditable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function handleTps()
+    {
+        return $this->belongsTo(ComRegion::class, 'region_cd', 'region_cd');
+    }
 }

@@ -94,6 +94,17 @@
                             <span class="form-text text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Kecamatan</label>
+                            <select wire:model.live="kecamatan" class="form-control">
+                                <option value="">Pilih Kecamatan</option>
+                                @foreach ($listKec ?? [] as $list)
+                                    <option value="{{ $list->region_cd }}">{{ $list->region_nm }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <div class="row">
