@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Quick Count</title>
-
+    <title>Quick Count Kab. Wonosobo</title>
+    <link rel="shortcut icon" href="{{ asset('images/logo-pemda.png') }}">
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="{{ asset('limitless/') }}/global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -79,8 +79,7 @@
 
                 <div class="navbar-collapse collapse" id="navbar-footer">
                     <span class="navbar-text">
-                        &copy; 2023 <a href="https://wa.me/6285157392291">Tri Maryanto</a> And <a
-                            href="https://wa.me/6282243041272" target="_blank">M Nurcholis</a>
+                        &copy; 2024 By <a href="https://wa.me/6285157392291">Tri Maryanto</a>
                     </span>
                 </div>
             </div>

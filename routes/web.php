@@ -3,6 +3,7 @@
 use App\Http\Controllers\QrcodeController;
 use App\Livewire\Admin\Form\GarageShow;
 use App\Livewire\Admin\Form\PengukuranLila;
+use App\Livewire\Admin\Pages\DashboardTps;
 use App\Livewire\Admin\Pages\Data\FormGarageShow;
 use App\Livewire\Admin\Pages\DataLila\Lila;
 use App\Livewire\Admin\Pages\DataSekolah\DataSekolah;
@@ -33,7 +34,9 @@ Route::get('template', function () {
 });
 
 
-Route::get('/', GarageShow::class);
+Route::get('/', function () {
+    return view('auth/login');
+});
 Route::get('/pengukuran-lila', PengukuranLila::class)->name('pengukuranlila');
 Route::get('/qrcode/{id}', [QrcodeController::class, 'index'])->name('qrcode');
 
@@ -43,15 +46,18 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/pendaftaran-tps', PendaftaranTPS::class)->name('pendaftaran-tps');
-    Route::get('/tps', InputTPS::class)->name('tps');
-    Route::get('/dashboard', Home::class)->name('home');
-    Route::get('/datalila', Lila::class)->name('data-lila');
-    Route::get('/datagarageshow', FormGarageShow::class)->name('data-garageshow');
-    Route::get('/sekolah', DataSekolah::class)->name('sekolah');
-    Route::get('/sekolahorganisasi', DataSekolahOrganisasi::class)->name('sekolahorganisasi');
-    Route::get('/user', User::class)->name('user');
-    Route::get('/role', Role::class)->name('role');
-    Route::get('/permission', Permission::class)->name('permission');
-    Route::get('/pendaftaran', Pendaftaran::class)->name('pendaftaran');
+    Route::group(['middleware' => 'tps.protect'], function () {
+        Route::get('/dashboard-tps', DashboardTps::class)->name('dashboard-tps');
+        Route::get('/pendaftaran-tps', PendaftaranTPS::class)->name('pendaftaran-tps');
+        Route::get('/tps', InputTPS::class)->name('tps');
+        Route::get('/dashboard', Home::class)->name('home');
+        Route::get('/datalila', Lila::class)->name('data-lila');
+        Route::get('/datagarageshow', FormGarageShow::class)->name('data-garageshow');
+        Route::get('/sekolah', DataSekolah::class)->name('sekolah');
+        Route::get('/sekolahorganisasi', DataSekolahOrganisasi::class)->name('sekolahorganisasi');
+        Route::get('/user', User::class)->name('user');
+        Route::get('/role', Role::class)->name('role');
+        Route::get('/permission', Permission::class)->name('permission');
+        Route::get('/pendaftaran', Pendaftaran::class)->name('pendaftaran');
+    });
 });

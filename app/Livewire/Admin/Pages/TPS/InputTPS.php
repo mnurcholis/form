@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Pages\TPS;
 
+use App\Models\ComRegion;
 use App\Models\Hasil;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,13 +11,27 @@ class InputTPS extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $idNya;
+    public $idNya, $limit = 10;
     public $g_1 = [];
     public $g_2 = [];
     public $g_3 = [];
     public $b_1 = [];
     public $b_2 = [];
     public $b_3 = [];
+    public $listKec, $listDesa, $searchKecamatan, $searchDesa;
+
+    public function clear()
+    {
+        $this->searchKecamatan = null;
+        $this->searchDesa = null;
+        $this->searchDesa = null;
+        $this->listDesa = null;
+    }
+    public function updatedSearchKecamatan()
+    {
+        $this->listDesa = ComRegion::where('region_root', $this->searchKecamatan)->get()->toArray();
+        $this->searchDesa = null;
+    }
     public function edit($id = '')
     {
         $this->idNya = $id;
@@ -43,6 +58,10 @@ class InputTPS extends Component
 
         $this->idNya = null;
     }
+    public function mount()
+    {
+        $this->listKec = ComRegion::where('region_level', '3')->get();
+    }
     public function render()
     {
         $data = Hasil::query();
@@ -51,7 +70,17 @@ class InputTPS extends Component
                 $query->where('region_cd', auth()->user()->region_cd);
             });
         }
-        $data = $data->with(['kecamatanTPS', 'desaTPS'])->orderBy('kecamatan', 'ASC')->paginate(10);
+        if ($this->searchKecamatan) {
+            $data->whereHas('kecamatanTPS', function ($query) {
+                $query->where('region_cd', $this->searchKecamatan);
+            });
+        }
+        if ($this->searchDesa) {
+            $data->whereHas('desaTPS', function ($query) {
+                $query->where('region_cd', $this->searchDesa);
+            });
+        }
+        $data = $data->with(['kecamatanTPS', 'desaTPS'])->orderBy('kecamatan', 'ASC')->paginate($this->limit);
         $this->g_1 = [];
         $this->g_2 = [];
         $this->g_3 = [];

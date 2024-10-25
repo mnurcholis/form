@@ -4,9 +4,51 @@
     </x-slot>
     <div class="card">
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-3 mb-3">
-                    <input type="text" class="form-control" placeholder="Search">
+            <div class="col-12 mb-3 row">
+                {{-- <div class="search-set col-md-2">
+                    <div class="search-input">
+                        <div class="dataTables_filter"><label>
+                                <input type="search" class="form-control form-control-sm" placeholder="Search"
+                                    wire:model.live='search'></label></div>
+                    </div>
+                </div> --}}
+                <label class="col-form-label col-md-1">Kecamatan</label>
+                <div class="col-md-3">
+                    <div class="col-lg-10">
+                        <select wire:model.live="searchKecamatan" class="form-control">
+                            <option value="">Pilih Kecamatan</option>
+                            @foreach ($listKec ?? [] as $list)
+                                <option value="{{ $list->region_cd }}">{{ $list->region_nm }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <label class="col-form-label col-md-1">Kelurahan / Desa</label>
+                <div class="col-md-3">
+                    <div class="col-lg-10">
+                        <select wire:model.live="searchDesa" class="form-control">
+                            <option value="">Pilih Kelurahan / Desa</option>
+                            @foreach ($listDesa ?? [] as $list)
+                                <option value="{{ $list['region_cd'] }}">{{ $list['region_nm'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <label class="col-form-label col-md-1">Show</label>
+                <div class="col-md-3">
+                    <div class="col-lg-3">
+                        <select wire:model.live="limit" class="form-control">
+                            <option value="10">Pilih</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('tps') }}" wire:navigate class="btn btn-primary">Reset</a>
                 </div>
             </div>
             <div class="table-responsive">
@@ -104,8 +146,8 @@
 
                     </tbody>
                 </table>
+                {{ $data->links() }}
             </div>
-            {{ $data->links() }}
         </div>
     </div>
 </div>

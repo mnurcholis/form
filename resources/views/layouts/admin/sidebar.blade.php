@@ -35,6 +35,17 @@
                         </a>
                     </li>
                 @endcan
+                @can('dashboard-tps')
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard-tps') }}"
+                            class="nav-link {{ request()->is('dashboard-tps') ? 'active' : '' }}">
+                            <i class="icon-home4"></i>
+                            <span>
+                                Dashboard TPS
+                            </span>
+                        </a>
+                    </li>
+                @endcan
                 @can('pendaftaran')
                     <li class="nav-item">
                         <a href="{{ route('pendaftaran') }}"
@@ -69,7 +80,8 @@
                 @endcan
                 @can('datalila')
                     <li class="nav-item">
-                        <a href="{{ route('data-lila') }}" class="nav-link {{ request()->is('datalila') ? 'active' : '' }}">
+                        <a href="{{ route('data-lila') }}"
+                            class="nav-link {{ request()->is('datalila') ? 'active' : '' }}">
                             <i class="icon-home4"></i>
                             <span>
                                 Data Lila
