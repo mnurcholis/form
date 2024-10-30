@@ -39,7 +39,7 @@
                     <li class="nav-item">
                         <a href="{{ route('dashboard-tps') }}"
                             class="nav-link {{ request()->is('dashboard-tps') ? 'active' : '' }}">
-                            <i class="icon-home4"></i>
+                            <i class="icon-stats-growth"></i>
                             <span>
                                 Dashboard TPS
                             </span>
@@ -61,7 +61,7 @@
                     <li class="nav-item">
                         <a href="{{ route('pendaftaran-tps') }}"
                             class="nav-link {{ request()->is('pendaftaran-tps') ? 'active' : '' }}">
-                            <i class="icon-home4"></i>
+                            <i class="icon-direction"></i>
                             <span>
                                 Pendaftaran TPS
                             </span>
@@ -71,7 +71,7 @@
                 @can('tps')
                     <li class="nav-item">
                         <a href="{{ route('tps') }}" class="nav-link {{ request()->is('tps') ? 'active' : '' }}">
-                            <i class="icon-home4"></i>
+                            <i class="icon-file-stats2"></i>
                             <span>
                                 TPS
                             </span>

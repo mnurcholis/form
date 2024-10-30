@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Pages\TPS;
 use App\Imports\HasilImport;
 use App\Models\ComRegion;
 use App\Models\Hasil;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -54,7 +55,7 @@ class PendaftaranTPS extends Component
         ];
 
         $this->validate($valid, $messages);
-
+        DB::table('hasils')->truncate();
         $import = new HasilImport($this);
         Excel::import($import, $this->file->getRealPath());
 

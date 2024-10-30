@@ -14,10 +14,12 @@ class InputTPS extends Component
     public $idNya, $limit = 10;
     public $g_1 = [];
     public $g_2 = [];
-    public $g_3 = [];
+    public $g_ts = [];
     public $b_1 = [];
     public $b_2 = [];
-    public $b_3 = [];
+    public $b_ts = [];
+    public $dpt = [];
+    public $dptb = [];
     public $listKec, $listDesa, $searchKecamatan, $searchDesa;
 
     public function clear()
@@ -47,12 +49,12 @@ class InputTPS extends Component
         if ($row) {
             $row->g_1 = $this->g_1[$index] ?? 0;
             $row->g_2 = $this->g_2[$index] ?? 0;
-            $row->g_3 = $this->g_3[$index] ?? 0;
+            $row->g_ts = $this->g_ts[$index] ?? 0;
             $row->b_1 = $this->b_1[$index] ?? 0;
             $row->b_2 = $this->b_2[$index] ?? 0;
-            $row->b_3 = $this->b_3[$index] ?? 0;
-
-            // Save the updated row
+            $row->b_ts = $this->b_ts[$index] ?? 0;
+            $row->dpt = $this->dpt[$index] ?? 0;
+            $row->dptb = $this->dptb[$index] ?? 0;
             $row->save();
         }
 
@@ -83,18 +85,22 @@ class InputTPS extends Component
         $data = $data->with(['kecamatanTPS', 'desaTPS'])->orderBy('kecamatan', 'ASC')->paginate($this->limit);
         $this->g_1 = [];
         $this->g_2 = [];
-        $this->g_3 = [];
+        $this->g_ts = [];
         $this->b_1 = [];
         $this->b_2 = [];
-        $this->b_3 = [];
+        $this->b_ts = [];
+        $this->dpt = [];
+        $this->dptb = [];
 
         foreach ($data as $datum) {
             array_push($this->g_1, $datum->g_1);
             array_push($this->g_2, $datum->g_2);
-            array_push($this->g_3, $datum->g_3);
+            array_push($this->g_ts, $datum->g_ts);
             array_push($this->b_1, $datum->b_1);
             array_push($this->b_2, $datum->b_2);
-            array_push($this->b_3, $datum->b_3);
+            array_push($this->b_ts, $datum->b_ts);
+            array_push($this->dpt, $datum->dpt);
+            array_push($this->dptb, $datum->dptb);
         }
         return view('livewire.admin.pages.t-p-s.input-t-p-s', ['data' => $data]);
     }

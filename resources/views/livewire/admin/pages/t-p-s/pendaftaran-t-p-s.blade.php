@@ -65,8 +65,8 @@
             <div class="card-body">
                 <div class="text-right">
                     <a href="#" class="btn btn-info" wire:click.prevent="toModalImport">{{ __('Import TPS') }}</a>
-                    <button type="button" class="btn btn-primary" wire:click="tambah">Tambah TPS<i
-                            class="icon-paperplane ml-2"></i></button>
+                    {{-- <button type="button" class="btn btn-primary" wire:click="tambah">Tambah TPS<i
+                            class="icon-paperplane ml-2"></i></button> --}}
                 </div>
             </div>
         @endif
@@ -127,7 +127,9 @@
                             <th>Kecamatan</th>
                             <th>Desa</th>
                             <th>TPS</th>
-                            <th class="text-center">Action</th>
+                            <th>DPT</th>
+                            <th>DPTb</th>
+                            {{-- <th class="text-center">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -138,7 +140,9 @@
                                     <td>{{ $val->kecamatanTPS->region_nm }}</td>
                                     <td>{{ $val->desaTPS->region_nm ?? $val->desa }}</td>
                                     <td>{{ $val->tps }}</td>
-                                    <td class="text-center">
+                                    <td>{{ $val->dpt ?? 0 }}</td>
+                                    <td>{{ $val->dptb ?? 0 }}</td>
+                                    {{-- <td class="text-center">
                                         <div class="list-icons">
                                             <div class="dropdown">
                                                 <a href="#" class="list-icons-item" data-toggle="dropdown"
@@ -155,7 +159,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         @else

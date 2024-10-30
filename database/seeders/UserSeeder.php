@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
             'wa_verified_at' => now(),
             'email_verified_at'     => now(),
         ])->assignRole('admin-tps')->givePermissionTo(['dashboard-tps', 'tps', 'pendaftaran-tps']);
-        $data = ComRegion::where('region_level', '3')->get();
+        $data = ComRegion::where('region_root', 3307)->get();
         $no = 1;
         foreach ($data as $row) {
             User::create([

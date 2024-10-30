@@ -40,7 +40,7 @@
                 <div class="col-md-3">
                     <div class="col-lg-3">
                         <select wire:model.live="limit" class="form-control">
-                            <option value="10">Pilih</option>
+                            <option value="10">10</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
                             <option value="100">100</option>
@@ -59,8 +59,10 @@
                             <th rowspan="2" class="text-center">Kecamatan</th>
                             <th rowspan="2" class="text-center">Desa</th>
                             <th rowspan="2" class="text-center">TPS</th>
-                            <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th>
                             <th colspan="4" class="text-center">Bupati/Wakil Bupati</th>
+                            <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th>
+                            <th rowspan="2" class="text-center">DPT</th>
+                            <th rowspan="2" class="text-center">DPTb</th>
                             <th rowspan="2" class="text-center">Action</th>
                         </tr>
                         <tr>
@@ -75,45 +77,58 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         @foreach ($data as $index => $row)
+                            @php
+                                $totalBupati = ($row->b_1 ?? 0) + ($row->b_2 ?? 0) + ($row->b_ts ?? 0);
+                                $totalGubernur = ($row->g_1 ?? 0) + ($row->g_2 ?? 0) + ($row->g_ts ?? 0);
+                                $total = ($row->dpt ?? 0) + ($row->dptb ?? 0);
+                            @endphp
                             <tr role="row" class="odd {{ $idNya == $row->id ? 'table-active ' : 'disabled' }}">
                                 <td>{{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}</td>
                                 <td>{{ $row->kecamatanTPS->region_nm }}</td>
                                 <td>{{ $row->desaTPS->region_nm }}</td>
                                 <td>{{ $row->tps }}</td>
                                 <!-- Gubernur Fields -->
-                                <td> <input type="number" class="form-control"
-                                        {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_1.{{ $index }}">
-                                </td>
-                                <td><input type="number" class="form-control"
-                                        {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_2.{{ $index }}">
-                                </td>
-                                <td><input type="number" class="form-control"
-                                        {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_3.{{ $index }}">
-                                </td>
-                                <td class="text-right">{{ ($row->g_1 ?? 0) + ($row->g_2 ?? 0) + ($row->g_3 ?? 0) }}
-                                </td>
 
                                 <!-- Bupati Fields -->
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_1.{{ $index }}">
+                                        wire:model.defer="b_1.{{ $index }}"></td>
+                                <td><input type="number" class="form-control"
+                                        {{ $idNya == $row->id ? '' : 'disabled' }}
+                                        wire:model.defer="b_2.{{ $index }}"></td>
+                                <td><input type="number" class="form-control"
+                                        {{ $idNya == $row->id ? '' : 'disabled' }}
+                                        wire:model.defer="b_ts.{{ $index }}"></td>
+                                <td class="text-right">
+                                    @if ($totalBupati > $total)
+                                        <span style="color:red;">
+                                            {{ $totalBupati }}
+                                        </span>
+                                    @else
+                                        {{ $totalBupati }}
+                                    @endif
                                 </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_2.{{ $index }}">
-                                </td>
+                                        wire:model.defer="g_1.{{ $index }}"></td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_3.{{ $index }}">
+                                        wire:model.defer="g_2.{{ $index }}"></td>
+                                <td><input type="number" class="form-control"
+                                        {{ $idNya == $row->id ? '' : 'disabled' }}
+                                        wire:model.defer="g_ts.{{ $index }}"></td>
+                                <td class="text-right">
+                                    @if ($totalGubernur > $total)
+                                        <span style="color:red;">
+                                            {{ $totalGubernur }}
+                                        </span>
+                                    @else
+                                        {{ $totalGubernur }}
+                                    @endif
                                 </td>
-                                <td class="text-right">{{ ($row->b_1 ?? 0) + ($row->b_2 ?? 0) + ($row->b_3 ?? 0) }}
-                                </td>
-
+                                <td class="text-right">{{ $row->dpt ?? 0 }}</td>
+                                <td class="text-right">{{ $row->dptb ?? 0 }}</td>
                                 <!-- Action Buttons -->
                                 <td>
                                     @if ($idNya == $row->id)
@@ -132,22 +147,22 @@
                         @endforeach
                         <tr class="bg-slate">
                             <td colspan="4">Total</td>
-
                             <td>{{ array_sum($g_1) }}</td>
                             <td>{{ array_sum($g_2) }}</td>
-                            <td>{{ array_sum($g_3) }}</td>
-                            <td>{{ array_sum($g_1) + array_sum($g_2) + array_sum($g_3) }}</td>
+                            <td>{{ array_sum($g_ts) }}</td>
+                            <td class="text-right">{{ array_sum($g_1) + array_sum($g_2) + array_sum($g_ts) }}</td>
                             <td>{{ array_sum($b_1) }}</td>
                             <td>{{ array_sum($b_2) }}</td>
-                            <td>{{ array_sum($b_3) }}</td>
-                            <td>{{ array_sum($b_1) + array_sum($b_2) + array_sum($b_3) }}</td>
+                            <td>{{ array_sum($b_ts) }}</td>
+                            <td class="text-right">{{ array_sum($b_1) + array_sum($b_2) + array_sum($b_ts) }}</td>
+                            <td class="text-right">{{ array_sum($dpt) }}</td>
+                            <td class="text-right">{{ array_sum($dptb) }}</td>
                             <td></td>
                         </tr>
-
                     </tbody>
                 </table>
-                {{ $data->links() }}
             </div>
         </div>
     </div>
+    {{ $data->links() }}
 </div>

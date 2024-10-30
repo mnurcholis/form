@@ -16,12 +16,14 @@ return new class extends Migration
             $table->string('kecamatan');
             $table->string('desa');
             $table->string('tps');
+            $table->integer('dpt')->nullable();
+            $table->integer('dptb')->nullable();
             $table->integer('g_1')->nullable();
             $table->integer('g_2')->nullable();
-            $table->integer('g_3')->nullable();
+            $table->integer('g_ts')->nullable();
             $table->integer('b_1')->nullable();
             $table->integer('b_2')->nullable();
-            $table->integer('b_3')->nullable();
+            $table->integer('b_ts')->nullable();
             $table->timestamps();
         });
     }

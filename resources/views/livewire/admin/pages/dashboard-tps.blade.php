@@ -60,7 +60,6 @@
         </div>
     </div>
     <div class="row">
-
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header header-elements-inline">
@@ -103,149 +102,151 @@
             </div>
         </div>
     </div>
-    @push('js')
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <script>
-            document.addEventListener('livewire:load', function() {
-                // Pie chart untuk Gubernur
-                var ctxGubernur = document.getElementById('gubernurPieChart').getContext('2d');
-                var gubernurPieChart = new Chart(ctxGubernur, {
-                    type: 'pie',
-                    data: {
-                        labels: ['No. 1', 'No. 2', 'Tidak Sah'],
-                        datasets: [{
-                            label: 'Gubernur',
-                            data: @json($gubernur),
-                            backgroundColor: [
-                                'rgba(217, 4, 15, 0.8)',
-                                'rgba(0, 56, 184, 0.8)',
-                                'rgba(0, 0, 0, 0.5)'
-                            ],
-                            borderColor: [
-                                'rgba(217, 4, 15, 0.8)',
-                                'rgba(0, 56, 184, 0.8)',
-                                'rgba(0, 0, 0, 0.5)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    }
-                });
+    <livewire:admin.pages.filtering-kecamatan>
+        @push('js')
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                // Pie chart untuk Bupati
-                var ctxBupati = document.getElementById('bupatiPieChart').getContext('2d');
-                var bupatiPieChart = new Chart(ctxBupati, {
-                    type: 'pie',
-                    data: {
-                        labels: ['No. 1', 'No. 2', 'Tidak Sah'],
-                        datasets: [{
-                            label: 'Bupati',
-                            data: @json($bupati),
-                            backgroundColor: [
-                                'rgba(217, 4, 15, 0.8)',
-                                'rgba(4, 160, 22, 0.8)',
-                                'rgba(0, 0, 0, 0.5)'
-                            ],
-                            borderColor: [
-                                'rgba(217, 4, 15, 0.8)',
-                                'rgba(4, 160, 22, 0.8)',
-                                'rgba(0, 0, 0, 0.5)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    }
-                });
-
-                //barchart bupati
-                var ctx = document.getElementById('bupatiChart').getContext('2d');
-                var chartData = @json($chartBupati);
-
-                var labels = chartData.map(item => item.region);
-                var g1Data = chartData.map(item => item.total_g1);
-                var g2Data = chartData.map(item => item.total_g2);
-                var g3Data = chartData.map(item => item.total_g3);
-
-                var kecamatanChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                                label: 'No. 1',
-                                data: g1Data,
-                                backgroundColor: 'rgba(217, 4, 15, 0.8)',
-                                borderColor: 'rgba(217, 4, 15, 0.8)',
+            <script>
+                document.addEventListener('livewire:load', function() {
+                    // Pie chart untuk Gubernur
+                    var ctxGubernur = document.getElementById('gubernurPieChart').getContext('2d');
+                    var gubernurPieChart = new Chart(ctxGubernur, {
+                        type: 'pie',
+                        data: {
+                            labels: ['No. 1', 'No. 2', 'Tidak Sah'],
+                            datasets: [{
+                                label: 'Gubernur',
+                                data: @json($gubernur),
+                                backgroundColor: [
+                                    'rgba(217, 4, 15, 0.8)',
+                                    'rgba(0, 56, 184, 0.8)',
+                                    'rgba(0, 0, 0, 0.5)'
+                                ],
+                                borderColor: [
+                                    'rgba(217, 4, 15, 0.8)',
+                                    'rgba(0, 56, 184, 0.8)',
+                                    'rgba(0, 0, 0, 0.5)'
+                                ],
                                 borderWidth: 1
-                            },
-                            {
-                                label: 'No. 2',
-                                data: g2Data,
-                                backgroundColor: 'rgba(4, 160, 22, 0.8)',
-                                borderColor: 'rgba(4, 160, 22, 0.8)',
+                            }]
+                        }
+                    });
+
+                    // Pie chart untuk Bupati
+                    var ctxBupati = document.getElementById('bupatiPieChart').getContext('2d');
+                    var bupatiPieChart = new Chart(ctxBupati, {
+                        type: 'pie',
+                        data: {
+                            labels: ['No. 1', 'No. 2', 'Tidak Sah'],
+                            datasets: [{
+                                label: 'Bupati',
+                                data: @json($bupati),
+                                backgroundColor: [
+                                    'rgba(217, 4, 15, 0.8)',
+                                    'rgba(4, 160, 22, 0.8)',
+                                    'rgba(0, 0, 0, 0.5)'
+                                ],
+                                borderColor: [
+                                    'rgba(217, 4, 15, 0.8)',
+                                    'rgba(4, 160, 22, 0.8)',
+                                    'rgba(0, 0, 0, 0.5)'
+                                ],
                                 borderWidth: 1
-                            },
-                            {
-                                label: 'Tidak Sah',
-                                data: g3Data,
-                                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                                borderColor: 'rgba(0, 0, 0, 0.5)',
-                                borderWidth: 1
-                            }
-                        ]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
+                            }]
+                        }
+                    });
+
+                    //barchart bupati
+                    var ctx = document.getElementById('bupatiChart').getContext('2d');
+                    var chartData = @json($chartBupati);
+
+                    var labels = chartData.map(item => item.region);
+                    var g1Data = chartData.map(item => item.total_g1);
+                    var g2Data = chartData.map(item => item.total_g2);
+                    var gtsData = chartData.map(item => item.total_gts);
+
+                    var kecamatanChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                    label: 'No. 1',
+                                    data: g1Data,
+                                    backgroundColor: 'rgba(217, 4, 15, 0.8)',
+                                    borderColor: 'rgba(217, 4, 15, 0.8)',
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'No. 2',
+                                    data: g2Data,
+                                    backgroundColor: 'rgba(4, 160, 22, 0.8)',
+                                    borderColor: 'rgba(4, 160, 22, 0.8)',
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Tidak Sah',
+                                    data: gtsData,
+                                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                    borderColor: 'rgba(0, 0, 0, 0.5)',
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
                             }
                         }
-                    }
-                });
+                    });
 
-                //barchart Gurbernur
-                var ctx = document.getElementById('gubernurChart').getContext('2d');
-                var chartData = @json($chartGurbernur);
-                console.log(chartData);
-                var labels = chartData.map(item => item.region);
-                var b1Data = chartData.map(item => item.total_b1);
-                var b2Data = chartData.map(item => item.total_b2);
-                var b3Data = chartData.map(item => item.total_b3);
+                    //barchart Gurbernur
+                    var ctx = document.getElementById('gubernurChart').getContext('2d');
+                    var chartData = @json($chartGurbernur);
+                    console.log(chartData);
+                    var labels = chartData.map(item => item.region);
+                    var b1Data = chartData.map(item => item.total_b1);
+                    var b2Data = chartData.map(item => item.total_b2);
+                    var btsData = chartData.map(item => item.total_bts);
 
-                var kecamatanChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                                label: 'No. 1',
-                                data: b1Data,
-                                backgroundColor: 'rgba(217, 4, 15, 0.8)',
-                                borderColor: 'rgba(217, 4, 15, 0.8)',
-                                borderWidth: 1
-                            },
-                            {
-                                label: 'No. 2',
-                                data: b2Data,
-                                backgroundColor: 'rgba(0, 56, 184, 0.8)',
-                                borderColor: 'rgba(0, 56, 184, 0.8)',
-                                borderWidth: 1
-                            },
-                            {
-                                label: 'Tidak Sah',
-                                data: b3Data,
-                                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                                borderColor: 'rgba(0, 0, 0, 0.5)',
-                                borderWidth: 1
-                            }
-                        ]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
+                    var kecamatanChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                    label: 'No. 1',
+                                    data: b1Data,
+                                    backgroundColor: 'rgba(217, 4, 15, 0.8)',
+                                    borderColor: 'rgba(217, 4, 15, 0.8)',
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'No. 2',
+                                    data: b2Data,
+                                    backgroundColor: 'rgba(0, 56, 184, 0.8)',
+                                    borderColor: 'rgba(0, 56, 184, 0.8)',
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Tidak Sah',
+                                    data: btsData,
+                                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                    borderColor: 'rgba(0, 0, 0, 0.5)',
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
                             }
                         }
-                    }
+                    });
                 });
-            });
-        </script>
-    @endpush
+            </script>
+        @endpush
 </div>
