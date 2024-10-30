@@ -82,7 +82,7 @@ class InputTPS extends Component
                 $query->where('region_cd', $this->searchDesa);
             });
         }
-        $data = $data->with(['kecamatanTPS', 'desaTPS'])->orderBy('kecamatan', 'ASC')->paginate($this->limit);
+        $data = $data->with(['kecamatanTPS', 'desaTPS'])->orderBy('kecamatan', 'ASC')->orderBy('desa', 'ASC')->paginate($this->limit);
         $this->g_1 = [];
         $this->g_2 = [];
         $this->g_ts = [];
