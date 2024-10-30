@@ -93,42 +93,48 @@
                                 <!-- Bupati Fields -->
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_1.{{ $index }}"></td>
+                                        wire:model.defer="b_1.{{ $index }}"
+                                        onkeypress="return isNumberKey(event)"></td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_2.{{ $index }}"></td>
+                                        wire:model.defer="b_2.{{ $index }}"
+                                        onkeypress="return isNumberKey(event)"></td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_ts.{{ $index }}"></td>
+                                        wire:model.defer="b_ts.{{ $index }}"
+                                        onkeypress="return isNumberKey(event)"></td>
                                 <td class="text-right">
                                     @if ($totalBupati > $total)
                                         <span style="color:red;">
-                                            {{ $totalBupati }}
+                                            {{ number_format($totalBupati ?? 0, 0, ',', '.') }}
                                         </span>
                                     @else
-                                        {{ $totalBupati }}
+                                        {{ number_format($totalBupati ?? 0, 0, ',', '.') }}
                                     @endif
                                 </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_1.{{ $index }}"></td>
+                                        wire:model.defer="g_1.{{ $index }}"
+                                        onkeypress="return isNumberKey(event)"></td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_2.{{ $index }}"></td>
+                                        wire:model.defer="g_2.{{ $index }}"
+                                        onkeypress="return isNumberKey(event)"></td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_ts.{{ $index }}"></td>
+                                        wire:model.defer="g_ts.{{ $index }}"
+                                        onkeypress="return isNumberKey(event)"></td>
                                 <td class="text-right">
                                     @if ($totalGubernur > $total)
                                         <span style="color:red;">
-                                            {{ $totalGubernur }}
+                                            {{ number_format($totalGubernur ?? 0, 0, ',', '.') }}
                                         </span>
                                     @else
-                                        {{ $totalGubernur }}
+                                        {{ number_format($totalGubernur ?? 0, 0, ',', '.') }}
                                     @endif
                                 </td>
-                                <td class="text-right">{{ $row->dpt ?? 0 }}</td>
-                                <td class="text-right">{{ $row->dptb ?? 0 }}</td>
+                                <td class="text-right">{{ number_format($row->dpt ?? 0, 0, ',', '.') }}</td>
+                                <td class="text-right">{{ number_format($row->dptb ?? 0, 0, ',', '.') }}</td>
                                 <!-- Action Buttons -->
                                 <td>
                                     @if ($idNya == $row->id)
@@ -165,4 +171,14 @@
         </div>
     </div>
     {{ $data->links() }}
+    @push('js')
+        <script>
+            function isNumberKey(evt) {
+                var charCode = (evt.which) ? evt.which : evt.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+                return true;
+            }
+        </script>
+    @endpush
 </div>

@@ -98,55 +98,76 @@
                                             {{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}</td>
                                         <td class="text-left">{{ $row->kecamatanTPS->region_nm ?? '' }}</td>
                                         <td class="text-left">{{ $row->desaTPS->region_nm ?? '' }}</td>
-                                        <td class="text-right">{{ number_format($row->total_b_1) ?? 0 }}</td>
-                                        <td class="text-right">{{ number_format($row->total_b_2) ?? 0 }}</td>
-                                        <td class="text-right">{{ number_format($row->total_b_3) ?? 0 }}</td>
+                                        <td class="text-right">{{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-right">{{ number_format($row->total_b_2 ?? 0, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-right">{{ number_format($row->total_b_3 ?? 0, 0, ',', '.') }}
+                                        </td>
                                         <td class="text-right">
 
                                             @if ($row->total_b > $sum)
                                                 <span style="color:red;">
-                                                    {{ number_format($row->total_b ?? 0) }}
+                                                    {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
                                                 </span>
                                             @else
                                                 <span>
-                                                    {{ number_format($row->total_b ?? 0) }}
+                                                    {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
                                                 </span>
                                             @endif
                                         </td>
-                                        <td class="text-right">{{ number_format($row->total_g_1) ?? 0 }}</td>
-                                        <td class="text-right">{{ number_format($row->total_g_2) ?? 0 }}</td>
-                                        <td class="text-right">{{ number_format($row->total_g_3) ?? 0 }}</td>
+                                        <td class="text-right">{{ number_format($row->total_g_1 ?? 0, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-right">{{ number_format($row->total_g_2 ?? 0, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-right">{{ number_format($row->total_g_3 ?? 0, 0, ',', '.') }}
+                                        </td>
                                         <td class="text-right">
                                             @if ($row->total_g > $sum)
                                                 <span style="color:red;">
-                                                    {{ number_format($row->total_g ?? 0) }}
+                                                    {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
                                                 </span>
                                             @else
                                                 <span>
-                                                    {{ number_format($row->total_g ?? 0) }}
+                                                    {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
                                                 </span>
                                             @endif
                                         </td>
-                                        <td class="text-right"> {{ number_format($row->total_dpt) ?? 0 }} </td>
-                                        <td class="text-right">{{ number_format($row->total_dptb) ?? 0 }}</td>
+                                        <td class="text-right"> {{ number_format($row->total_dpt ?? 0, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-right">{{ number_format($row->total_dptb ?? 0, 0, ',', '.') }}
+                                        </td>
                                         <td class="text-right">
-                                            {{ number_format($row->total_dptb + $row->total_dpt) ?? 0 }}</td>
+                                            {{ number_format($row->total_dptb + $row->total_dpt ?? 0, 0, ',', '.') }}
+                                        </td>
                                     </tr>
                                 @endforeach
                                 <tr class="bg-slate">
                                     <td colspan="3">Total</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_b_1')) }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_b_2')) }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_b_3')) }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_b')) }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_g_1')) }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_g_2')) }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_g_3')) }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_g')) }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_dpt')) }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_dptb')) }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_dpt') + $data->sum('total_dptb')) }}</td>
+                                        {{ number_format($data->sum('total_b_1') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_b_2') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_b_3') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">{{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_g_1') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_g_2') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_g_3') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">{{ number_format($data->sum('total_g') ?? 0, 0, ',', '.') }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_dpt') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_dptb') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_dpt') + $data->sum('total_dptb') ?? 0, 0, ',', '.') }}
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
