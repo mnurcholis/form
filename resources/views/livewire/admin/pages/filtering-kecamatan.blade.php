@@ -102,7 +102,7 @@
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_b_2 ?? 0, 0, ',', '.') }}
                                         </td>
-                                        <td class="text-right">{{ number_format($row->total_b_3 ?? 0, 0, ',', '.') }}
+                                        <td class="text-right">{{ number_format($row->total_b_ts ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">
 
@@ -120,7 +120,7 @@
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_g_2 ?? 0, 0, ',', '.') }}
                                         </td>
-                                        <td class="text-right">{{ number_format($row->total_g_3 ?? 0, 0, ',', '.') }}
+                                        <td class="text-right">{{ number_format($row->total_g_ts ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">
                                             @if ($row->total_g > $sum)
@@ -149,7 +149,7 @@
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_b_2') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_b_3') ?? 0, 0, ',', '.') }}</td>
+                                        {{ number_format($data->sum('total_b_ts') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">{{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
                                     </td>
                                     <td class="text-right">
@@ -157,7 +157,7 @@
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_g_2') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_g_3') ?? 0, 0, ',', '.') }}</td>
+                                        {{ number_format($data->sum('total_g_ts') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">{{ number_format($data->sum('total_g') ?? 0, 0, ',', '.') }}
                                     </td>
                                     <td class="text-right">

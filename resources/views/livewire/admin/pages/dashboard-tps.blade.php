@@ -76,7 +76,8 @@
                 </div>
                 <div class="card-body py-0">
                     <div class="row">
-                        <canvas id="gubernurChart"></canvas>
+                        <canvas id="bupatiChart"></canvas>
+
                     </div>
                 </div>
             </div>
@@ -96,7 +97,7 @@
                 </div>
                 <div class="card-body py-0">
                     <div class="row">
-                        <canvas id="bupatiChart"></canvas>
+                        <canvas id="gubernurChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -162,9 +163,9 @@
                     var chartData = @json($chartBupati);
 
                     var labels = chartData.map(item => item.region);
-                    var g1Data = chartData.map(item => item.total_g1);
-                    var g2Data = chartData.map(item => item.total_g2);
-                    var gtsData = chartData.map(item => item.total_gts);
+                    var b1Data = chartData.map(item => item.total_b1);
+                    var b2Data = chartData.map(item => item.total_b2);
+                    var btsData = chartData.map(item => item.total_bts);
 
                     var kecamatanChart = new Chart(ctx, {
                         type: 'bar',
@@ -172,21 +173,21 @@
                             labels: labels,
                             datasets: [{
                                     label: 'No. 1',
-                                    data: g1Data,
+                                    data: b1Data,
                                     backgroundColor: 'rgba(217, 4, 15, 0.8)',
                                     borderColor: 'rgba(217, 4, 15, 0.8)',
                                     borderWidth: 1
                                 },
                                 {
                                     label: 'No. 2',
-                                    data: g2Data,
+                                    data: b2Data,
                                     backgroundColor: 'rgba(4, 160, 22, 0.8)',
                                     borderColor: 'rgba(4, 160, 22, 0.8)',
                                     borderWidth: 1
                                 },
                                 {
                                     label: 'Tidak Sah',
-                                    data: gtsData,
+                                    data: btsData,
                                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
                                     borderColor: 'rgba(0, 0, 0, 0.5)',
                                     borderWidth: 1
@@ -207,9 +208,9 @@
                     var chartData = @json($chartGurbernur);
                     console.log(chartData);
                     var labels = chartData.map(item => item.region);
-                    var b1Data = chartData.map(item => item.total_b1);
-                    var b2Data = chartData.map(item => item.total_b2);
-                    var btsData = chartData.map(item => item.total_bts);
+                    var g1Data = chartData.map(item => item.total_g1);
+                    var g2Data = chartData.map(item => item.total_g2);
+                    var gtsData = chartData.map(item => item.total_gts);
 
                     var kecamatanChart = new Chart(ctx, {
                         type: 'bar',
@@ -217,21 +218,21 @@
                             labels: labels,
                             datasets: [{
                                     label: 'No. 1',
-                                    data: b1Data,
+                                    data: g1Data,
                                     backgroundColor: 'rgba(217, 4, 15, 0.8)',
                                     borderColor: 'rgba(217, 4, 15, 0.8)',
                                     borderWidth: 1
                                 },
                                 {
                                     label: 'No. 2',
-                                    data: b2Data,
+                                    data: g2Data,
                                     backgroundColor: 'rgba(0, 56, 184, 0.8)',
                                     borderColor: 'rgba(0, 56, 184, 0.8)',
                                     borderWidth: 1
                                 },
                                 {
                                     label: 'Tidak Sah',
-                                    data: btsData,
+                                    data: gtsData,
                                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
                                     borderColor: 'rgba(0, 0, 0, 0.5)',
                                     borderWidth: 1
