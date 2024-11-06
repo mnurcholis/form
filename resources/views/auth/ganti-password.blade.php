@@ -54,10 +54,11 @@
             <!-- Content area -->
             <div class="content d-flex justify-content-center align-items-center">
                 <!-- Login card -->
-                <form class="login-form" action="{{ route('login') }}" method="POST">
-                    @csrf
-                    <div class="card mb-0">
-                        <div class="card-body">
+
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <form class="login-form" action="{{ route('ganti-password') }}" method="POST">
+                            @csrf
                             <x-elrista />
                             <div class="text-center mb-3">
                                 <h5 class="mb-0">Login to your account</h5>
@@ -66,8 +67,7 @@
 
                             <div class="form-group form-group-feedback form-group-feedback-left input-field">
                                 <input type="text" class="form-control" spellcheck="false" name="email" autofocus
-                                    required>
-                                <label class="d-block text-muted" style="margin-left: 30px;">Email</label>
+                                    value="{{ auth()->user()->email }}" disabled>
                                 <div class="form-control-feedback">
                                     <i class="icon-user text-muted"></i>
                                 </div>
@@ -75,12 +75,19 @@
 
                             <div class="form-group form-group-feedback form-group-feedback-left input-field">
                                 <input type="password" class="form-control" spellcheck="false" name="password" required>
-                                <label class="d-block text-muted" style="margin-left: 30px;">Password</label>
+                                <label class="d-block text-muted" style="margin-left: 30px;">Password Baru</label>
                                 <div class="form-control-feedback">
                                     <i class="icon-lock2 text-muted"></i>
                                 </div>
                             </div>
-
+                            <div class="form-group form-group-feedback form-group-feedback-left input-field">
+                                <input type="password" class="form-control" spellcheck="false" name="confirm-password"
+                                    required>
+                                <label class="d-block text-muted" style="margin-left: 30px;">Ulangi Password</label>
+                                <div class="form-control-feedback">
+                                    <i class="icon-lock2 text-muted"></i>
+                                </div>
+                            </div>
                             {{-- <div class="form-group d-flex align-items-center">
                                 <a href="{{ url('forgot-password') }}" class="ml-auto">Forgot password?</a>
                             </div> --}}
@@ -89,13 +96,23 @@
                                 <button type="submit" data-initial-text="<i class='icon-spinner4 mr-2'></i> Sign In"
                                     data-loading-text="<i class='icon-spinner4 spinner mr-2'></i> Loading..."
                                     class="btn btn-primary btn-block btn-loading">
-                                    Sign In <i class="icon-circle-right2 ml-2"></i>
+                                    Rubah Password <i class="icon-circle-right2 ml-2"></i>
                                 </button>
-                            </div>
 
-                        </div>
+                            </div>
+                        </form>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" data-initial-text="<i class='icon-spinner4 mr-2'></i> Sign In"
+                                data-loading-text="<i class='icon-spinner4 spinner mr-2'></i> Loading..."
+                                class="btn btn-warning btn-block btn-loading">
+                                Bersihkan
+                            </button>
+                        </form>
                     </div>
-                </form>
+
+                </div>
+
                 <!-- /login card -->
 
             </div>

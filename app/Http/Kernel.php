@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'tps.protect' => \App\Http\Middleware\TPSProtect::class,
+        'ganti-password' => \App\Http\Middleware\GantiPassword::class,
     ];
 }

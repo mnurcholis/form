@@ -16,24 +16,24 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name'      => 'admin',
-            'email'     => 'admin@app.com',
-            'password'  => Hash::make('password'),
-            'status'     => true,
-            'wa'     => '0851',
-            'wa_verified_at' => now(),
-            'email_verified_at'     => now(),
-        ])->assignRole('admin')->givePermissionTo(['home', 'dashboard', 'master']);
-        User::create([
-            'name'      => 'user',
-            'email'     => 'user@app.com',
-            'password'  => Hash::make('password'),
-            'status'     => true,
-            'wa'     => '08512',
-            'wa_verified_at' => now(),
-            'email_verified_at' => now(),
-        ])->assignRole('user')->givePermissionTo(['home', 'dashboard']);
+        // User::create([
+        //     'name'      => 'admin',
+        //     'email'     => 'admin@app.com',
+        //     'password'  => Hash::make('password'),
+        //     'status'     => true,
+        //     'wa'     => '0851',
+        //     'wa_verified_at' => now(),
+        //     'email_verified_at'     => now(),
+        // ])->assignRole('admin')->givePermissionTo(['home', 'dashboard', 'master']);
+        // User::create([
+        //     'name'      => 'user',
+        //     'email'     => 'user@app.com',
+        //     'password'  => Hash::make('password'),
+        //     'status'     => true,
+        //     'wa'     => '08512',
+        //     'wa_verified_at' => now(),
+        //     'email_verified_at' => now(),
+        // ])->assignRole('user')->givePermissionTo(['home', 'dashboard']);
         User::create([
             'name'      => 'SuperAdmin',
             'email'     => 'superadmin@app.com',
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
                 'name'      => $row->region_nm,
                 'email'     => strtolower($row->region_nm) . '@app.com',
                 'password'  => Hash::make('@password' . $no++),
-                'status'     => true,
+                'status'     => false,
                 'wa'     => '0851',
                 'wa_verified_at' => now(),
                 'email_verified_at'     => now(),
