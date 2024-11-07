@@ -53,8 +53,10 @@
 
             <!-- Content area -->
             <div class="content d-flex justify-content-center align-items-center">
+
                 <!-- Login card -->
                 <form class="login-form" action="{{ route('login') }}" method="POST">
+
                     @csrf
                     <div class="card mb-0">
                         <div class="card-body">
@@ -63,7 +65,16 @@
                                 <h5 class="mb-0">Login to your account</h5>
                                 <span class="d-block text-muted">Your credentials</span>
                             </div>
-
+                            <x-validation-errors class="mb-4" />
+                            @if (session()->has('success'))
+                                <div class="mt-3">
+                                    <div class="alert alert-success alert-styled-left alert-dismissible">
+                                        <button type="button" class="close"
+                                            data-dismiss="alert"><span>×</span></button>
+                                        {{ Session::get('message') }}
+                                    </div>
+                                </div>
+                            @endif
                             <div class="form-group form-group-feedback form-group-feedback-left input-field">
                                 <input type="text" class="form-control" spellcheck="false" name="email" autofocus
                                     required>

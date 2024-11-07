@@ -57,7 +57,8 @@
 
                 <div class="card mb-0">
                     <div class="card-body">
-                        <form class="login-form" action="{{ route('ganti-password') }}" method="POST">
+                        <x-validation-errors class="mb-4" />
+                        <form class="login-form" action="{{ url('ganti-password') }}" method="POST">
                             @csrf
                             <x-elrista />
                             <div class="text-center mb-3">
@@ -81,8 +82,8 @@
                                 </div>
                             </div>
                             <div class="form-group form-group-feedback form-group-feedback-left input-field">
-                                <input type="password" class="form-control" spellcheck="false" name="confirm-password"
-                                    required>
+                                <input type="password" class="form-control" spellcheck="false"
+                                    name="password_confirmation" required>
                                 <label class="d-block text-muted" style="margin-left: 30px;">Ulangi Password</label>
                                 <div class="form-control-feedback">
                                     <i class="icon-lock2 text-muted"></i>
@@ -106,7 +107,7 @@
                             <button type="submit" data-initial-text="<i class='icon-spinner4 mr-2'></i> Sign In"
                                 data-loading-text="<i class='icon-spinner4 spinner mr-2'></i> Loading..."
                                 class="btn btn-warning btn-block btn-loading">
-                                Bersihkan
+                                Login
                             </button>
                         </form>
                     </div>

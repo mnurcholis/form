@@ -37,12 +37,12 @@ Route::get('template', function () {
 
 
 Route::get('/', function () {
-    return view('auth/login');
+    return auth()->check() ? redirect('/dashboard-tps') : view('auth/login');
 });
 Route::get('/pengukuran-lila', PengukuranLila::class)->name('pengukuranlila');
 Route::get('/qrcode/{id}', [QrcodeController::class, 'index'])->name('qrcode');
-Route::get('ganti-password', [GantiController::class, 'index']);
-Route::post('ganti-password', [GantiController::class, 'update']);
+Route::get('/ganti-password', [GantiController::class, 'index']);
+Route::post('/ganti-password', [GantiController::class, 'updatePassword'])->name('ganti-password');
 
 Route::middleware([
     'auth:sanctum',
