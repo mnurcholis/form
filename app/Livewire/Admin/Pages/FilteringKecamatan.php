@@ -6,6 +6,7 @@ use App\Models\ComRegion;
 use App\Models\Hasil;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class FilteringKecamatan extends Component
 {
@@ -28,6 +29,40 @@ class FilteringKecamatan extends Component
     public function mount()
     {
         $this->listKec = ComRegion::where('region_level', '3')->get();
+    }
+    public function downloadReport()
+    {
+        $data = Hasil::with(['kecamatanTPS', 'desaTPS'])
+            ->selectRaw('kecamatan, desa, 
+                SUM(g_1) as total_g_1, SUM(g_2) as total_g_2, SUM(g_ts) as total_g_ts,
+                SUM(b_1) as total_b_1, SUM(b_2) as total_b_2, SUM(b_ts) as total_b_ts,
+                SUM(g_1 + g_2 + g_ts) as total_g,
+                SUM(b_1 + b_2 + b_ts) as total_b,
+                SUM(dpt) as total_dpt, SUM(dptb) as total_dptb')
+            ->groupBy('kecamatan', 'desa');
+        if ($this->searchKecamatan) {
+            $data->whereHas('kecamatanTPS', function ($query) {
+                $query->where('region_cd', $this->searchKecamatan);
+            });
+        }
+        if ($this->searchDesa) {
+            $data->whereHas('desaTPS', function ($query) {
+                $query->where('region_cd', $this->searchDesa);
+            });
+        }
+        $laporan = $data->orderBy('kecamatan', 'ASC')->get();
+        $data = [
+            'title' => 'Kabupaten Wonosobo',
+            'data' => $laporan
+        ];
+
+        $pdf = Pdf::loadView('pdf.report-hitung-cepat', $data);
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, now()->format('Y-m-d_H-i-s') . '_report-hitung-cepat.pdf', [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="' . now()->format('Y-m-d_H-i-s') . '_report-hitung-cepat.pdf"',
+        ]);
     }
     public function render()
     {

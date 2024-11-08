@@ -103,9 +103,9 @@
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_ts.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td class="text-right">
+                                <td class="text-right {{ $totalBupati > $total ? 'bg-danger' : '' }}">
                                     @if ($totalBupati > $total)
-                                        <span style="color:red;">
+                                        <span style="color:white;">
                                             {{ number_format($totalBupati ?? 0, 0, ',', '.') }}
                                         </span>
                                     @else
@@ -124,9 +124,9 @@
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="g_ts.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td class="text-right">
+                                <td class="text-right {{ $totalGubernur > $total ? 'bg-danger' : '' }}">
                                     @if ($totalGubernur > $total)
-                                        <span style="color:red;">
+                                        <span style="color:white;">
                                             {{ number_format($totalGubernur ?? 0, 0, ',', '.') }}
                                         </span>
                                     @else
