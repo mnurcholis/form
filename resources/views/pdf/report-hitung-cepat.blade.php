@@ -97,15 +97,15 @@
                         $sum = ($row->total_dpt ?? 0) + ($row->total_dptb ?? 0);
                     @endphp
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $row->kecamatan }}</td>
-                    <td>{{ $row->desa }}</td>
-                    <td>{{ $row->total_b_1 }}</td>
-                    <td>{{ $row->total_b_2 }}</td>
-                    <td>{{ $row->total_b_ts }}</td>
+                    <td>{{ $row->kecamatanTPS->region_nm }}</td>
+                    <td>{{ $row->desaTPS->region_nm }}</td>
+                    <td>{{ $row->total_b_1 ?? 0 }}</td>
+                    <td>{{ $row->total_b_2 ?? 0 }}</td>
+                    <td>{{ $row->total_b_ts ?? 0 }}</td>
                     <td class=" {{ $row->total_b > $sum ? 'highlight' : '' }}">{{ $row->total_b }}</td>
-                    <td>{{ $row->total_g_1 }}</td>
-                    <td>{{ $row->total_g_2 }}</td>
-                    <td>{{ $row->total_g_ts }}</td>
+                    <td>{{ $row->total_g_1 ?? 0 }}</td>
+                    <td>{{ $row->total_g_2 ?? 0 }}</td>
+                    <td>{{ $row->total_g_ts ?? 0 }}</td>
                     <td class="{{ $row->total_g > $sum ? 'highlight' : '' }}">{{ $row->total_g }}</td>
                     <td>{{ $row->total_dpt }}</td>
                     <td>{{ $row->total_dptb }}</td>

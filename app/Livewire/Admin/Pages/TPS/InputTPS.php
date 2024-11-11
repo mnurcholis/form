@@ -38,51 +38,31 @@ class InputTPS extends Component
     {
         $this->idNya = $id;
     }
+    private function defaultZero($value)
+    {
+        return $value === '' ? 0 : $value;
+    }
     public function save($index,  $id)
     {
+        $this->g_1[$index] = $this->defaultZero($this->g_1[$index]);
+        $this->g_2[$index] = $this->defaultZero($this->g_2[$index]);
+        $this->g_ts[$index] = $this->defaultZero($this->g_ts[$index]);
+        $this->b_1[$index] = $this->defaultZero($this->b_1[$index]);
+        $this->b_2[$index] = $this->defaultZero($this->b_2[$index]);
+        $this->b_ts[$index] = $this->defaultZero($this->b_ts[$index]);
+        $this->dpt[$index] = $this->defaultZero($this->dpt[$index]);
+        $this->dptb[$index] = $this->defaultZero($this->dptb[$index]);
 
-        // $valid = [
-        //     'g_1.*' => 'required|numeric',
-        //     'g_2.*' => 'required|numeric',
-        //     'g_ts.*' => 'required|numeric',
-        //     'b_1.*' => 'required|numeric',
-        //     'b_2.*' => 'required|numeric',
-        //     'b_ts.*' => 'required|numeric',
-        // ];
-
-        // $messages = [
-        //     'g_1.*.required' => 'Kolom 1 wajib diisi.',
-        //     'g_1.*.numeric' => 'Kolom 1 harus berupa angka.',
-
-        //     'g_2.*.required' => 'Kolom 2 wajib diisi.',
-        //     'g_2.*.numeric' => 'Kolom 2 harus berupa angka.',
-
-        //     'g_ts.*.required' => 'Kolom Tidak Sah wajib diisi.',
-        //     'g_ts.*.numeric' => 'Kolom Tidak Sah harus berupa angka.',
-
-        //     'b_1.*.required' => 'Kolom 1 wajib diisi.',
-        //     'b_1.*.numeric' => 'Kolom 1 harus berupa angka.',
-
-        //     'b_2.*.required' => 'Kolom 2 wajib diisi.',
-        //     'b_2.*.numeric' => 'Kolom 2 harus berupa angka.',
-
-        //     'b_ts.*.required' => 'Kolom Tidak Sah wajib diisi.',
-        //     'b_ts.*.numeric' => 'Kolom Tidak Sah harus berupa angka.',
-        // ];
-
-        // $this->validate($valid, $messages);
         $row = Hasil::find($id);
-
-        // Update the fields only if the row exists
         if ($row) {
-            $row->g_1 = $this->g_1[$index] ?? 0;
-            $row->g_2 = $this->g_2[$index] ?? 0;
-            $row->g_ts = $this->g_ts[$index] ?? 0;
-            $row->b_1 = $this->b_1[$index] ?? 0;
-            $row->b_2 = $this->b_2[$index] ?? 0;
-            $row->b_ts = $this->b_ts[$index] ?? 0;
-            $row->dpt = $this->dpt[$index] ?? 0;
-            $row->dptb = $this->dptb[$index] ?? 0;
+            $row->g_1 = $this->g_1[$index];
+            $row->g_2 = $this->g_2[$index];
+            $row->g_ts = $this->g_ts[$index];
+            $row->b_1 = $this->b_1[$index];
+            $row->b_2 = $this->b_2[$index];
+            $row->b_ts = $this->b_ts[$index];
+            $row->dpt = $this->dpt[$index];
+            $row->dptb = $this->dptb[$index];
             $row->save();
         }
 

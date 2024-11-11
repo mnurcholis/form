@@ -93,7 +93,7 @@
                                 <!-- Bupati Fields -->
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_1.{{ $index }}"
+                                        wire:model.defer="b_1.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('b_1.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
@@ -101,7 +101,7 @@
                                 </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_2.{{ $index }}"
+                                        wire:model.defer="b_2.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('b_2.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
@@ -109,7 +109,7 @@
                                 </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_ts.{{ $index }}"
+                                        wire:model.defer="b_ts.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('b_ts.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
@@ -127,7 +127,7 @@
                                 </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_1.{{ $index }}"
+                                        wire:model.defer="g_1.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('g_1.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
@@ -135,7 +135,7 @@
                                 </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_2.{{ $index }}"
+                                        wire:model.defer="g_2.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('g_2.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
@@ -143,7 +143,7 @@
                                 </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_ts.{{ $index }}"
+                                        wire:model.defer="g_ts.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('g_ts.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
