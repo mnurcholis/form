@@ -41,8 +41,36 @@ class InputTPS extends Component
     public function save($index,  $id)
     {
 
+        // $valid = [
+        //     'g_1.*' => 'required|numeric',
+        //     'g_2.*' => 'required|numeric',
+        //     'g_ts.*' => 'required|numeric',
+        //     'b_1.*' => 'required|numeric',
+        //     'b_2.*' => 'required|numeric',
+        //     'b_ts.*' => 'required|numeric',
+        // ];
 
-        // Find the row by its ID
+        // $messages = [
+        //     'g_1.*.required' => 'Kolom 1 wajib diisi.',
+        //     'g_1.*.numeric' => 'Kolom 1 harus berupa angka.',
+
+        //     'g_2.*.required' => 'Kolom 2 wajib diisi.',
+        //     'g_2.*.numeric' => 'Kolom 2 harus berupa angka.',
+
+        //     'g_ts.*.required' => 'Kolom Tidak Sah wajib diisi.',
+        //     'g_ts.*.numeric' => 'Kolom Tidak Sah harus berupa angka.',
+
+        //     'b_1.*.required' => 'Kolom 1 wajib diisi.',
+        //     'b_1.*.numeric' => 'Kolom 1 harus berupa angka.',
+
+        //     'b_2.*.required' => 'Kolom 2 wajib diisi.',
+        //     'b_2.*.numeric' => 'Kolom 2 harus berupa angka.',
+
+        //     'b_ts.*.required' => 'Kolom Tidak Sah wajib diisi.',
+        //     'b_ts.*.numeric' => 'Kolom Tidak Sah harus berupa angka.',
+        // ];
+
+        // $this->validate($valid, $messages);
         $row = Hasil::find($id);
 
         // Update the fields only if the row exists

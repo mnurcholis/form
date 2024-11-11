@@ -94,15 +94,27 @@
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_1.{{ $index }}"
-                                        onkeypress="return isNumberKey(event)"></td>
+                                        onkeypress="return isNumberKey(event)" min="0">
+                                    @error('b_1.' . $index)
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_2.{{ $index }}"
-                                        onkeypress="return isNumberKey(event)"></td>
+                                        onkeypress="return isNumberKey(event)" min="0">
+                                    @error('b_2.' . $index)
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_ts.{{ $index }}"
-                                        onkeypress="return isNumberKey(event)"></td>
+                                        onkeypress="return isNumberKey(event)" min="0">
+                                    @error('b_ts.' . $index)
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </td>
                                 <td
                                     class="text-right {{ $totalBupati > $total ? 'bg-danger' : ($totalBupati < $total ? 'bg-orange-300' : 'bg-success') }}">
                                     @if ($totalBupati > $total)
@@ -116,15 +128,27 @@
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="g_1.{{ $index }}"
-                                        onkeypress="return isNumberKey(event)"></td>
+                                        onkeypress="return isNumberKey(event)" min="0">
+                                    @error('g_1.' . $index)
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="g_2.{{ $index }}"
-                                        onkeypress="return isNumberKey(event)"></td>
+                                        onkeypress="return isNumberKey(event)" min="0">
+                                    @error('g_2.' . $index)
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="g_ts.{{ $index }}"
-                                        onkeypress="return isNumberKey(event)"></td>
+                                        onkeypress="return isNumberKey(event)" min="0">
+                                    @error('g_ts.' . $index)
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </td>
                                 <td
                                     class="{{ $totalGubernur > $total ? 'bg-danger' : ($totalGubernur < $total ? 'bg-orange-300' : 'bg-success') }}">
                                     @if ($totalGubernur > $total)
@@ -180,7 +204,14 @@
                 if (charCode > 31 && (charCode < 48 || charCode > 57))
                     return false;
                 return true;
+
             }
+            document.body.addEventListener('paste', function(e) {
+                // Check if the pasted element is an <input type="number">
+                if (e.target && e.target.type === 'number') {
+                    e.preventDefault(); // Disable paste functionality
+                }
+            });
         </script>
     @endpush
 </div>
