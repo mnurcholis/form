@@ -111,7 +111,12 @@
                                             $sum = ($row->total_dpt ?? 0) + ($row->total_dptb ?? 0);
                                         @endphp
                                         <td class="text-left">
-                                            {{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}</td>
+                                            @if ($data instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                                                {{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}
+                                            @else
+                                                {{ $index + 1 }}
+                                            @endif
+                                        </td>
                                         <td class="text-left">{{ $row->kecamatanTPS->region_nm ?? '' }}</td>
                                         <td class="text-left">{{ $row->desaTPS->region_nm ?? '' }}</td>
                                         <td class="text-right">{{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
@@ -196,7 +201,9 @@
                 </div>
             </div>
             <div class="text-right flex justify-end">
-                {{ $data->links() }}
+                @if ($data instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                    {{ $data->links() }} <!-- Show pagination links only if paginated -->
+                @endif
             </div>
         </div>
     </div>
