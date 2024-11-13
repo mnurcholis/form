@@ -102,11 +102,11 @@
                     <td>{{ $row->total_b_1 ?? 0 }}</td>
                     <td>{{ $row->total_b_2 ?? 0 }}</td>
                     <td>{{ $row->total_b_ts ?? 0 }}</td>
-                    <td class=" {{ $row->total_b > $sum ? 'highlight' : '' }}">{{ $row->total_b }}</td>
+                    <td class=" {{ $row->total_b > $sum ? 'highlight' : '' }}">{{ $row->total_b ?? 0 }}</td>
                     <td>{{ $row->total_g_1 ?? 0 }}</td>
                     <td>{{ $row->total_g_2 ?? 0 }}</td>
                     <td>{{ $row->total_g_ts ?? 0 }}</td>
-                    <td class="{{ $row->total_g > $sum ? 'highlight' : '' }}">{{ $row->total_g }}</td>
+                    <td class="{{ $row->total_g > $sum ? 'highlight' : '' }}">{{ $row->total_g ?? 0 }}</td>
                     <td>{{ $row->total_dpt }}</td>
                     <td>{{ $row->total_dptb }}</td>
                     <td>{{ $row->total_dpt + $row->total_dptb }}</td>
