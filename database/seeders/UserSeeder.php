@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
             'name'      => 'Admin TPS',
             'email'     => 'admintps@app.com',
             'password'  => Hash::make('@password'),
-            'status'     => true,
+            'status'     => false,
             'wa'     => '0851',
             'wa_verified_at' => now(),
             'email_verified_at'     => now(),
