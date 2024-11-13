@@ -38,7 +38,7 @@
 
             <li class="nav-item dropdown dropdown-user">
                 <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{ asset('images/') }}/brand-logo-2.png" class="rounded-circle" alt="">
+                    <img src="{{ asset('images/') }}/logo-pemda.png" class="rounded-circle" alt="">
                     <span>{{ auth()->user()->name }}</span>
                 </a>
 
