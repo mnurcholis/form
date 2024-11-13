@@ -150,7 +150,7 @@
                                     @enderror
                                 </td>
                                 <td
-                                    class="{{ $totalGubernur > $total ? 'bg-danger' : ($totalGubernur < $total ? 'bg-orange-300' : 'bg-success') }}">
+                                    class="text-right {{ $totalGubernur > $total ? 'bg-danger' : ($totalGubernur < $total ? 'bg-orange-300' : 'bg-success') }}">
                                     @if ($totalGubernur > $total)
                                         <span style="color:white;">
                                             {{ number_format($totalGubernur ?? 0, 0, ',', '.') }}
