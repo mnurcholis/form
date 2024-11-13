@@ -56,7 +56,7 @@ class FilteringKecamatan extends Component
             'data' => $laporan
         ];
 
-        $pdf = Pdf::loadView('pdf.report-hitung-cepat', $data);
+        $pdf = Pdf::loadView('pdf.report-hitung-cepat', $data)->setPaper('a4', 'landscape');
         return response()->streamDownload(function () use ($pdf) {
             echo $pdf->output();
         }, now()->format('Y-m-d_H-i-s') . '_report-hitung-cepat.pdf', [
@@ -84,8 +84,12 @@ class FilteringKecamatan extends Component
                 $query->where('region_cd', $this->searchDesa);
             });
         }
-        $data = $data->orderBy('kecamatan', 'ASC')->paginate($this->limit);
-        // dd($data);
+        $data = $data->orderBy('kecamatan', 'ASC');
+        if ($this->limit) {
+            $data = $data->paginate($this->limit);
+        } else {
+            $data = $data->get(); // Fetch all records if limit is null
+        }
         return view('livewire.admin.pages.filtering-kecamatan', [
             'data' => $data
         ]);

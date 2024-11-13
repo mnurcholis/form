@@ -51,7 +51,7 @@
                     <a href="{{ route('tps') }}" wire:navigate class="btn btn-primary">Reset</a>
                 </div>
             </div>
-            <div class="table-responsive">
+            <div class="table table-responsive">
                 <table class="table table-bordered">
                     <thead class="bg-grey-400">
                         <tr>
@@ -91,25 +91,25 @@
                                 <!-- Gubernur Fields -->
 
                                 <!-- Bupati Fields -->
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_1.{{ $index }}"
+                                        wire:model.defer="b_1.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('b_1.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_2.{{ $index }}"
+                                        wire:model.defer="b_2.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('b_2.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="b_ts.{{ $index }}"
+                                        wire:model.defer="b_ts.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('b_ts.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
@@ -125,32 +125,32 @@
                                         {{ number_format($totalBupati ?? 0, 0, ',', '.') }}
                                     @endif
                                 </td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_1.{{ $index }}"
+                                        wire:model.defer="g_1.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('g_1.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_2.{{ $index }}"
+                                        wire:model.defer="g_2.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('g_2.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
-                                        wire:model.defer="g_ts.{{ $index }}"
+                                        wire:model.defer="g_ts.{{ $index }}" value="0"
                                         onkeypress="return isNumberKey(event)" min="0">
                                     @error('g_ts.' . $index)
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </td>
                                 <td
-                                    class="{{ $totalGubernur > $total ? 'bg-danger' : ($totalGubernur < $total ? 'bg-orange-300' : 'bg-success') }}">
+                                    class="text-right {{ $totalGubernur > $total ? 'bg-danger' : ($totalGubernur < $total ? 'bg-orange-300' : 'bg-success') }}">
                                     @if ($totalGubernur > $total)
                                         <span style="color:white;">
                                             {{ number_format($totalGubernur ?? 0, 0, ',', '.') }}

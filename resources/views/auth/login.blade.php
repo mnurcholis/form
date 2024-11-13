@@ -63,7 +63,7 @@
                             <x-elrista />
                             <div class="text-center mb-3">
                                 <h5 class="mb-0">Login to your account</h5>
-                                <span class="d-block text-muted">Your credentials</span>
+                                <span class="d-block text-muted">Kab. Wonosobo <br>Jawa Tengah</span>
                             </div>
                             <x-validation-errors class="mb-4" />
                             @if (session()->has('success'))
