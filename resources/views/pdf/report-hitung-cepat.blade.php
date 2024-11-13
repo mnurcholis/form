@@ -97,8 +97,8 @@
                         $sum = ($row->total_dpt ?? 0) + ($row->total_dptb ?? 0);
                     @endphp
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $row->kecamatanTPS->region_nm }}</td>
-                    <td>{{ $row->desaTPS->region_nm }}</td>
+                    <td>{{ $row->kecamatanTPS->region_nm ?? null }}</td>
+                    <td>{{ $row->desaTPS->region_nm ?? null }}</td>
                     <td>{{ $row->total_b_1 ?? 0 }}</td>
                     <td>{{ $row->total_b_2 ?? 0 }}</td>
                     <td>{{ $row->total_b_ts ?? 0 }}</td>
