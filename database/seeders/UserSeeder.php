@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
         User::create([
             'name'      => 'SuperAdmin',
             'email'     => 'superadmin@app.com',
-            'password'  => Hash::make('password'),
+            'password'  => Hash::make('@P4ssw0rd'),
             'status'     => true,
             'wa'     => '0851',
             'wa_verified_at' => now(),
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name'      => $row->region_nm,
                 'email'     => strtolower($row->region_nm) . '@app.com',
-                'password'  => Hash::make('@password' . $no++),
+                'password'  => Hash::make('password'),
                 'status'     => false,
                 'wa'     => '0851',
                 'wa_verified_at' => now(),

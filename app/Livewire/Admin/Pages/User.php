@@ -79,6 +79,7 @@ class User extends Component
             $dataUser->password = Hash::make($this->password);
         }
         $dataUser->region_cd = $this->kecamatan;
+        $dataUser->status = false;
         $dataUser->save();
         $this->dispatchBrowserEvent('Update');
         $this->emit('refreshDatatable');

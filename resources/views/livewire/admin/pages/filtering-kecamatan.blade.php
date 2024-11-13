@@ -3,7 +3,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Rincian Data Bupati dan Gubernur </h6>
+                    <h6 class="card-title">Rincian Data Calon Bupati dan Gubernur </h6>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
@@ -93,12 +93,12 @@
                                     <th colspan="4" class="text-center">Total</th>
                                 </tr>
                                 <tr>
-                                    <th class="text-center">1</th>
-                                    <th class="text-center">2</th>
+                                    <th class="text-center">No. 1<br> Afif dan Amir</th>
+                                    <th class="text-center">No. 2<br> Khairullah dan Sidqi</th>
                                     <th class="text-center">Suara Tidak Sah</th>
                                     <th class="text-center">Total</th>
-                                    <th class="text-center">1</th>
-                                    <th class="text-center">2</th>
+                                    <th class="text-center">No. 1<br> Andika & Hendi</th>
+                                    <th class="text-center">No. 2<br> Luthfi & Taj Yasin</th>
                                     <th class="text-center">Suara Tidak Sah</th>
                                     <th class="text-center">Total</th>
                                     <th class="text-center">DPT + DPTb</th>

@@ -11,7 +11,7 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Rekap Total Quick Count Bupati</h6>
+                    <h6 class="card-title">Rekap Total Quick Count Calon Bupati dan Wakil Bupati</h6>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
@@ -26,7 +26,7 @@
                 <div class="card-body">
                     <div style="display: flex; justify-content: space-around;">
                         <div class="text-center">
-                            <h3>Bupati</h3>
+                            <h3>Calon Bupati dan Wakil Bupati</h3>
                             <canvas id="bupatiPieChart"></canvas>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Rekap Total Quick Count Gubernur</h6>
+                    <h6 class="card-title">Rekap Total Quick Count calon Gubernur dan Wakil Gubernur</h6>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
@@ -51,7 +51,7 @@
                 <div class="card-body">
                     <div style="display: flex; justify-content: space-around;">
                         <div class="text-center">
-                            <h3>Gubernur</h3>
+                            <h3>Calon Gubernur dan Wakil Gubernur</h3>
                             <canvas id="gubernurPieChart"></canvas>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Traffic Pemilihan Bupati Berdasarkan Kecamatan</h6>
+                    <h6 class="card-title">Traffic Pemilihan Calon Bupati dan Wakil Bupati Berdasarkan Kecamatan</h6>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
@@ -85,7 +85,8 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Traffic Pemilihan Gurbernur Berdasarkan Kecamatan</h6>
+                    <h6 class="card-title">Traffic Pemilihan Calon Gurbernur dan Wakil Gubernur Berdasarkan Kecamatan
+                    </h6>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
@@ -115,7 +116,7 @@
                     var gubernurPieChart = new Chart(ctxGubernur, {
                         type: 'pie',
                         data: {
-                            labels: ['No. 1', 'No. 2', 'Tidak Sah'],
+                            labels: ['No. 1 Andika & Hendi', 'No. 2 Luthfi & Taj Yasin', 'Tidak Sah'],
                             datasets: [{
                                 label: 'Gubernur',
                                 data: @json($gubernur),
@@ -139,7 +140,7 @@
                     var bupatiPieChart = new Chart(ctxBupati, {
                         type: 'pie',
                         data: {
-                            labels: ['No. 1', 'No. 2', 'Tidak Sah'],
+                            labels: ['No. 1 Afif dan Amir', 'No. 2 Khairullah dan Sidqi', 'Tidak Sah'],
                             datasets: [{
                                 label: 'Bupati',
                                 data: @json($bupati),
@@ -172,14 +173,14 @@
                         data: {
                             labels: labels,
                             datasets: [{
-                                    label: 'No. 1',
+                                    label: 'No. 1 Afif dan Amir',
                                     data: b1Data,
                                     backgroundColor: 'rgba(217, 4, 15, 0.8)',
                                     borderColor: 'rgba(217, 4, 15, 0.8)',
                                     borderWidth: 1
                                 },
                                 {
-                                    label: 'No. 2',
+                                    label: 'No. 2 Khairullah dan Sidqi',
                                     data: b2Data,
                                     backgroundColor: 'rgba(4, 160, 22, 0.8)',
                                     borderColor: 'rgba(4, 160, 22, 0.8)',
@@ -217,14 +218,14 @@
                         data: {
                             labels: labels,
                             datasets: [{
-                                    label: 'No. 1',
+                                    label: 'No. 1 Andika & Hendi',
                                     data: g1Data,
                                     backgroundColor: 'rgba(217, 4, 15, 0.8)',
                                     borderColor: 'rgba(217, 4, 15, 0.8)',
                                     borderWidth: 1
                                 },
                                 {
-                                    label: 'No. 2',
+                                    label: 'No. 2 Luthfi & Taj Yasin',
                                     data: g2Data,
                                     backgroundColor: 'rgba(0, 56, 184, 0.8)',
                                     borderColor: 'rgba(0, 56, 184, 0.8)',
