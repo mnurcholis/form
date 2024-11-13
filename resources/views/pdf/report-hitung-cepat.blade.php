@@ -26,6 +26,7 @@
         td {
             padding: 8px;
             border: 1px solid #ddd;
+            text-align: center;
             font-size: 12px;
         }
 
@@ -77,16 +78,16 @@
             </tr>
             <tr>
                 <!-- Sub-columns for Bupati/Wakil Bupati -->
-                <th style="width: 60px;">No. 1<br> Afif & Amir</th>
-                <th style="width: 60px;">No. 2<br> Khairullah & Sidqi</th>
-                <th style="width: 60px;">Suara Tidak Sah</th>
-                <th style="width: 60px;">Total</th>
+                <th>No. 1<br> Afif & Amir</th>
+                <th>No. 2<br> Khairullah & Sidqi</th>
+                <th>Suara Tidak Sah</th>
+                <th>Total</th>
 
                 <!-- Sub-columns for Gubernur/Wakil Gubernur -->
-                <th style="width: 60px;">No. 1<br> Andika & Hendi</th>
-                <th style="width: 60px;">No. 2<br> Luthfi & Taj Yasin</th>
-                <th style="width: 60px;">Suara Tidak Sah</th>
-                <th style="width: 60px;">Total</th>
+                <th>No. 1<br> Andika & Hendi</th>
+                <th>No. 2<br> Luthfi & Taj Yasin</th>
+                <th>Suara Tidak Sah</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
@@ -98,33 +99,17 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $row->kecamatanTPS->region_nm ?? null }}</td>
                     <td>{{ $row->desaTPS->region_nm ?? null }}</td>
-                    <td class="text-right">{{ $row->total_b_1 ?? 0 }}
-                        <br> {{ number_format(($row->total_b_1 / $sum) * 100, 2) }} %
-                    </td>
-                    <td class="text-right">{{ $row->total_b_2 ?? 0 }}
-                        <br> {{ number_format(($row->total_b_2 / $sum) * 100, 2) }} %
-                    </td>
-                    <td class="text-right">{{ $row->total_b_ts ?? 0 }}
-                        <br> {{ number_format(($row->total_b_ts / $sum) * 100, 2) }} %
-                    </td>
-                    <td class=" text-right {{ $row->total_b > $sum ? 'highlight' : '' }}">{{ $row->total_b ?? 0 }}
-                        <br> {{ number_format(($row->total_b / $sum) * 100, 2) }} %
-                    </td>
-                    <td class="text-right">{{ $row->total_g_1 ?? 0 }}
-                        <br> {{ number_format(($row->total_g_1 / $sum) * 100, 2) }} %
-                    </td>
-                    <td class="text-right">{{ $row->total_g_2 ?? 0 }}
-                        <br> {{ number_format(($row->total_g_2 / $sum) * 100, 2) }} %
-                    </td>
-                    <td class="text-right">{{ $row->total_g_ts ?? 0 }}
-                        <br> {{ number_format(($row->total_g_ts / $sum) * 100, 2) }} %
-                    </td>
-                    <td class="text-right {{ $row->total_g > $sum ? 'highlight' : '' }}">{{ $row->total_g ?? 0 }}
-                        <br> {{ number_format(($row->total_g / $sum) * 100, 2) }} %
-                    </td>
-                    <td class="text-right">{{ $row->total_dpt }}</td>
-                    <td class="text-right">{{ $row->total_dptb }}</td>
-                    <td class="text-right">{{ $row->total_dpt + $row->total_dptb }}</td>
+                    <td>{{ $row->total_b_1 ?? 0 }}</td>
+                    <td>{{ $row->total_b_2 ?? 0 }}</td>
+                    <td>{{ $row->total_b_ts ?? 0 }}</td>
+                    <td class=" {{ $row->total_b > $sum ? 'highlight' : '' }}">{{ $row->total_b ?? 0 }}</td>
+                    <td>{{ $row->total_g_1 ?? 0 }}</td>
+                    <td>{{ $row->total_g_2 ?? 0 }}</td>
+                    <td>{{ $row->total_g_ts ?? 0 }}</td>
+                    <td class="{{ $row->total_g > $sum ? 'highlight' : '' }}">{{ $row->total_g ?? 0 }}</td>
+                    <td>{{ $row->total_dpt }}</td>
+                    <td>{{ $row->total_dptb }}</td>
+                    <td>{{ $row->total_dpt + $row->total_dptb }}</td>
                 </tr>
             @endforeach
         </tbody>
