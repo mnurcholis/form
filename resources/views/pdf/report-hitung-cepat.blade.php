@@ -80,13 +80,13 @@
                 <!-- Sub-columns for Bupati/Wakil Bupati -->
                 <th>No. 1<br> Afif & Amir</th>
                 <th>No. 2<br> Khairullah & Sidqi</th>
-                <th>Suara Tidak Sah</th>
+                <th>Suara <br>Tidak Sah</th>
                 <th>Total</th>
 
                 <!-- Sub-columns for Gubernur/Wakil Gubernur -->
                 <th>No. 1<br> Andika & Hendi</th>
                 <th>No. 2<br> Luthfi & Taj Yasin</th>
-                <th>Suara Tidak Sah</th>
+                <th>Suara <br>Tidak Sah</th>
                 <th>Total</th>
             </tr>
         </thead>
