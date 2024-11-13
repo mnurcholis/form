@@ -119,10 +119,13 @@
                                         <td class="text-left">{{ $row->kecamatanTPS->region_nm ?? '' }}</td>
                                         <td class="text-left">{{ $row->desaTPS->region_nm ?? '' }}</td>
                                         <td class="text-right">{{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format(($row->total_b_1 / $sum) * 100, 2) }} %
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_b_2 ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format(($row->total_b_2 / $sum) * 100, 2) }} %
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_b_ts ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format(($row->total_b_ts / $sum) * 100, 2) }} %
                                         </td>
                                         <td
                                             class="text-right {{ $row->total_b > $sum ? 'bg-danger' : ($row->total_b < $sum ? 'bg-orange-300' : 'bg-success') }}">
@@ -130,18 +133,23 @@
                                             @if ($row->total_b > $sum)
                                                 <span style="color:white;">
                                                     {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
+                                                    <br> {{ number_format(($row->total_b / $sum) * 100, 2) }} %
                                                 </span>
                                             @else
                                                 <span>
                                                     {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
+                                                    <br> {{ number_format(($row->total_b / $sum) * 100, 2) }} %
                                                 </span>
                                             @endif
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_g_1 ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format(($row->total_g_1 / $sum) * 100, 2) }} %
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_g_2 ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format(($row->total_g_2 / $sum) * 100, 2) }} %
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_g_ts ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format(($row->total_g_ts / $sum) * 100, 2) }} %
                                         </td>
                                         <td
                                             class="text-right {{ $row->total_g > $sum ? 'bg-danger' : ($row->total_g < $sum ? 'bg-orange-300' : 'bg-success') }}">
@@ -149,10 +157,12 @@
                                             @if ($row->total_g > $sum)
                                                 <span style="color:white;">
                                                     {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
+                                                    <br> {{ number_format(($row->total_g / $sum) * 100, 2) }} %
                                                 </span>
                                             @else
                                                 <span>
                                                     {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
+                                                    <br> {{ number_format(($row->total_g / $sum) * 100, 2) }} %
                                                 </span>
                                             @endif
                                         </td>
