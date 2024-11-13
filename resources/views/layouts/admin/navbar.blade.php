@@ -1,7 +1,14 @@
 <div class="navbar navbar-expand-md navbar-dark">
-    <div class="navbar-brand">
+    <div
+        style=" display: inline-block;
+  padding-top: 1.00002rem;
+  padding-bottom: 1.00002rem;
+  margin-right: 1.25rem;
+  font-size: 0;
+  line-height: inherit;
+  white-space: nowrap;">
         <a href="{{ url('') }}" class="d-inline-block">
-            <img src="{{ asset('limitless/') }}/global_assets/images/logo_light.png" alt="">
+            <img src="{{ asset('images/') }}/brand-logo-2.png" style="width:200px;" alt="">
         </a>
     </div>
 

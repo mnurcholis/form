@@ -92,8 +92,8 @@
                                     <th colspan="4" class="text-center">Total</th>
                                 </tr>
                                 <tr>
-                                    <th class="text-center">No. 1<br> Afif dan Amir</th>
-                                    <th class="text-center">No. 2<br> Khairullah dan Sidqi</th>
+                                    <th class="text-center">No. 1<br> Afif & Amir</th>
+                                    <th class="text-center">No. 2<br> Khairullah & Sidqi</th>
                                     <th class="text-center">Suara Tidak Sah</th>
                                     <th class="text-center">Total</th>
                                     <th class="text-center">No. 1<br> Andika & Hendi</th>

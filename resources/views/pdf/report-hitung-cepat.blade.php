@@ -54,7 +54,7 @@
 
     </div>
     <div class="text-right">
-        <span> Waktu Donwload : {{ now() }}</span>
+        <span> Waktu Donwload : {{ now()->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s') }}</span>
     </div>
     <table>
         <thead>
@@ -78,8 +78,8 @@
             </tr>
             <tr>
                 <!-- Sub-columns for Bupati/Wakil Bupati -->
-                <th>No. 1<br> Afif dan Amir</th>
-                <th>No. 2<br> Khairullah dan Sidqi</th>
+                <th>No. 1<br> Afif & Amir</th>
+                <th>No. 2<br> Khairullah & Sidqi</th>
                 <th>Suara Tidak Sah</th>
                 <th>Total</th>
 

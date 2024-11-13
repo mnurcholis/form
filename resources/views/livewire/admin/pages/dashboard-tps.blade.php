@@ -140,7 +140,7 @@
                     var bupatiPieChart = new Chart(ctxBupati, {
                         type: 'pie',
                         data: {
-                            labels: ['No. 1 Afif dan Amir', 'No. 2 Khairullah dan Sidqi', 'Tidak Sah'],
+                            labels: ['No. 1 Afif & Amir', 'No. 2 Khairullah & Sidqi', 'Tidak Sah'],
                             datasets: [{
                                 label: 'Bupati',
                                 data: @json($bupati),
@@ -173,14 +173,14 @@
                         data: {
                             labels: labels,
                             datasets: [{
-                                    label: 'No. 1 Afif dan Amir',
+                                    label: 'No. 1 Afif & Amir',
                                     data: b1Data,
                                     backgroundColor: 'rgba(217, 4, 15, 0.8)',
                                     borderColor: 'rgba(217, 4, 15, 0.8)',
                                     borderWidth: 1
                                 },
                                 {
-                                    label: 'No. 2 Khairullah dan Sidqi',
+                                    label: 'No. 2 Khairullah & Sidqi',
                                     data: b2Data,
                                     backgroundColor: 'rgba(4, 160, 22, 0.8)',
                                     borderColor: 'rgba(4, 160, 22, 0.8)',
