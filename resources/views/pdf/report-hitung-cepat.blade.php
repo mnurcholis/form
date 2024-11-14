@@ -51,7 +51,7 @@
 
 <body>
     <div class="text-center">
-        <h2>Hasil Perhitungan Cepat</h2>
+        <h2>Hitung Suara Sementara</h2>
         <h2>{{ $title }}</h2>
 
     </div>
