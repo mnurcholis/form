@@ -99,7 +99,7 @@
                     <td>{{ $row->kecamatanTPS->region_nm ?? null }}</td>
                     <td>{{ $row->desaTPS->region_nm ?? null }}</td>
                     <td class="text-right"> {{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
-                        <br> ({{ number_format($row->perc_b_1 ?? 0, 2) }} &#37;)
+                        {{-- <br> ({{ number_format($row->perc_b_1 ?? 0, 2) }} &#37;) --}}
                     </td>
                     <td class="text-right"> {{ number_format($row->total_b_2 ?? 0, 0, ',', '.') }}
                         {{-- <br> ({{ number_format($row->perc_b_2 ?? 0, 2) }}%) --}}
