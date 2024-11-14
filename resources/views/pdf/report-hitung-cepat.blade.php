@@ -11,6 +11,7 @@
 
         .text-right {
             text-align: right;
+            font-size: 10px;
         }
 
         h2 {
@@ -72,9 +73,9 @@
                 <!-- DPT and DPTb header group -->
                 <th rowspan="2">DPT</th>
                 <th rowspan="2">DPTb</th>
-
+                <th rowspan="2">DPK</th>
                 <!-- Total DPT + DPTb -->
-                <th rowspan="2">Total DPT + DPTb</th>
+                <th rowspan="2">Total DPT + DPTb + DPK</th>
             </tr>
             <tr>
                 <!-- Sub-columns for Bupati/Wakil Bupati -->
@@ -93,40 +94,58 @@
         <tbody>
             @foreach ($data as $index => $row)
                 <tr>
-                    @php
-                        $sum = ($row->total_dpt ?? 0) + ($row->total_dptb ?? 0);
-                    @endphp
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $row->kecamatanTPS->region_nm ?? null }}</td>
                     <td>{{ $row->desaTPS->region_nm ?? null }}</td>
-                    <td>{{ $row->total_b_1 ?? 0 }}</td>
-                    <td>{{ $row->total_b_2 ?? 0 }}</td>
-                    <td>{{ $row->total_b_ts ?? 0 }}</td>
-                    <td class=" {{ $row->total_b > $sum ? 'highlight' : '' }}">{{ $row->total_b ?? 0 }}</td>
-                    <td>{{ $row->total_g_1 ?? 0 }}</td>
-                    <td>{{ $row->total_g_2 ?? 0 }}</td>
-                    <td>{{ $row->total_g_ts ?? 0 }}</td>
-                    <td class="{{ $row->total_g > $sum ? 'highlight' : '' }}">{{ $row->total_g ?? 0 }}</td>
-                    <td>{{ $row->total_dpt }}</td>
-                    <td>{{ $row->total_dptb }}</td>
-                    <td>{{ $row->total_dpt + $row->total_dptb }}</td>
+                    <td class="text-right"> {{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
+                        <br> ({{ number_format($row->perc_b_1 ?? 0, 2) }}%)
+                    </td>
+                    <td class="text-right"> {{ number_format($row->total_b_2 ?? 0, 0, ',', '.') }}
+                        <br> ({{ number_format($row->perc_b_2 ?? 0, 2) }}%)
+                    </td>
+                    <td class="text-right">{{ number_format($row->total_b_ts ?? 0, 0, ',', '.') }}
+                        <br> ({{ number_format($row->perc_b_ts ?? 0, 2) }}%)
+                    </td>
+                    <td class="text-right {{ $row->total_b > $row->total_sum ? 'highlight' : '' }}">
+                        {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
+                        <br> ({{ number_format($row->perc_total_b ?? 0, 2) }}%)
+                    </td>
+                    <td class="text-right"> {{ number_format($row->total_g_1 ?? 0, 0, ',', '.') }}
+                        <br> ({{ number_format($row->perc_g_1 ?? 0, 2) }}%)
+                    </td>
+                    <td class="text-right">{{ number_format($row->total_g_2 ?? 0, 0, ',', '.') }}
+                        <br> ({{ number_format($row->perc_g_2 ?? 0, 2) }}%)
+                    </td>
+                    <td class="text-right"> {{ number_format($row->total_g_ts ?? 0, 0, ',', '.') }}
+                        <br> ({{ number_format($row->perc_g_ts ?? 0, 2) }}%)
+                    </td>
+                    <td class="text-right {{ $row->total_g > $row->total_sum ? 'highlight' : '' }}">
+                        {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
+                        <br> ({{ number_format($row->perc_total_g ?? 0, 2) }}%)
+                    </td>
+                    <td class="text-right">{{ number_format($row->total_dpt ?? 0, 0, ',', '.') }}</td>
+                    <td class="text-right">{{ number_format($row->total_dptb ?? 0, 0, ',', '.') }}</td>
+                    <td class="text-right">{{ number_format($row->total_dpk ?? 0, 0, ',', '.') }}</td>
+                    <td class="text-right">{{ number_format($row->total_sum ?? 0, 0, ',', '.') }}</td>
                 </tr>
             @endforeach
         </tbody>
         <tfoot>
             <tr class="footer-total">
                 <td colspan="3">Total</td>
-                <td>{{ $data->sum('total_b_1') }}</td>
-                <td>{{ $data->sum('total_b_2') }}</td>
-                <td>{{ $data->sum('total_b_ts') }}</td>
-                <td>{{ $data->sum('total_b') }}</td>
-                <td>{{ $data->sum('total_g_1') }}</td>
-                <td>{{ $data->sum('total_g_2') }}</td>
-                <td>{{ $data->sum('total_g_ts') }}</td>
-                <td>{{ $data->sum('total_g') }}</td>
-                <td>{{ $data->sum('total_dpt') }}</td>
-                <td>{{ $data->sum('total_dptb') }}</td>
-                <td>{{ $data->sum('total_dpt') + $data->sum('total_dptb') }}</td>
+                <td class="text-right">{{ $data->sum('total_b_1') }}</td>
+                <td class="text-right">{{ $data->sum('total_b_2') }}</td>
+                <td class="text-right">{{ $data->sum('total_b_ts') }}</td>
+                <td class="text-right">{{ $data->sum('total_b') }}</td>
+                <td class="text-right">{{ $data->sum('total_g_1') }}</td>
+                <td class="text-right">{{ $data->sum('total_g_2') }}</td>
+                <td class="text-right">{{ $data->sum('total_g_ts') }}</td>
+                <td class="text-right">{{ $data->sum('total_g') }}</td>
+                <td class="text-right">{{ $data->sum('total_dpt') }}</td>
+                <td class="text-right">{{ $data->sum('total_dptb') }}</td>
+                <td class="text-right">{{ $data->sum('total_dpk') }}</td>
+                <td class="text-right">
+                    {{ $data->sum('total_dpt') + $data->sum('total_dptb') + $data->sum('total_dpk') }}</td>
             </tr>
         </tfoot>
     </table>

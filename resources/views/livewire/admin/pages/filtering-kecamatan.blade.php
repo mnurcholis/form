@@ -3,7 +3,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Rincian Data Calon Bupati dan Gubernur </h6>
+                    <h3 class="card-title">Rincian Data Hitung Suara Sementara Calon Bupati dan Gubernur </h3>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
@@ -62,7 +62,8 @@
                     </div>
                     <div class="col-12 mb-3 row">
                         <div class="col-md-1">
-                            <a href="{{ route('dashboard-tps') }}" wire:navigate class="btn btn-primary">Reset</a>
+                            <a href="{{ route('dashboard-tps') }}" wire:navigate class="btn btn-primary">Reset
+                                Filter</a>
                         </div>
                         <div class="col-md-1">
                             <div type="button" wire:loading.remove class="btn btn-info" wire:click="downloadReport">
@@ -89,6 +90,7 @@
                                     <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th>
                                     <th rowspan="2" class="text-center">DPT</th>
                                     <th rowspan="2" class="text-center">DPTb</th>
+                                    <th rowspan="2" class="text-center">DPK</th>
                                     <th colspan="4" class="text-center">Total</th>
                                 </tr>
                                 <tr>
@@ -100,15 +102,12 @@
                                     <th class="text-center">No. 2<br> Luthfi & Taj Yasin</th>
                                     <th class="text-center">Suara Tidak Sah</th>
                                     <th class="text-center">Total</th>
-                                    <th class="text-center">DPT + DPTb</th>
+                                    <th class="text-center">DPT + DPTb + DPK</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $index => $row)
                                     <tr>
-                                        @php
-                                            $sum = ($row->total_dpt ?? 0) + ($row->total_dptb ?? 0);
-                                        @endphp
                                         <td class="text-left">
                                             @if ($data instanceof \Illuminate\Pagination\LengthAwarePaginator)
                                                 {{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}
@@ -118,63 +117,55 @@
                                         </td>
                                         <td class="text-left">{{ $row->kecamatanTPS->region_nm ?? '' }}</td>
                                         <td class="text-left">{{ $row->desaTPS->region_nm ?? '' }}</td>
-                                        <td class="text-right">{{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
-                                            <br> {{ number_format(($row->total_b_1 / $sum) * 100, 2) }} %
+                                        <td class="text-right">
+                                            {{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format($row->perc_b_1 ?? 0, 2) }} %
                                         </td>
-                                        <td class="text-right">{{ number_format($row->total_b_2 ?? 0, 0, ',', '.') }}
-                                            <br> {{ number_format(($row->total_b_2 / $sum) * 100, 2) }} %
+                                        <td class="text-right">
+                                            {{ number_format($row->total_b_2 ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format($row->perc_b_2 ?? 0, 2) }} %
                                         </td>
-                                        <td class="text-right">{{ number_format($row->total_b_ts ?? 0, 0, ',', '.') }}
-                                            <br> {{ number_format(($row->total_b_ts / $sum) * 100, 2) }} %
-                                        </td>
-                                        <td
-                                            class="text-right {{ $row->total_b > $sum ? 'bg-danger' : ($row->total_b < $sum ? 'bg-orange-300' : 'bg-success') }}">
-
-                                            @if ($row->total_b > $sum)
-                                                <span style="color:white;">
-                                                    {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
-                                                    <br> {{ number_format(($row->total_b / $sum) * 100, 2) }} %
-                                                </span>
-                                            @else
-                                                <span>
-                                                    {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
-                                                    <br> {{ number_format(($row->total_b / $sum) * 100, 2) }} %
-                                                </span>
-                                            @endif
-                                        </td>
-                                        <td class="text-right">{{ number_format($row->total_g_1 ?? 0, 0, ',', '.') }}
-                                            <br> {{ number_format(($row->total_g_1 / $sum) * 100, 2) }} %
-                                        </td>
-                                        <td class="text-right">{{ number_format($row->total_g_2 ?? 0, 0, ',', '.') }}
-                                            <br> {{ number_format(($row->total_g_2 / $sum) * 100, 2) }} %
-                                        </td>
-                                        <td class="text-right">{{ number_format($row->total_g_ts ?? 0, 0, ',', '.') }}
-                                            <br> {{ number_format(($row->total_g_ts / $sum) * 100, 2) }} %
+                                        <td class="text-right">
+                                            {{ number_format($row->total_b_ts ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format($row->perc_b_ts ?? 0, 2) }} %
                                         </td>
                                         <td
-                                            class="text-right {{ $row->total_g > $sum ? 'bg-danger' : ($row->total_g < $sum ? 'bg-orange-300' : 'bg-success') }}">
-
-                                            @if ($row->total_g > $sum)
-                                                <span style="color:white;">
-                                                    {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
-                                                    <br> {{ number_format(($row->total_g / $sum) * 100, 2) }} %
-                                                </span>
-                                            @else
-                                                <span>
-                                                    {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
-                                                    <br> {{ number_format(($row->total_g / $sum) * 100, 2) }} %
-                                                </span>
-                                            @endif
+                                            class="text-right {{ $row->total_b > $row->total_sum ? 'bg-danger' : '' }}">
+                                            <span @if ($row->total_b > $row->total_sum) style="color:white;" @endif>
+                                                {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
+                                                <br> {{ number_format($row->perc_total_b ?? 0, 2) }} %
+                                            </span>
+                                        </td>
+                                        <td class="text-right">
+                                            {{ number_format($row->total_g_1 ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format($row->perc_g_1 ?? 0, 2) }} %
+                                        </td>
+                                        <td class="text-right">
+                                            {{ number_format($row->total_g_2 ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format($row->perc_g_2 ?? 0, 2) }} %
+                                        </td>
+                                        <td class="text-right">
+                                            {{ number_format($row->total_g_ts ?? 0, 0, ',', '.') }}
+                                            <br> {{ number_format($row->perc_g_ts ?? 0, 2) }} %
+                                        </td>
+                                        <td
+                                            class="text-right {{ $row->total_g > $row->total_sum ? 'bg-danger' : '' }}">
+                                            <span @if ($row->total_g > $row->total_sum) style="color:white;" @endif>
+                                                {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
+                                                <br> {{ number_format($row->perc_total_g ?? 0, 2) }} %
+                                            </span>
                                         </td>
                                         <td class="text-right"> {{ number_format($row->total_dpt ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_dptb ?? 0, 0, ',', '.') }}
                                         </td>
-                                        <td class="text-right">
-                                            {{ number_format($row->total_dptb + $row->total_dpt ?? 0, 0, ',', '.') }}
+                                        <td class="text-right">{{ number_format($row->total_dpk ?? 0, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-right">{{ number_format($row->total_sum ?? 0, 0, ',', '.') }}
                                         </td>
                                     </tr>
                                 @endforeach
+
                                 <tr class="bg-slate">
                                     <td colspan="3">Total</td>
                                     <td class="text-right">
@@ -183,7 +174,8 @@
                                         {{ number_format($data->sum('total_b_2') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_b_ts') ?? 0, 0, ',', '.') }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
                                     </td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_g_1') ?? 0, 0, ',', '.') }}</td>
@@ -199,7 +191,9 @@
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_dptb') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_dpt') + $data->sum('total_dptb') ?? 0, 0, ',', '.') }}
+                                        {{ number_format($data->sum('total_dpk') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_dpt') + $data->sum('total_dptb') + $data->sum('total_dpk') ?? 0, 0, ',', '.') }}
 
                                     </td>
                                 </tr>

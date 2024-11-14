@@ -2,7 +2,9 @@
 
 namespace App\Imports;
 
+use App\Models\ComRegion;
 use App\Models\Hasil;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -49,43 +51,34 @@ class HasilImport  implements ToModel, WithHeadingRow, WithProgressBar,  WithEve
 
     public function model(array $row)
     {
-        DB::beginTransaction();
-        try {
+        $kecamatanData = ComRegion::where('region_nm', ucwords($row['kecamatan']))
+            ->where('region_level', 3)
+            ->first();
 
-            $this->terinput = $this->terinput + 1;
-
-            $kecamatan = $row['kecamatan'] ?? null;
-            $desa = $row['desa'] ?? null;
-            $tps = $row['tps'] ?? null;
-            $dpt = $row['dpt'] ?? null;
-            $dptb = $row['dptb'] ?? 0;
-            $a = DB::table('com_regions')
-                ->where('region_nm', ucwords($kecamatan))
-                ->where('region_level', 3)
-                ->first();
-            $ak = $a ? $a->region_cd : 'null';
-            $b = DB::table('com_regions')
-                ->where('region_nm', ucwords($desa))
-                ->where('region_level', 4)
-                ->first();
-            $bd = $b ? $b->region_cd : 'null';
-
-            $user = Hasil::create([
-                'kecamatan' => $ak,
-                'desa' => $bd,
-                'tps' => $tps,
-                'dpt' => $dpt,
-                'dptb' => $dptb
-            ]);
-
-            DB::commit();
-            return $user;
-        } catch (\Exception $e) {
-            DB::rollBack();
-            throw $e;
+        if (!$kecamatanData) {
+            // Skip if Kecamatan is not found
+            return null;
         }
-    }
 
+        // Fetch Desa under the specified Kecamatan
+        $desaData = ComRegion::where('region_nm', ucwords($row['desa']))
+            ->where('region_level', 4)
+            ->where('region_root', $kecamatanData->region_cd)
+            ->first();
+
+        if (!$desaData) {
+            // Skip if Desa is not found
+            return null;
+        }
+
+        $user = Hasil::create([
+            'kecamatan' => $kecamatanData->region_cd,
+            'desa' => $desaData->region_cd,
+            'tps' => $row['tps'],
+            'dpt' => $row['dpt'],
+            'dptb' => $row['dptb'],
+        ]);
+    }
     public function progress($done, $total)
     {
         $this->component->setProgress(($done / $total) * 100);

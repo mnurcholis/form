@@ -33,12 +33,32 @@ class FilteringKecamatan extends Component
     public function downloadReport()
     {
         $data = Hasil::with(['kecamatanTPS', 'desaTPS'])
-            ->selectRaw('kecamatan, desa, 
-                SUM(g_1) as total_g_1, SUM(g_2) as total_g_2, SUM(g_ts) as total_g_ts,
-                SUM(b_1) as total_b_1, SUM(b_2) as total_b_2, SUM(b_ts) as total_b_ts,
-                SUM(g_1 + g_2 + g_ts) as total_g,
-                SUM(b_1 + b_2 + b_ts) as total_b,
-                SUM(dpt) as total_dpt, SUM(dptb) as total_dptb')
+            ->selectRaw('
+            kecamatan, 
+            desa,
+            SUM(g_1) as total_g_1, 
+            SUM(g_2) as total_g_2, 
+            SUM(g_ts) as total_g_ts,
+            SUM(b_1) as total_b_1, 
+            SUM(b_2) as total_b_2, 
+            SUM(b_ts) as total_b_ts,
+            SUM(g_1 + g_2 + g_ts) as total_g,
+            SUM(b_1 + b_2 + b_ts) as total_b,
+            SUM(dpt) as total_dpt, 
+            SUM(dptb) as total_dptb, 
+            SUM(dpk) as total_dpk,
+            -- Total suara yang dihitung
+            SUM(dpt + dptb + dpk) as total_sum,
+            -- Persentase masing-masing kategori
+            (SUM(b_1) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_1,
+            (SUM(b_2) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_2,
+            (SUM(b_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_ts,
+            (SUM(g_1) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_g_1,
+            (SUM(g_2) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_g_2,
+            (SUM(g_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_g_ts,
+            (SUM(b_1 + b_2 + b_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_total_b,
+            (SUM(g_1 + g_2 + g_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_total_g
+        ')
             ->groupBy('kecamatan', 'desa');
         if ($this->searchKecamatan) {
             $data->whereHas('kecamatanTPS', function ($query) {
@@ -67,12 +87,32 @@ class FilteringKecamatan extends Component
     public function render()
     {
         $data = Hasil::with(['kecamatanTPS', 'desaTPS'])
-            ->selectRaw('kecamatan, desa, 
-                    SUM(g_1) as total_g_1, SUM(g_2) as total_g_2, SUM(g_ts) as total_g_ts,
-                    SUM(b_1) as total_b_1, SUM(b_2) as total_b_2, SUM(b_ts) as total_b_ts,
-                    SUM(g_1 + g_2 + g_ts) as total_g,
-                    SUM(b_1 + b_2 + b_ts) as total_b,
-                    SUM(dpt) as total_dpt, SUM(dptb) as total_dptb')
+            ->selectRaw('
+            kecamatan, 
+            desa,
+            SUM(g_1) as total_g_1, 
+            SUM(g_2) as total_g_2, 
+            SUM(g_ts) as total_g_ts,
+            SUM(b_1) as total_b_1, 
+            SUM(b_2) as total_b_2, 
+            SUM(b_ts) as total_b_ts,
+            SUM(g_1 + g_2 + g_ts) as total_g,
+            SUM(b_1 + b_2 + b_ts) as total_b,
+            SUM(dpt) as total_dpt, 
+            SUM(dptb) as total_dptb, 
+            SUM(dpk) as total_dpk,
+            -- Total suara yang dihitung
+            SUM(dpt + dptb + dpk) as total_sum,
+            -- Persentase masing-masing kategori
+            (SUM(b_1) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_1,
+            (SUM(b_2) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_2,
+            (SUM(b_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_ts,
+            (SUM(g_1) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_g_1,
+            (SUM(g_2) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_g_2,
+            (SUM(g_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_g_ts,
+            (SUM(b_1 + b_2 + b_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_total_b,
+            (SUM(g_1 + g_2 + g_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_total_g
+        ')
             ->groupBy('kecamatan', 'desa');
         if ($this->searchKecamatan) {
             $data->whereHas('kecamatanTPS', function ($query) {

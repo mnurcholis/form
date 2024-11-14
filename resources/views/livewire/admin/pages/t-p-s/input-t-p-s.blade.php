@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <a href="{{ route('tps') }}" wire:navigate class="btn btn-primary">Reset</a>
+                    <a href="{{ route('tps') }}" wire:navigate class="btn btn-primary">Reset Filter</a>
                 </div>
             </div>
             <div class="table table-responsive">
@@ -61,6 +61,7 @@
                             <th rowspan="2" class="text-center">TPS</th>
                             <th colspan="4" class="text-center">Bupati/Wakil Bupati</th>
                             <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th>
+                            <th rowspan="2" class="text-center">DPK</th>
                             <th rowspan="2" class="text-center">DPT</th>
                             <th rowspan="2" class="text-center">DPTb</th>
                             <th rowspan="2" class="text-center">Action</th>
@@ -81,7 +82,7 @@
                             @php
                                 $totalBupati = ($row->b_1 ?? 0) + ($row->b_2 ?? 0) + ($row->b_ts ?? 0);
                                 $totalGubernur = ($row->g_1 ?? 0) + ($row->g_2 ?? 0) + ($row->g_ts ?? 0);
-                                $total = ($row->dpt ?? 0) + ($row->dptb ?? 0);
+                                $total = ($row->dpt ?? 0) + ($row->dptb ?? 0) + ($row->dpk ?? 0);
                             @endphp
                             <tr role="row" class="odd {{ $idNya == $row->id ? 'table-active ' : 'disabled' }}">
                                 <td>{{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}</td>
@@ -115,8 +116,7 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </td>
-                                <td
-                                    class="text-right {{ $totalBupati > $total ? 'bg-danger' : ($totalBupati < $total ? 'bg-orange-300' : 'bg-success') }}">
+                                <td class="text-right {{ $totalBupati > $total ? 'bg-danger' : '' }}">
                                     @if ($totalBupati > $total)
                                         <span style="color:white;">
                                             {{ number_format($totalBupati ?? 0, 0, ',', '.') }}
@@ -149,8 +149,7 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </td>
-                                <td
-                                    class="text-right {{ $totalGubernur > $total ? 'bg-danger' : ($totalGubernur < $total ? 'bg-orange-300' : 'bg-success') }}">
+                                <td class="text-right {{ $totalGubernur > $total ? 'bg-danger' : '' }}">
                                     @if ($totalGubernur > $total)
                                         <span style="color:white;">
                                             {{ number_format($totalGubernur ?? 0, 0, ',', '.') }}
@@ -158,6 +157,14 @@
                                     @else
                                         {{ number_format($totalGubernur ?? 0, 0, ',', '.') }}
                                     @endif
+                                </td>
+                                <td><input type="number" class="form-control" style="width: 60px; padding: 8px;"
+                                        {{ $idNya == $row->id ? '' : 'disabled' }}
+                                        wire:model.defer="dpk.{{ $index }}" value="0"
+                                        onkeypress="return isNumberKey(event)" min="0">
+                                    @error('dpk.' . $index)
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </td>
                                 <td class="text-right">{{ number_format($row->dpt ?? 0, 0, ',', '.') }}</td>
                                 <td class="text-right">{{ number_format($row->dptb ?? 0, 0, ',', '.') }}</td>
@@ -187,6 +194,7 @@
                             <td>{{ array_sum($b_2) }}</td>
                             <td>{{ array_sum($b_ts) }}</td>
                             <td class="text-right">{{ array_sum($b_1) + array_sum($b_2) + array_sum($b_ts) }}</td>
+                            <td class="text-right">{{ array_sum($dpk) }}</td>
                             <td class="text-right">{{ array_sum($dpt) }}</td>
                             <td class="text-right">{{ array_sum($dptb) }}</td>
                             <td></td>

@@ -20,6 +20,7 @@ class InputTPS extends Component
     public $b_ts = [];
     public $dpt = [];
     public $dptb = [];
+    public $dpk = [];
     public $listKec, $listDesa, $searchKecamatan, $searchDesa;
 
     public function clear()
@@ -52,6 +53,7 @@ class InputTPS extends Component
         $this->b_ts[$index] = $this->defaultZero($this->b_ts[$index]);
         $this->dpt[$index] = $this->defaultZero($this->dpt[$index]);
         $this->dptb[$index] = $this->defaultZero($this->dptb[$index]);
+        $this->dpk[$index] = $this->defaultZero($this->dpk[$index]);
 
         $row = Hasil::find($id);
         if ($row) {
@@ -63,6 +65,7 @@ class InputTPS extends Component
             $row->b_ts = $this->b_ts[$index];
             $row->dpt = $this->dpt[$index];
             $row->dptb = $this->dptb[$index];
+            $row->dpk = $this->dpk[$index];
             $row->save();
         }
 
@@ -99,6 +102,7 @@ class InputTPS extends Component
         $this->b_ts = [];
         $this->dpt = [];
         $this->dptb = [];
+        $this->dpk = [];
 
         foreach ($data as $datum) {
             array_push($this->g_1, $datum->g_1);
@@ -109,6 +113,7 @@ class InputTPS extends Component
             array_push($this->b_ts, $datum->b_ts);
             array_push($this->dpt, $datum->dpt);
             array_push($this->dptb, $datum->dptb);
+            array_push($this->dpk, $datum->dpk);
         }
         return view('livewire.admin.pages.t-p-s.input-t-p-s', ['data' => $data]);
     }

@@ -4,14 +4,15 @@
         <link href="{{ asset('limitless/') }}/global_assets/css/icons/material/icons.css" rel="stylesheet" type="text/css">
     @endpush
     <x-slot name="header">
-        <livewire:admin.global.page-header judul="Dashboard" subjudul="Quick Qount TPS Kab. Wonosobo" :breadcrumb="['Quick Qount TPS Kab. Wonosobo']" />
+        <livewire:admin.global.page-header judul="Dashboard" subjudul="Hitung Suara Sementara Kab. Wonosobo"
+            :breadcrumb="['Hitung Suara Sementara Kab. Wonosobo']" />
     </x-slot>
 
     <div class="row">
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Rekap Total Quick Count Calon Bupati dan Wakil Bupati</h6>
+                    <h3 class="card-title">Hitung Suara Sementara Calon Bupati dan Wakil Bupati</h3>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
@@ -26,7 +27,6 @@
                 <div class="card-body">
                     <div style="display: flex; justify-content: space-around;">
                         <div class="text-center">
-                            <h3>Calon Bupati dan Wakil Bupati</h3>
                             <canvas id="bupatiPieChart"></canvas>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Rekap Total Quick Count calon Gubernur dan Wakil Gubernur</h6>
+                    <h3 class="card-title">Hitung Suara Sementara Calon Gubernur dan Wakil Gubernur</h3>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
@@ -51,7 +51,6 @@
                 <div class="card-body">
                     <div style="display: flex; justify-content: space-around;">
                         <div class="text-center">
-                            <h3>Calon Gubernur dan Wakil Gubernur</h3>
                             <canvas id="gubernurPieChart"></canvas>
                         </div>
                     </div>
@@ -63,7 +62,8 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Traffic Pemilihan Calon Bupati dan Wakil Bupati Berdasarkan Kecamatan</h6>
+                    <h6 class="card-title">Hitung Suara Sementara Calon Bupati dan Wakil Bupati Berdasarkan Kecamatan
+                    </h6>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
@@ -85,7 +85,8 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Traffic Pemilihan Calon Gurbernur dan Wakil Gubernur Berdasarkan Kecamatan
+                    <h6 class="card-title">Hitung Suara Sementara Calon Gubernur dan Wakil Gubernur Berdasarkan
+                        Kecamatan
                     </h6>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">

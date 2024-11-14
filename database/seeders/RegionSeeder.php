@@ -22,7 +22,7 @@ class RegionSeeder extends Seeder
          ["region_cd" => "3307010002", "region_nm" => "Sumbersari", "region_root" => "3307010", "region_level" => "4"],
          ["region_cd" => "3307010003", "region_nm" => "Sumberejo", "region_root" => "3307010", "region_level" => "4"],
          ["region_cd" => "3307010004", "region_nm" => "Erorejo", "region_root" => "3307010", "region_level" => "4"],
-         ["region_cd" => "3307010005", "region_nm" => "Karang Anyar", "region_root" => "3307010", "region_level" => "4"],
+         ["region_cd" => "3307010005", "region_nm" => "Karanganyar", "region_root" => "3307010", "region_level" => "4"],
          ["region_cd" => "3307010006", "region_nm" => "Panerusan", "region_root" => "3307010", "region_level" => "4"],
          ["region_cd" => "3307010007", "region_nm" => "Wadaslintang", "region_root" => "3307010", "region_level" => "4"],
          ["region_cd" => "3307010008", "region_nm" => "Plunjaran", "region_root" => "3307010", "region_level" => "4"],
