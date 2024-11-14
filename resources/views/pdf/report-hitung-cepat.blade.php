@@ -98,30 +98,22 @@
                     <td>{{ $row->kecamatanTPS->region_nm ?? null }}</td>
                     <td>{{ $row->desaTPS->region_nm ?? null }}</td>
                     <td class="text-right"> {{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
-                        <br> ({{ number_format($row->perc_b_1 ?? 0, 2) }}%)
                     </td>
                     <td class="text-right"> {{ number_format($row->total_b_2 ?? 0, 0, ',', '.') }}
-                        <br> ({{ number_format($row->perc_b_2 ?? 0, 2) }}%)
                     </td>
                     <td class="text-right">{{ number_format($row->total_b_ts ?? 0, 0, ',', '.') }}
-                        <br> ({{ number_format($row->perc_b_ts ?? 0, 2) }}%)
                     </td>
                     <td class="text-right {{ $row->total_b > $row->total_sum ? 'highlight' : '' }}">
                         {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
-                        <br> ({{ number_format($row->perc_total_b ?? 0, 2) }}%)
                     </td>
                     <td class="text-right"> {{ number_format($row->total_g_1 ?? 0, 0, ',', '.') }}
-                        <br> ({{ number_format($row->perc_g_1 ?? 0, 2) }}%)
                     </td>
                     <td class="text-right">{{ number_format($row->total_g_2 ?? 0, 0, ',', '.') }}
-                        <br> ({{ number_format($row->perc_g_2 ?? 0, 2) }}%)
                     </td>
                     <td class="text-right"> {{ number_format($row->total_g_ts ?? 0, 0, ',', '.') }}
-                        <br> ({{ number_format($row->perc_g_ts ?? 0, 2) }}%)
                     </td>
                     <td class="text-right {{ $row->total_g > $row->total_sum ? 'highlight' : '' }}">
                         {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
-                        <br> ({{ number_format($row->perc_total_g ?? 0, 2) }}%)
                     </td>
                     <td class="text-right">{{ number_format($row->total_dpt ?? 0, 0, ',', '.') }}</td>
                     <td class="text-right">{{ number_format($row->total_dptb ?? 0, 0, ',', '.') }}</td>
