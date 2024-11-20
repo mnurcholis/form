@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\ComRegion;
+use Illuminate\Support\Facades\DB;
 
 class RegionSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class RegionSeeder extends Seeder
     */
    public function run()
    {
+      DB::table('com_regions')->truncate();
       $data = [
          ["region_cd" => "3307", "region_nm" => "Kab. Wonosobo", "region_root" => "33", "region_level" => "2"],
          ["region_cd" => "3307010", "region_nm" => "Wadaslintang", "region_root" => "3307", "region_level" => "3"],
