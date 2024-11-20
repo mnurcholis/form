@@ -67,6 +67,8 @@ class InputTPS extends Component
             $row->dptb = $this->dptb[$index];
             $row->dpk = $this->dpk[$index];
             $row->save();
+
+            $this->emit('tpsUpdated');
         }
 
         $this->idNya = null;

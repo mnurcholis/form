@@ -15,6 +15,7 @@ use App\Livewire\Admin\Pages\Role;
 use App\Livewire\Admin\Pages\User;
 use App\Livewire\Admin\Pages\Home;
 use App\Livewire\Admin\Pages\Pendaftaran\Pendaftaran;
+use App\Livewire\Admin\Pages\Tps\Hasil;
 use App\Livewire\Admin\Pages\TPS\InputTPS;
 use App\Livewire\Admin\Pages\TPS\PendaftaranTPS;
 use Illuminate\Support\Facades\Route;
@@ -43,7 +44,7 @@ Route::get('/pengukuran-lila', PengukuranLila::class)->name('pengukuranlila');
 Route::get('/qrcode/{id}', [QrcodeController::class, 'index'])->name('qrcode');
 Route::get('/ganti-password', [GantiController::class, 'index']);
 Route::post('/ganti-password', [GantiController::class, 'updatePassword'])->name('ganti-password');
-
+Route::get('/perhitungan-sementara', Hasil::class)->name('perhitungan-sementara');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
