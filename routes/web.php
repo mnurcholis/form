@@ -15,7 +15,7 @@ use App\Livewire\Admin\Pages\Role;
 use App\Livewire\Admin\Pages\User;
 use App\Livewire\Admin\Pages\Home;
 use App\Livewire\Admin\Pages\Pendaftaran\Pendaftaran;
-use App\Livewire\Admin\Pages\Tps\Hasil;
+use App\Livewire\Admin\Pages\TPS\Hasil;
 use App\Livewire\Admin\Pages\TPS\InputTPS;
 use App\Livewire\Admin\Pages\TPS\PendaftaranTPS;
 use Illuminate\Support\Facades\Route;
