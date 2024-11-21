@@ -21,6 +21,7 @@
         "livewire/livewire": "2.11",
         "maatwebsite/excel": "^3.1",
         "owen-it/laravel-auditing": "^13.5",
+        "pusher/pusher-php-server": "^7.2",
         "rappasoft/laravel-livewire-tables": "^2.15",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^6.1",

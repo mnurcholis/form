@@ -171,10 +171,16 @@
                                 <!-- Action Buttons -->
                                 <td>
                                     @if ($idNya == $row->id)
-                                        <button type="button" class="btn btn-danger"
-                                            wire:click="save({{ $index }},{{ $row->id }})">
-                                            Simpan <i class="icon-floppy-disk ml-2"></i>
-                                        </button>
+                                        <div wire:loading.remove>
+                                            <button type="button" class="btn btn-danger"
+                                                wire:click="save({{ $index }},{{ $row->id }})">
+                                                Simpan <i class="icon-floppy-disk ml-2"></i>
+                                            </button>
+                                        </div>
+                                        <div wire:loading
+                                            wire:target="save({{ $index }},{{ $row->id }})">
+                                            Menyimpan...
+                                        </div>
                                     @else
                                         <button type="button" class="btn btn-primary"
                                             wire:click="edit({{ $row->id }})">
