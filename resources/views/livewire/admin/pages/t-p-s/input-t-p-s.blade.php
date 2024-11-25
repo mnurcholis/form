@@ -194,11 +194,11 @@
                             <td>{{ array_sum($b_1) }}</td>
                             <td>{{ array_sum($b_2) }}</td>
                             <td>{{ array_sum($b_ts) }}</td>
-                            <td class="text-right">{{ array_sum($g_1) + array_sum($g_2) + array_sum($g_ts) }}</td>
+                            <td class="text-right">{{ array_sum($b_1) + array_sum($b_2) + array_sum($b_ts) }}</td>
                             <td>{{ array_sum($g_1) }}</td>
                             <td>{{ array_sum($g_2) }}</td>
                             <td>{{ array_sum($g_ts) }}</td>
-                            <td class="text-right">{{ array_sum($b_1) + array_sum($b_2) + array_sum($b_ts) }}</td>
+                            <td class="text-right">{{ array_sum($g_1) + array_sum($g_2) + array_sum($g_ts) }}</td>
                             <td class="text-right">{{ array_sum($dpk) }}</td>
                             <td class="text-right">{{ array_sum($dpt) }}</td>
                             <td class="text-right">{{ array_sum($dptb) }}</td>
