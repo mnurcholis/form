@@ -168,7 +168,6 @@
                                 </td>
                                 <td class="text-right">{{ number_format($row->dpt ?? 0, 0, ',', '.') }}</td>
                                 <td class="text-right">{{ number_format($row->dptb ?? 0, 0, ',', '.') }}</td>
-                                <!-- Action Buttons -->
                                 <td>
                                     @if ($idNya == $row->id)
                                         <div wire:loading.remove>
@@ -192,13 +191,13 @@
                         @endforeach
                         <tr class="bg-slate">
                             <td colspan="4">Total</td>
-                            <td>{{ array_sum($g_1) }}</td>
-                            <td>{{ array_sum($g_2) }}</td>
-                            <td>{{ array_sum($g_ts) }}</td>
-                            <td class="text-right">{{ array_sum($g_1) + array_sum($g_2) + array_sum($g_ts) }}</td>
                             <td>{{ array_sum($b_1) }}</td>
                             <td>{{ array_sum($b_2) }}</td>
                             <td>{{ array_sum($b_ts) }}</td>
+                            <td class="text-right">{{ array_sum($g_1) + array_sum($g_2) + array_sum($g_ts) }}</td>
+                            <td>{{ array_sum($g_1) }}</td>
+                            <td>{{ array_sum($g_2) }}</td>
+                            <td>{{ array_sum($g_ts) }}</td>
                             <td class="text-right">{{ array_sum($b_1) + array_sum($b_2) + array_sum($b_ts) }}</td>
                             <td class="text-right">{{ array_sum($dpk) }}</td>
                             <td class="text-right">{{ array_sum($dpt) }}</td>
