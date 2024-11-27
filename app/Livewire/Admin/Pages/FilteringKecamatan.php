@@ -109,7 +109,7 @@ class FilteringKecamatan extends Component
         }
         $laporan = $data->orderBy('kecamatan', 'ASC')->get();
         $data = [
-            'title' => 'Kabupaten Wonosobo',
+            'title' => 'Kabupaten Wonosobo Per Desa',
             'data' => $laporan
         ];
 

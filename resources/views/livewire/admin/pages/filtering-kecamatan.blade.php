@@ -68,7 +68,7 @@
                         <div class="col-md-2">
                             <div type="button" wire:loading.remove class="btn btn-info" wire:click="downloadReport">
                                 Download
-                                Laporan</div>
+                                Laporan Per Desa</div>
                             <div wire:loading wire:target="downloadReport">
                                 <button class="btn btn-secondary-light" type="button" disabled>
                                     <span class="spinner-grow spinner-grow-sm align-middle" role="status"
