@@ -166,10 +166,12 @@
                                     },
                                     datalabels: {
                                         formatter: function(value, ctx) {
+                                            const formattedValue = new Intl.NumberFormat('id-ID')
+                                                .format(value);
                                             const total = ctx.chart.data.datasets[0].data.reduce((
                                                 sum, v) => sum + v, 0);
                                             const percentage = ((value / total) * 100).toFixed(2);
-                                            return `${value} (${percentage}%)`;
+                                            return `${formattedValue} (${percentage}%)`;
                                         },
                                         color: '#fff', // Warna teks
                                         font: {
@@ -206,10 +208,13 @@
                                     },
                                     datalabels: {
                                         formatter: function(value, ctx) {
+                                            // Format angka dengan tanda titik
+                                            const formattedValue = new Intl.NumberFormat('id-ID')
+                                                .format(value);
                                             const total = ctx.chart.data.datasets[0].data.reduce((
                                                 sum, v) => sum + v, 0);
                                             const percentage = ((value / total) * 100).toFixed(2);
-                                            return `${value} (${percentage}%)`;
+                                            return `${formattedValue} (${percentage}%)`;
                                         },
                                         color: '#fff', // Warna teks
                                         font: {
@@ -223,6 +228,7 @@
                             },
                             plugins: [ChartDataLabels] // Pastikan plugin datalabels diaktifkan
                         }, chartBupatiPie);
+
 
 
 
