@@ -65,11 +65,23 @@
                             <a href="{{ route('dashboard-tps') }}" wire:navigate class="btn btn-primary">Reset
                                 Filter</a>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <div type="button" wire:loading.remove class="btn btn-info" wire:click="downloadReport">
                                 Download
                                 Laporan</div>
                             <div wire:loading wire:target="downloadReport">
+                                <button class="btn btn-secondary-light" type="button" disabled>
+                                    <span class="spinner-grow spinner-grow-sm align-middle" role="status"
+                                        aria-hidden="true"></span>
+                                    Downloading...
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div type="button" wire:loading.remove class="btn btn-info" wire:click="downloadKecamatan">
+                                Download
+                                Laporan Per Kecamatan</div>
+                            <div wire:loading wire:target="downloadKecamatan">
                                 <button class="btn btn-secondary-light" type="button" disabled>
                                     <span class="spinner-grow spinner-grow-sm align-middle" role="status"
                                         aria-hidden="true"></span>

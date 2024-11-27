@@ -30,6 +30,43 @@ class FilteringKecamatan extends Component
     {
         $this->listKec = ComRegion::where('region_level', '3')->get();
     }
+    public function downloadKecamatan()
+    {
+        $data = Hasil::with(['kecamatanTPS'])
+            ->selectRaw('
+            kecamatan,
+            SUM(g_1) as total_g_1, 
+            SUM(g_2) as total_g_2, 
+            SUM(g_ts) as total_g_ts,
+            SUM(b_1) as total_b_1, 
+            SUM(b_2) as total_b_2, 
+            SUM(b_ts) as total_b_ts,
+            SUM(g_1 + g_2 + g_ts) as total_g,
+            SUM(b_1 + b_2 + b_ts) as total_b,
+            SUM(dpt) as total_dpt, 
+            SUM(dptb) as total_dptb, 
+            SUM(dpk) as total_dpk,
+            SUM(dpt + dptb + dpk) as total_sum
+        ')->groupBy('kecamatan');
+        if ($this->searchKecamatan) {
+            $data->whereHas('kecamatanTPS', function ($query) {
+                $query->where('region_cd', $this->searchKecamatan);
+            });
+        }
+        $laporan = $data->orderBy('kecamatan', 'ASC')->get();
+        $data = [
+            'title' => 'Kabupaten Wonosobo Perkecamatan',
+            'data' => $laporan
+        ];
+
+        $pdf = Pdf::loadView('pdf.report-hitung-cepat-perkecamatan', $data)->setPaper('a4', 'landscape');
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, now()->format('Y-m-d_H-i-s') . '_report-hitung-cepat.pdf', [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="' . now()->format('Y-m-d_H-i-s') . '_report-hitung-cepat.pdf"',
+        ]);
+    }
     public function downloadReport()
     {
         $data = Hasil::with(['kecamatanTPS', 'desaTPS'])
