@@ -162,22 +162,26 @@
                                 maintainAspectRatio: false,
                                 plugins: {
                                     tooltip: {
-                                        callbacks: {
-                                            label: function(tooltipItem) {
-                                                const value = tooltipItem.raw;
-                                                const total = data.gubernur.reduce((sum, v) => sum +
-                                                    v, 0);
-                                                const percentage = ((value / total) * 100).toFixed(
-                                                    2);
-                                                return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                                            }
-                                        }
+                                        enabled: false // Nonaktifkan tooltip bawaan
+                                    },
+                                    datalabels: {
+                                        formatter: function(value, ctx) {
+                                            const total = ctx.chart.data.datasets[0].data.reduce((
+                                                sum, v) => sum + v, 0);
+                                            const percentage = ((value / total) * 100).toFixed(2);
+                                            return `${value} (${percentage}%)`;
+                                        },
+                                        color: '#fff', // Warna teks
+                                        font: {
+                                            size: 14,
+                                            weight: 'bold'
+                                        },
+                                        align: 'center', // Posisi label
+                                        anchor: 'center' // Penempatan di dalam chart
                                     }
-                                },
-                                tooltip: {
-                                    enabled: false // Matikan tooltip bawaan jika tidak diperlukan
                                 }
-                            }
+                            },
+                            plugins: [ChartDataLabels] // Pastikan plugin datalabels diaktifkan
                         }, chartGubernurPie);
 
                         chartBupatiPie = renderChart('bupatiPieChart', {
@@ -198,20 +202,28 @@
                                 maintainAspectRatio: false,
                                 plugins: {
                                     tooltip: {
-                                        callbacks: {
-                                            label: function(tooltipItem) {
-                                                const value = tooltipItem.raw;
-                                                const total = data.bupati.reduce((sum, v) => sum +
-                                                    v, 0);
-                                                const percentage = ((value / total) * 100).toFixed(
-                                                    2);
-                                                return `${tooltipItem.label}: ${value} (${percentage}%)`;
-                                            }
-                                        }
+                                        enabled: false // Nonaktifkan tooltip bawaan
+                                    },
+                                    datalabels: {
+                                        formatter: function(value, ctx) {
+                                            const total = ctx.chart.data.datasets[0].data.reduce((
+                                                sum, v) => sum + v, 0);
+                                            const percentage = ((value / total) * 100).toFixed(2);
+                                            return `${value} (${percentage}%)`;
+                                        },
+                                        color: '#fff', // Warna teks
+                                        font: {
+                                            size: 14,
+                                            weight: 'bold'
+                                        },
+                                        align: 'center', // Posisi label
+                                        anchor: 'center' // Penempatan label di tengah slice
                                     }
                                 }
-                            }
+                            },
+                            plugins: [ChartDataLabels] // Pastikan plugin datalabels diaktifkan
                         }, chartBupatiPie);
+
 
 
                         // Update Bar Charts
