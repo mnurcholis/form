@@ -119,7 +119,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     <script>
@@ -161,18 +161,21 @@
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 plugins: {
-                                    datalabels: {
-                                        color: '#fff', // Warna teks
-                                        formatter: (value, context) => {
-                                            const label = context.chart.data.labels[context
-                                                .dataIndex];
-                                            return `${label}\n${value}`; // Menampilkan label dan nilai
-                                        },
-                                        font: {
-                                            weight: 'bold',
-                                            size: 14 // Ukuran font
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(tooltipItem) {
+                                                const value = tooltipItem.raw;
+                                                const total = data.gubernur.reduce((sum, v) => sum +
+                                                    v, 0);
+                                                const percentage = ((value / total) * 100).toFixed(
+                                                    2);
+                                                return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                                            }
                                         }
                                     }
+                                },
+                                tooltip: {
+                                    enabled: false // Matikan tooltip bawaan jika tidak diperlukan
                                 }
                             }
                         }, chartGubernurPie);
@@ -194,16 +197,16 @@
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 plugins: {
-                                    datalabels: {
-                                        color: '#fff', // Warna teks
-                                        formatter: (value, context) => {
-                                            const label = context.chart.data.labels[context
-                                                .dataIndex];
-                                            return `${label}\n${value}`; // Menampilkan label dan nilai
-                                        },
-                                        font: {
-                                            weight: 'bold',
-                                            size: 14 // Ukuran font
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(tooltipItem) {
+                                                const value = tooltipItem.raw;
+                                                const total = data.bupati.reduce((sum, v) => sum +
+                                                    v, 0);
+                                                const percentage = ((value / total) * 100).toFixed(
+                                                    2);
+                                                return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                                            }
                                         }
                                     }
                                 }
