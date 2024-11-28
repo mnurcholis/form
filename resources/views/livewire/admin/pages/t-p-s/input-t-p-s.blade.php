@@ -64,7 +64,7 @@
                             <th rowspan="2" class="text-center">DPK</th>
                             <th rowspan="2" class="text-center">DPT</th>
                             <th rowspan="2" class="text-center">DPTb</th>
-                            <th rowspan="2" class="text-center">Action</th>
+                            {{-- <th rowspan="2" class="text-center">Action</th> --}}
                         </tr>
                         <tr>
                             <th class="text-center">No. 1<br> Afif dan Amir</th>
@@ -168,7 +168,7 @@
                                 </td>
                                 <td class="text-right">{{ number_format($row->dpt ?? 0, 0, ',', '.') }}</td>
                                 <td class="text-right">{{ number_format($row->dptb ?? 0, 0, ',', '.') }}</td>
-                                <td>
+                                {{-- <td>
                                     @if ($idNya == $row->id)
                                         <div wire:loading.remove>
                                             <button type="button" class="btn btn-danger"
@@ -186,7 +186,7 @@
                                             Edit <i class="icon-pencil ml-2"></i>
                                         </button>
                                     @endif
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                         <tr class="bg-slate">
@@ -202,7 +202,7 @@
                             <td class="text-right">{{ array_sum($dpk) }}</td>
                             <td class="text-right">{{ array_sum($dpt) }}</td>
                             <td class="text-right">{{ array_sum($dptb) }}</td>
-                            <td></td>
+                            {{-- <td></td> --}}
                         </tr>
                     </tbody>
                 </table>
